@@ -1,0 +1,2601 @@
+CPEG300Assembly                                                                                                         PAGE 1
+  0EF1                   1     label119        CODE    0EF1h
+  0D72                   2     label124        CODE    0D72h
+  1172                   3     label151        CODE    1172h
+  126D                   4     label180        CODE    126Dh
+  1270                   5     label185        CODE    1270h
+  1002                   6     label189        CODE    1002h
+  16C1                   7     label197        CODE    16C1h
+  1273                   8     label198        CODE    1273h
+  12E2                   9     label203        CODE    12E2h
+                        10
+                        11             ORG     0h
+0000 021226             12             ljmp    label0
+                        13
+                        14             ORG     800h
+                        15     label80:
+0800 EC                 16             mov     A, R4
+0801 4D                 17             orl     A, R5
+0802 6011               18             jz      label1
+0804 E8                 19             mov     A, R0
+0805 49                 20             orl     A, R1
+0806 7017               21             jnz     label2
+0808 ED                 22             mov     A, R5
+0809 33                 23             rlc     A
+080A EC                 24             mov     A, R4
+080B 33                 25             rlc     A
+080C 04                 26             inc     A
+080D 600D               27             jz      label3
+080F E4                 28             clr     A
+0810 FC                 29             mov     R4, A
+0811 FF                 30             mov     R7, A
+0812 FE                 31             mov     R6, A
+0813 FD                 32             mov     R5, A
+0814 22                 33     label4: ret
+0815 E9                 34     label1: mov     A, R1
+0816 33                 35             rlc     A
+0817 E8                 36             mov     A, R0
+0818 33                 37             rlc     A
+0819 04                 38             inc     A
+081A 70F8               39             jnz     label4
+081C 020A50             40     label3: ljmp    label5
+081F 120A1B             41     label2: lcall   label6
+0822 58                 42             anl     A, R0
+0823 04                 43             inc     A
+0824 6009               44             jz      label7
+0826 E4                 45             clr     A
+0827 CC                 46             xch     A, R4
+0828 2481               47             add     A, #81h
+082A 5006               48             jnc     label8
+082C 28                 49             add     A, R0
+082D 5009               50             jnc     label9
+082F 020A5A             51     label7: ljmp    label10
+0832 28                 52     label8: add     A, R0
+0833 4003               53             jc      label9
+0835 020A57             54             ljmp    label11
+0838 C0E0               55     label9: push    ACC
+083A EB                 56             mov     A, R3
+083B 4A                 57             orl     A, R2
+083C 7044               58             jnz     label12
+083E B98006             59             cjne    R1, #80h, label13
+                        60     label17:
+0841 D0E0               61             pop     ACC
+0843 FB                 62             mov     R3, A
+0844 020A46             63             ljmp    label14
+                        64     label13:
+0847 EF                 65             mov     A, R7
+0848 4E                 66             orl     A, R6
+0849 701C               67             jnz     label15
+084B BD8008             68             cjne    R5, #80h, label16
+                        69     label21:
+084E EB                 70             mov     A, R3
+084F FF                 71             mov     R7, A
+0850 EA                 72             mov     A, R2
+0851 FE                 73             mov     R6, A
+0852 E9                 74             mov     A, R1
+0853 FD                 75             mov     R5, A
+0854 80EB               76             sjmp    label17
+                        77     label16:
+0856 E9                 78             mov     A, R1
+0857 8DF0               79             mov     B, R5
+0859 A4                 80             mul     AB
+085A FE                 81             mov     R6, A
+085B E5F0               82             mov     A, B
+085D 0208E9             83             ljmp    label18
+                        84     label20:
+0860 E9                 85             mov     A, R1
+0861 CD                 86             xch     A, R5
+0862 F9                 87             mov     R1, A
+0863 EA                 88             mov     A, R2
+0864 FE                 89             mov     R6, A
+0865 EB                 90             mov     A, R3
+0866 FF                 91             mov     R7, A
+                        92     label15:
+0867 EF                 93             mov     A, R7
+0868 89F0               94             mov     B, R1
+086A A4                 95             mul     AB
+086B FC                 96             mov     R4, A
+086C E5F0               97             mov     A, B
+086E CE                 98             xch     A, R6
+086F 89F0               99             mov     B, R1
+0871 A4                100             mul     AB
+0872 2E                101             add     A, R6
+0873 FF                102             mov     R7, A
+0874 E4                103             clr     A
+0875 35F0              104             addc    A, B
+0877 CD                105             xch     A, R5
+0878 89F0              106             mov     B, R1
+087A A4                107             mul     AB
+087B 2D                108             add     A, R5
+087C FE                109             mov     R6, A
+087D E4                110             clr     A
+087E 35F0              111             addc    A, B
+0880 8067              112             sjmp    label18
+                       113     label12:
+0882 EF                114             mov     A, R7
+0883 4E                115             orl     A, R6
+0884 7005              116             jnz     label19
+0886 BD80D7            117             cjne    R5, #80h, label20
+0889 80C3              118             sjmp    label21
+                       119     label19:
+088B EF                120             mov     A, R7
+088C 8BF0              121             mov     B, R3
+088E A4                122             mul     AB
+088F ACF0              123             mov     R4, B
+0891 EE                124             mov     A, R6
+0892 8BF0              125             mov     B, R3
+0894 A4                126             mul     AB
+0895 2C                127             add     A, R4
+0896 FC                128             mov     R4, A
+0897 E4                129             clr     A
+0898 35F0              130             addc    A, B
+089A F8                131             mov     R0, A
+089B EF                132             mov     A, R7
+089C 8AF0              133             mov     B, R2
+089E A4                134             mul     AB
+089F 2C                135             add     A, R4
+08A0 E5F0              136             mov     A, B
+08A2 38                137             addc    A, R0
+08A3 FC                138             mov     R4, A
+08A4 E4                139             clr     A
+08A5 33                140             rlc     A
+08A6 CB                141             xch     A, R3
+08A7 8DF0              142             mov     B, R5
+08A9 A4                143             mul     AB
+08AA 2C                144             add     A, R4
+08AB FC                145             mov     R4, A
+08AC E5F0              146             mov     A, B
+08AE 3B                147             addc    A, R3
+08AF F8                148             mov     R0, A
+08B0 EE                149             mov     A, R6
+08B1 8AF0              150             mov     B, R2
+08B3 A4                151             mul     AB
+08B4 2C                152             add     A, R4
+08B5 FC                153             mov     R4, A
+08B6 E5F0              154             mov     A, B
+08B8 38                155             addc    A, R0
+08B9 F8                156             mov     R0, A
+08BA E4                157             clr     A
+08BB 33                158             rlc     A
+08BC CF                159             xch     A, R7
+08BD 89F0              160             mov     B, R1
+08BF A4                161             mul     AB
+08C0 2C                162             add     A, R4
+08C1 FC                163             mov     R4, A
+08C2 E5F0              164             mov     A, B
+08C4 38                165             addc    A, R0
+08C5 CF                166             xch     A, R7
+08C6 3400              167             addc    A, #0h
+08C8 CE                168             xch     A, R6
+08C9 89F0              169             mov     B, R1
+08CB A4                170             mul     AB
+08CC 2F                171             add     A, R7
+08CD FF                172             mov     R7, A
+08CE E5F0              173             mov     A, B
+08D0 3E                174             addc    A, R6
+08D1 FE                175             mov     R6, A
+08D2 E4                176             clr     A
+08D3 33                177             rlc     A
+08D4 C9                178             xch     A, R1
+08D5 8DF0              179             mov     B, R5
+08D7 A4                180             mul     AB
+08D8 2E                181             add     A, R6
+08D9 FE                182             mov     R6, A
+08DA E5F0              183             mov     A, B
+08DC 39                184             addc    A, R1
+08DD CD                185             xch     A, R5
+08DE 8AF0              186             mov     B, R2
+08E0 A4                187             mul     AB
+08E1 2F                188             add     A, R7
+08E2 FF                189             mov     R7, A
+08E3 E5F0              190             mov     A, B
+08E5 3E                191             addc    A, R6
+08E6 FE                192             mov     R6, A
+08E7 E4                193             clr     A
+08E8 3D                194             addc    A, R5
+                       195     label18:
+08E9 FD                196             mov     R5, A
+08EA 33                197             rlc     A
+08EB D0E0              198             pop     ACC
+08ED FB                199             mov     R3, A
+08EE 5007              200             jnc     label22
+08F0 0B                201             inc     R3
+08F1 BB000F            202             cjne    R3, #0h, label23
+08F4 020A5A            203             ljmp    label10
+                       204     label22:
+08F7 EC                205             mov     A, R4
+08F8 2C                206             add     A, R4
+08F9 FC                207             mov     R4, A
+08FA EF                208             mov     A, R7
+08FB 33                209             rlc     A
+08FC FF                210             mov     R7, A
+08FD EE                211             mov     A, R6
+08FE 33                212             rlc     A
+08FF FE                213             mov     R6, A
+0900 ED                214             mov     A, R5
+0901 33                215             rlc     A
+0902 FD                216             mov     R5, A
+                       217     label23:
+0903 020A32            218             ljmp    label24
+                       219     label28:
+0906 020A5A            220             ljmp    label10
+                       221     label112:
+0909 EC                222             mov     A, R4
+090A 5D                223             anl     A, R5
+090B 04                224             inc     A
+090C 6005              225             jz      label25
+090E E8                226             mov     A, R0
+090F 59                227             anl     A, R1
+0910 04                228             inc     A
+0911 7003              229             jnz     label26
+                       230     label25:
+0913 020A50            231             ljmp    label5
+                       232     label26:
+0916 120A1B            233             lcall   label6
+0919 58                234             anl     A, R0
+091A 04                235             inc     A
+091B 60F6              236             jz      label25
+091D EC                237             mov     A, R4
+091E 48                238             orl     A, R0
+091F 60F2              239             jz      label25
+0921 EC                240             mov     A, R4
+0922 7004              241             jnz     label27
+0924 FD                242             mov     R5, A
+0925 FE                243             mov     R6, A
+0926 FF                244             mov     R7, A
+0927 22                245             ret
+                       246     label27:
+0928 C8                247             xch     A, R0
+0929 60DB              248             jz      label28
+092B 2481              249             add     A, #81h
+092D C8                250             xch     A, R0
+092E 5009              251             jnc     label29
+0930 C3                252             clr     C
+0931 98                253             subb    A, R0
+0932 6002              254             jz      label30
+0934 5006              255             jnc     label31
+                       256     label30:
+0936 020A57            257             ljmp    label11
+                       258     label29:
+0939 98                259             subb    A, R0
+093A 50CA              260             jnc     label28
+                       261     label31:
+093C F582              262             mov     DPL, A
+093E E9                263             mov     A, R1
+093F 29                264             add     A, R1
+0940 4B                265             orl     A, R3
+0941 4A                266             orl     A, R2
+0942 7005              267             jnz     label32
+0944 AB82              268             mov     R3, DPL
+0946 020A46            269             ljmp    label14
+                       270     label32:
+0949 75F000            271             mov     B, #0h
+094C 7C1A              272             mov     R4, #1Ah
+094E 7880              273             mov     R0, #80h
+                       274     label38:
+0950 C3                275             clr     C
+0951 EF                276             mov     A, R7
+0952 9B                277             subb    A, R3
+0953 EE                278             mov     A, R6
+0954 9A                279             subb    A, R2
+0955 ED                280             mov     A, R5
+0956 99                281             subb    A, R1
+0957 400D              282             jc      label33
+                       283     label37:
+0959 C3                284             clr     C
+095A EF                285             mov     A, R7
+095B 9B                286             subb    A, R3
+095C FF                287             mov     R7, A
+095D EE                288             mov     A, R6
+095E 9A                289             subb    A, R2
+095F FE                290             mov     R6, A
+0960 ED                291             mov     A, R5
+0961 99                292             subb    A, R1
+0962 FD                293             mov     R5, A
+0963 E8                294             mov     A, R0
+0964 42F0              295             orl     B, A
+                       296     label33:
+0966 DC23              297             djnz    R4, label34
+0968 ACF0              298             mov     R4, B
+096A D0E0              299             pop     ACC
+096C FF                300             mov     R7, A
+096D D0E0              301             pop     ACC
+096F FE                302             mov     R6, A
+0970 D0E0              303             pop     ACC
+                       304     label123:
+0972 FD                305             mov     R5, A
+0973 AB82              306             mov     R3, DPL
+0975 20E710            307             jb      0E7h, label35
+0978 1B                308             dec     R3
+0979 EB                309             mov     A, R3
+097A 60BA              310             jz      label30
+097C EC                311             mov     A, R4
+097D 2C                312             add     A, R4
+097E FC                313             mov     R4, A
+097F EF                314             mov     A, R7
+0980 33                315             rlc     A
+0981 FF                316             mov     R7, A
+0982 EE                317             mov     A, R6
+0983 33                318             rlc     A
+0984 FE                319             mov     R6, A
+0985 ED                320             mov     A, R5
+0986 33                321             rlc     A
+0987 FD                322             mov     R5, A
+                       323     label35:
+0988 020A32            324             ljmp    label24
+                       325     label34:
+098B E8                326             mov     A, R0
+098C 03                327             rr      A
+098D F8                328             mov     R0, A
+098E 30E705            329             jnb     0E7h, label36
+0991 C0F0              330             push    B
+0993 75F000            331             mov     B, #0h
+                       332     label36:
+0996 EF                333             mov     A, R7
+0997 2F                334             add     A, R7
+0998 FF                335             mov     R7, A
+0999 EE                336             mov     A, R6
+099A 33                337             rlc     A
+099B FE                338             mov     R6, A
+099C ED                339             mov     A, R5
+099D 33                340             rlc     A
+099E FD                341             mov     R5, A
+099F 40B8              342             jc      label37
+09A1 30E7C2            343             jnb     0E7h, label33
+09A4 80AA              344             sjmp    label38
+09A6 75F020            345             mov     B, #20h
+09A9 800E              346             sjmp    label39
+                       347     label111:
+09AB 75F010            348             mov     B, #10h
+09AE 8005              349             sjmp    label40
+                       350     label158:
+09B0 75F008            351             mov     B, #8h
+09B3 7D00              352             mov     R5, #0h
+                       353     label40:
+09B5 7E00              354             mov     R6, #0h
+09B7 7F00              355             mov     R7, #0h
+                       356     label39:
+09B9 33                357             rlc     A
+09BA 92D5              358             mov     F0, C
+09BC 30D503            359             jnb     F0, label41
+09BF 120CD0            360             lcall   label42
+                       361     label41:
+09C2 EC                362             mov     A, R4
+09C3 33                363             rlc     A
+09C4 4010              364             jc      label43
+09C6 EF                365             mov     A, R7
+09C7 33                366             rlc     A
+09C8 FF                367             mov     R7, A
+09C9 EE                368             mov     A, R6
+09CA 33                369             rlc     A
+09CB FE                370             mov     R6, A
+09CC ED                371             mov     A, R5
+09CD 33                372             rlc     A
+09CE FD                373             mov     R5, A
+09CF EC                374             mov     A, R4
+09D0 33                375             rlc     A
+09D1 FC                376             mov     R4, A
+09D2 D5F0ED            377             djnz    B, label41
+09D5 22                378             ret
+                       379     label43:
+09D6 E5F0              380             mov     A, B
+09D8 247E              381             add     A, #7Eh
+09DA A2D5              382             mov     C, F0
+09DC 13                383             rrc     A
+09DD CC                384             xch     A, R4
+09DE 92E7              385             mov     0E7h, C
+09E0 CD                386             xch     A, R5
+09E1 CE                387             xch     A, R6
+09E2 FF                388             mov     R7, A
+09E3 22                389             ret
+                       390     label113:
+09E4 ED                391             mov     A, R5
+09E5 D2E7              392             setb    0E7h
+09E7 CD                393             xch     A, R5
+09E8 33                394             rlc     A
+09E9 EC                395             mov     A, R4
+09EA 33                396             rlc     A
+09EB 92D5              397             mov     F0, C
+09ED 2481              398             add     A, #81h
+09EF 4006              399             jc      label44
+09F1 E4                400             clr     A
+                       401     label46:
+09F2 FF                402             mov     R7, A
+09F3 FE                403             mov     R6, A
+09F4 FD                404             mov     R5, A
+09F5 FC                405             mov     R4, A
+                       406     label48:
+09F6 22                407             ret
+                       408     label44:
+09F7 FC                409             mov     R4, A
+09F8 E4                410             clr     A
+09F9 CF                411             xch     A, R7
+09FA CE                412             xch     A, R6
+09FB CD                413             xch     A, R5
+09FC CC                414             xch     A, R4
+09FD 24E0              415             add     A, #0E0h
+09FF 5011              416             jnc     label45
+0A01 74FF              417             mov     A, #0FFh
+0A03 80ED              418             sjmp    label46
+                       419     label47:
+0A05 C3                420             clr     C
+0A06 CC                421             xch     A, R4
+0A07 13                422             rrc     A
+0A08 CC                423             xch     A, R4
+0A09 CD                424             xch     A, R5
+0A0A 13                425             rrc     A
+0A0B CD                426             xch     A, R5
+0A0C CE                427             xch     A, R6
+0A0D 13                428             rrc     A
+0A0E CE                429             xch     A, R6
+0A0F CF                430             xch     A, R7
+0A10 13                431             rrc     A
+0A11 CF                432             xch     A, R7
+                       433     label45:
+0A12 04                434             inc     A
+0A13 70F0              435             jnz     label47
+0A15 30D5DE            436             jnb     F0, label48
+0A18 020CD0            437             ljmp    label42
+0A1B E9                438     label6: mov     A, R1
+0A1C D2E7              439             setb    0E7h
+0A1E C9                440             xch     A, R1
+0A1F 33                441             rlc     A
+0A20 E8                442             mov     A, R0
+0A21 33                443             rlc     A
+0A22 F8                444             mov     R0, A
+0A23 92D5              445             mov     F0, C
+0A25 ED                446             mov     A, R5
+0A26 D2E7              447             setb    0E7h
+0A28 CD                448             xch     A, R5
+0A29 33                449             rlc     A
+0A2A EC                450             mov     A, R4
+0A2B 33                451             rlc     A
+0A2C FC                452             mov     R4, A
+0A2D 5002              453             jnc     label49
+0A2F B2D5              454             cpl     F0
+                       455     label49:
+0A31 22                456             ret
+                       457     label24:
+0A32 EC                458             mov     A, R4
+0A33 30E710            459             jnb     0E7h, label14
+0A36 0F                460             inc     R7
+0A37 BF000C            461             cjne    R7, #0h, label14
+0A3A 0E                462             inc     R6
+0A3B BE0008            463             cjne    R6, #0h, label14
+0A3E 0D                464             inc     R5
+0A3F BD0004            465             cjne    R5, #0h, label14
+0A42 0B                466             inc     R3
+0A43 EB                467             mov     A, R3
+0A44 6014              468             jz      label10
+                       469     label14:
+0A46 A2D5              470             mov     C, F0
+0A48 EB                471             mov     A, R3
+0A49 13                472             rrc     A
+0A4A FC                473             mov     R4, A
+0A4B ED                474             mov     A, R5
+0A4C 92E7              475             mov     0E7h, C
+0A4E FD                476             mov     R5, A
+0A4F 22                477             ret
+0A50 74FF              478     label5: mov     A, #0FFh
+                       479     label50:
+0A52 FC                480             mov     R4, A
+0A53 FD                481             mov     R5, A
+                       482     label51:
+0A54 FE                483             mov     R6, A
+0A55 FF                484             mov     R7, A
+0A56 22                485             ret
+                       486     label11:
+0A57 E4                487             clr     A
+0A58 80F8              488             sjmp    label50
+                       489     label10:
+0A5A A2D5              490             mov     C, F0
+0A5C 74FF              491             mov     A, #0FFh
+0A5E 13                492             rrc     A
+0A5F FC                493             mov     R4, A
+0A60 7D80              494             mov     R5, #80h
+0A62 E4                495             clr     A
+0A63 80EF              496             sjmp    label51
+                       497     label139:
+0A65 ED                498             mov     A, R5
+0A66 33                499             rlc     A
+0A67 EC                500             mov     A, R4
+0A68 33                501             rlc     A
+0A69 6010              502             jz      label52
+0A6B 04                503             inc     A
+0A6C 700F              504             jnz     label53
+0A6E ED                505             mov     A, R5
+0A6F 547F              506             anl     A, #7Fh
+0A71 7005              507             jnz     label54
+0A73 7402              508             mov     A, #2h
+0A75 92E0              509             mov     0E0h, C
+0A77 22                510             ret
+                       511     label54:
+0A78 7404              512             mov     A, #4h
+0A7A 22                513             ret
+                       514     label52:
+0A7B 04                515             inc     A
+0A7C 22                516             ret
+                       517     label53:
+0A7D E4                518             clr     A
+0A7E 22                519             ret
+                       520     label56:
+0A7F 020A50            521             ljmp    label5
+                       522     label133:
+0A82 E8                523             mov     A, R0
+0A83 6480              524             xrl     A, #80h
+0A85 F8                525             mov     R0, A
+                       526     label83:
+0A86 E9                527             mov     A, R1
+0A87 33                528             rlc     A
+0A88 E8                529             mov     A, R0
+0A89 33                530             rlc     A
+0A8A 6011              531             jz      label55
+0A8C 04                532             inc     A
+0A8D 60F0              533             jz      label56
+0A8F ED                534             mov     A, R5
+0A90 33                535             rlc     A
+0A91 EC                536             mov     A, R4
+0A92 33                537             rlc     A
+0A93 7009              538             jnz     label57
+0A95 E8                539             mov     A, R0
+0A96 FC                540             mov     R4, A
+0A97 E9                541             mov     A, R1
+0A98 FD                542             mov     R5, A
+0A99 EA                543             mov     A, R2
+0A9A FE                544             mov     R6, A
+0A9B EB                545             mov     A, R3
+0A9C FF                546             mov     R7, A
+                       547     label55:
+0A9D 22                548             ret
+                       549     label57:
+0A9E 04                550             inc     A
+0A9F 60DE              551             jz      label56
+0AA1 D3                552             setb    C
+0AA2 EB                553             mov     A, R3
+0AA3 9F                554             subb    A, R7
+0AA4 EA                555             mov     A, R2
+0AA5 9E                556             subb    A, R6
+0AA6 E9                557             mov     A, R1
+0AA7 9D                558             subb    A, R5
+0AA8 E8                559             mov     A, R0
+0AA9 C2E7              560             clr     0E7h
+0AAB 8CF0              561             mov     B, R4
+0AAD C2F7              562             clr     0F7h
+0AAF 95F0              563             subb    A, B
+0AB1 400C              564             jc      label58
+0AB3 E8                565             mov     A, R0
+0AB4 CC                566             xch     A, R4
+0AB5 F8                567             mov     R0, A
+0AB6 E9                568             mov     A, R1
+0AB7 CD                569             xch     A, R5
+0AB8 F9                570             mov     R1, A
+0AB9 EA                571             mov     A, R2
+0ABA CE                572             xch     A, R6
+0ABB FA                573             mov     R2, A
+0ABC EB                574             mov     A, R3
+0ABD CF                575             xch     A, R7
+0ABE FB                576             mov     R3, A
+                       577     label58:
+0ABF 120A1B            578             lcall   label6
+0AC2 85D0F0            579             mov     B, PSW
+0AC5 58                580             anl     A, R0
+0AC6 04                581             inc     A
+0AC7 7003              582             jnz     label59
+0AC9 20D5B3            583             jb      F0, label56
+                       584     label59:
+0ACC E8                585             mov     A, R0
+0ACD 04                586             inc     A
+0ACE 7007              587             jnz     label60
+0AD0 5002              588             jnc     label61
+0AD2 B2D5              589             cpl     F0
+                       590     label61:
+0AD4 020A5A            591             ljmp    label10
+                       592     label60:
+0AD7 92D5              593             mov     F0, C
+0AD9 EC                594             mov     A, R4
+0ADA 04                595             inc     A
+0ADB 60F7              596             jz      label61
+0ADD E4                597             clr     A
+0ADE CC                598             xch     A, R4
+0ADF C0E0              599             push    ACC
+0AE1 C3                600             clr     C
+0AE2 98                601             subb    A, R0
+0AE3 F8                602             mov     R0, A
+0AE4 603B              603             jz      label62
+0AE6 9418              604             subb    A, #18h
+0AE8 6008              605             jz      label63
+0AEA 400D              606             jc      label64
+0AEC D0E0              607             pop     ACC
+0AEE FB                608             mov     R3, A
+0AEF 020A32            609             ljmp    label24
+                       610     label63:
+0AF2 E4                611             clr     A
+0AF3 FB                612             mov     R3, A
+0AF4 FA                613             mov     R2, A
+0AF5 C9                614             xch     A, R1
+0AF6 FC                615             mov     R4, A
+0AF7 8028              616             sjmp    label62
+                       617     label64:
+0AF9 E8                618             mov     A, R0
+0AFA 30E406            619             jnb     0E4h, label65
+0AFD E4                620             clr     A
+0AFE C9                621             xch     A, R1
+0AFF FB                622             mov     R3, A
+0B00 E4                623             clr     A
+0B01 CA                624             xch     A, R2
+0B02 FC                625             mov     R4, A
+                       626     label65:
+0B03 E8                627             mov     A, R0
+0B04 30E305            628             jnb     0E3h, label66
+0B07 E4                629             clr     A
+0B08 C9                630             xch     A, R1
+0B09 CA                631             xch     A, R2
+0B0A CB                632             xch     A, R3
+0B0B FC                633             mov     R4, A
+                       634     label66:
+0B0C E8                635             mov     A, R0
+0B0D 5407              636             anl     A, #7h
+0B0F 6010              637             jz      label62
+0B11 F8                638             mov     R0, A
+                       639     label67:
+0B12 C3                640             clr     C
+0B13 E9                641             mov     A, R1
+0B14 13                642             rrc     A
+0B15 F9                643             mov     R1, A
+0B16 EA                644             mov     A, R2
+0B17 13                645             rrc     A
+0B18 FA                646             mov     R2, A
+0B19 EB                647             mov     A, R3
+0B1A 13                648             rrc     A
+0B1B FB                649             mov     R3, A
+0B1C EC                650             mov     A, R4
+0B1D 13                651             rrc     A
+0B1E FC                652             mov     R4, A
+0B1F D8F1              653             djnz    R0, label67
+                       654     label62:
+0B21 30F52F            655             jnb     0F5h, label68
+0B24 C3                656             clr     C
+0B25 E4                657             clr     A
+0B26 9C                658             subb    A, R4
+0B27 FC                659             mov     R4, A
+0B28 EF                660             mov     A, R7
+0B29 9B                661             subb    A, R3
+0B2A FF                662             mov     R7, A
+0B2B EE                663             mov     A, R6
+0B2C 9A                664             subb    A, R2
+0B2D FE                665             mov     R6, A
+0B2E ED                666             mov     A, R5
+0B2F 99                667             subb    A, R1
+0B30 FD                668             mov     R5, A
+0B31 D0E0              669             pop     ACC
+0B33 FB                670             mov     R3, A
+0B34 EF                671             mov     A, R7
+0B35 4E                672             orl     A, R6
+0B36 4D                673             orl     A, R5
+0B37 4C                674             orl     A, R4
+0B38 7012              675             jnz     label69
+0B3A 22                676             ret
+                       677     label71:
+0B3B DB03              678             djnz    R3, label70
+0B3D 020A57            679             ljmp    label11
+                       680     label70:
+0B40 EC                681             mov     A, R4
+0B41 2C                682             add     A, R4
+0B42 FC                683             mov     R4, A
+0B43 EF                684             mov     A, R7
+0B44 33                685             rlc     A
+0B45 FF                686             mov     R7, A
+0B46 EE                687             mov     A, R6
+0B47 33                688             rlc     A
+0B48 FE                689             mov     R6, A
+0B49 ED                690             mov     A, R5
+0B4A 33                691             rlc     A
+0B4B FD                692             mov     R5, A
+                       693     label69:
+0B4C ED                694             mov     A, R5
+0B4D 30E7EB            695             jnb     0E7h, label71
+0B50 020A32            696             ljmp    label24
+                       697     label68:
+0B53 EF                698             mov     A, R7
+0B54 2B                699             add     A, R3
+0B55 FF                700             mov     R7, A
+0B56 EE                701             mov     A, R6
+0B57 3A                702             addc    A, R2
+0B58 FE                703             mov     R6, A
+0B59 ED                704             mov     A, R5
+0B5A 39                705             addc    A, R1
+0B5B FD                706             mov     R5, A
+0B5C D0E0              707             pop     ACC
+0B5E FB                708             mov     R3, A
+0B5F 5013              709             jnc     label72
+0B61 0B                710             inc     R3
+0B62 BB0003            711             cjne    R3, #0h, label73
+0B65 020A5A            712             ljmp    label10
+                       713     label73:
+0B68 ED                714             mov     A, R5
+0B69 13                715             rrc     A
+0B6A FD                716             mov     R5, A
+0B6B EE                717             mov     A, R6
+0B6C 13                718             rrc     A
+0B6D FE                719             mov     R6, A
+0B6E EF                720             mov     A, R7
+0B6F 13                721             rrc     A
+0B70 FF                722             mov     R7, A
+0B71 EC                723             mov     A, R4
+0B72 13                724             rrc     A
+0B73 FC                725             mov     R4, A
+                       726     label72:
+0B74 020A32            727             ljmp    label24
+                       728     label137:
+0B77 74F8              729             mov     A, #0F8h
+0B79 CC                730             xch     A, R4
+0B7A 6480              731             xrl     A, #80h
+0B7C CC                732             xch     A, R4
+0B7D C8                733             xch     A, R0
+0B7E 6480              734             xrl     A, #80h
+0B80 C8                735             xch     A, R0
+0B81 F582              736             mov     DPL, A
+0B83 04                737             inc     A
+0B84 604F              738             jz      label74
+0B86 C3                739             clr     C
+0B87 EB                740             mov     A, R3
+0B88 9F                741             subb    A, R7
+0B89 F5F0              742             mov     B, A
+0B8B EA                743             mov     A, R2
+0B8C 9E                744             subb    A, R6
+0B8D 42F0              745             orl     B, A
+0B8F E9                746             mov     A, R1
+0B90 9D                747             subb    A, R5
+0B91 42F0              748             orl     B, A
+0B93 E8                749             mov     A, R0
+0B94 9C                750             subb    A, R4
+0B95 45F0              751             orl     A, B
+0B97 603C              752             jz      label74
+0B99 501D              753             jnc     label75
+0B9B E582              754             mov     A, DPL
+0B9D 5F                755             anl     A, R7
+0B9E FF                756             mov     R7, A
+0B9F E582              757             mov     A, DPL
+0BA1 D3                758             setb    C
+0BA2 13                759             rrc     A
+0BA3 CB                760             xch     A, R3
+0BA4 5B                761             anl     A, R3
+0BA5 CB                762             xch     A, R3
+0BA6 F4                763             cpl     A
+0BA7 2B                764             add     A, R3
+0BA8 5582              765             anl     A, DPL
+0BAA FB                766             mov     R3, A
+0BAB 5028              767             jnc     label74
+0BAD 0A                768             inc     R2
+0BAE BA0024            769             cjne    R2, #0h, label74
+0BB1 09                770             inc     R1
+0BB2 B90020            771             cjne    R1, #0h, label74
+0BB5 08                772             inc     R0
+0BB6 801D              773             sjmp    label74
+                       774     label75:
+0BB8 E582              775             mov     A, DPL
+0BBA 5B                776             anl     A, R3
+0BBB FB                777             mov     R3, A
+0BBC E582              778             mov     A, DPL
+0BBE D3                779             setb    C
+0BBF 13                780             rrc     A
+0BC0 CF                781             xch     A, R7
+0BC1 5F                782             anl     A, R7
+0BC2 CF                783             xch     A, R7
+0BC3 F4                784             cpl     A
+0BC4 C3                785             clr     C
+0BC5 13                786             rrc     A
+0BC6 2F                787             add     A, R7
+0BC7 5582              788             anl     A, DPL
+0BC9 FF                789             mov     R7, A
+0BCA 5009              790             jnc     label74
+0BCC 0E                791             inc     R6
+0BCD BE0005            792             cjne    R6, #0h, label74
+0BD0 0D                793             inc     R5
+0BD1 BD0001            794             cjne    R5, #0h, label74
+0BD4 0C                795             inc     R4
+                       796     label74:
+0BD5 C3                797             clr     C
+0BD6 EB                798             mov     A, R3
+0BD7 9F                799             subb    A, R7
+0BD8 F5F0              800             mov     B, A
+0BDA EA                801             mov     A, R2
+0BDB 9E                802             subb    A, R6
+0BDC 42F0              803             orl     B, A
+0BDE E9                804             mov     A, R1
+0BDF 9D                805             subb    A, R5
+0BE0 42F0              806             orl     B, A
+0BE2 E8                807             mov     A, R0
+0BE3 9C                808             subb    A, R4
+0BE4 45F0              809             orl     A, B
+0BE6 6007              810             jz      label76
+0BE8 CC                811             xch     A, R4
+0BE9 48                812             orl     A, R0
+0BEA 20E701            813             jb      0E7h, label77
+0BED B3                814             cpl     C
+                       815     label77:
+0BEE EC                816             mov     A, R4
+                       817     label76:
+0BEF 22                818             ret
+                       819     label145:
+0BF0 ED                820             mov     A, R5
+0BF1 33                821             rlc     A
+0BF2 EC                822             mov     A, R4
+0BF3 33                823             rlc     A
+0BF4 600A              824             jz      label78
+0BF6 04                825             inc     A
+0BF7 7003              826             jnz     label79
+0BF9 BD8004            827             cjne    R5, #80h, label78
+                       828     label79:
+0BFC EC                829             mov     A, R4
+0BFD B2E7              830             cpl     0E7h
+0BFF FC                831             mov     R4, A
+                       832     label78:
+0C00 22                833             ret
+                       834     label134:
+0C01 C0E0              835             push    ACC
+0C03 EF                836             mov     A, R7
+0C04 FB                837             mov     R3, A
+0C05 EE                838             mov     A, R6
+0C06 FA                839             mov     R2, A
+0C07 ED                840             mov     A, R5
+0C08 F9                841             mov     R1, A
+0C09 EC                842             mov     A, R4
+0C0A F8                843             mov     R0, A
+0C0B 120800            844             lcall   label80
+0C0E D0E0              845             pop     ACC
+                       846     label159:
+0C10 F5F0              847             mov     B, A
+0C12 EF                848             mov     A, R7
+0C13 FB                849             mov     R3, A
+0C14 EE                850             mov     A, R6
+0C15 FA                851             mov     R2, A
+0C16 ED                852             mov     A, R5
+0C17 F9                853             mov     R1, A
+0C18 EC                854             mov     A, R4
+0C19 F8                855             mov     R0, A
+0C1A 120CF4            856             lcall   label81
+0C1D A3                857             inc     DPTR
+0C1E A3                858             inc     DPTR
+0C1F A3                859             inc     DPTR
+0C20 A3                860             inc     DPTR
+                       861     label84:
+0C21 E8                862             mov     A, R0
+0C22 C0E0              863             push    ACC
+0C24 E9                864             mov     A, R1
+0C25 C0E0              865             push    ACC
+0C27 EA                866             mov     A, R2
+0C28 C0E0              867             push    ACC
+0C2A EB                868             mov     A, R3
+0C2B C0E0              869             push    ACC
+0C2D C0F0              870             push    B
+0C2F 120800            871             lcall   label80
+0C32 120D04            872             lcall   label82
+0C35 A3                873             inc     DPTR
+0C36 A3                874             inc     DPTR
+0C37 A3                875             inc     DPTR
+0C38 A3                876             inc     DPTR
+0C39 120A86            877             lcall   label83
+0C3C D0F0              878             pop     B
+                       879     label125:
+0C3E D0E0              880             pop     ACC
+0C40 FB                881             mov     R3, A
+0C41 D0E0              882             pop     ACC
+0C43 FA                883             mov     R2, A
+0C44 D0E0              884             pop     ACC
+0C46 F9                885             mov     R1, A
+0C47 D0E0              886             pop     ACC
+0C49 F8                887             mov     R0, A
+0C4A D5F0D4            888             djnz    B, label84
+0C4D 22                889             ret
+                       890     label176:
+0C4E BB010C            891             cjne    R3, #1h, label85
+0C51 E582              892             mov     A, DPL
+0C53 29                893             add     A, R1
+0C54 F582              894             mov     DPL, A
+0C56 E583              895             mov     A, DPH
+0C58 3A                896             addc    A, R2
+0C59 F583              897             mov     DPH, A
+0C5B E0                898             movx    A, @DPTR
+0C5C 22                899             ret
+                       900     label85:
+0C5D 5006              901             jnc     label86
+0C5F E9                902             mov     A, R1
+0C60 2582              903             add     A, DPL
+0C62 F8                904             mov     R0, A
+0C63 E6                905             mov     A, @R0
+0C64 22                906             ret
+                       907     label86:
+0C65 BBFE06            908             cjne    R3, #0FEh, label87
+0C68 E9                909             mov     A, R1
+0C69 2582              910             add     A, DPL
+0C6B F8                911             mov     R0, A
+0C6C E2                912             movx    A, @R0
+0C6D 22                913             ret
+                       914     label87:
+0C6E E582              915             mov     A, DPL
+0C70 29                916             add     A, R1
+0C71 F582              917             mov     DPL, A
+0C73 E583              918             mov     A, DPH
+0C75 3A                919             addc    A, R2
+0C76 F583              920             mov     DPH, A
+0C78 E4                921             clr     A
+0C79 93                922             movc    A, @A+DPTR
+0C7A 22                923             ret
+                       924     label115:
+0C7B BC000B            925             cjne    R4, #0h, label88
+0C7E BE0029            926             cjne    R6, #0h, label89
+0C81 EF                927             mov     A, R7
+0C82 8DF0              928             mov     B, R5
+0C84 84                929             div     AB
+0C85 FF                930             mov     R7, A
+0C86 ADF0              931             mov     R5, B
+0C88 22                932             ret
+                       933     label88:
+0C89 E4                934             clr     A
+0C8A CC                935             xch     A, R4
+0C8B F8                936             mov     R0, A
+0C8C 75F008            937             mov     B, #8h
+                       938     label91:
+0C8F EF                939             mov     A, R7
+0C90 2F                940             add     A, R7
+0C91 FF                941             mov     R7, A
+0C92 EE                942             mov     A, R6
+0C93 33                943             rlc     A
+0C94 FE                944             mov     R6, A
+0C95 EC                945             mov     A, R4
+0C96 33                946             rlc     A
+0C97 FC                947             mov     R4, A
+0C98 EE                948             mov     A, R6
+0C99 9D                949             subb    A, R5
+0C9A EC                950             mov     A, R4
+0C9B 98                951             subb    A, R0
+0C9C 4005              952             jc      label90
+0C9E FC                953             mov     R4, A
+0C9F EE                954             mov     A, R6
+0CA0 9D                955             subb    A, R5
+0CA1 FE                956             mov     R6, A
+0CA2 0F                957             inc     R7
+                       958     label90:
+0CA3 D5F0E9            959             djnz    B, label91
+0CA6 E4                960             clr     A
+0CA7 CE                961             xch     A, R6
+0CA8 FD                962             mov     R5, A
+0CA9 22                963             ret
+                       964     label89:
+0CAA ED                965             mov     A, R5
+0CAB F8                966             mov     R0, A
+0CAC F5F0              967             mov     B, A
+0CAE EE                968             mov     A, R6
+0CAF 84                969             div     AB
+0CB0 20D21C            970             jb      OV, label92
+0CB3 FE                971             mov     R6, A
+0CB4 ADF0              972             mov     R5, B
+0CB6 75F008            973             mov     B, #8h
+                       974     label95:
+0CB9 EF                975             mov     A, R7
+0CBA 2F                976             add     A, R7
+0CBB FF                977             mov     R7, A
+0CBC ED                978             mov     A, R5
+0CBD 33                979             rlc     A
+0CBE FD                980             mov     R5, A
+0CBF 4007              981             jc      label93
+0CC1 98                982             subb    A, R0
+0CC2 5006              983             jnc     label94
+0CC4 D5F0F2            984             djnz    B, label95
+0CC7 22                985             ret
+                       986     label93:
+0CC8 C3                987             clr     C
+0CC9 98                988             subb    A, R0
+                       989     label94:
+0CCA FD                990             mov     R5, A
+0CCB 0F                991             inc     R7
+0CCC D5F0EA            992             djnz    B, label95
+                       993     label92:
+0CCF 22                994             ret
+                       995     label42:
+0CD0 C3                996             clr     C
+0CD1 E4                997             clr     A
+0CD2 9F                998             subb    A, R7
+0CD3 FF                999             mov     R7, A
+0CD4 E4               1000             clr     A
+0CD5 9E               1001             subb    A, R6
+0CD6 FE               1002             mov     R6, A
+0CD7 E4               1003             clr     A
+0CD8 9D               1004             subb    A, R5
+0CD9 FD               1005             mov     R5, A
+0CDA E4               1006             clr     A
+0CDB 9C               1007             subb    A, R4
+0CDC FC               1008             mov     R4, A
+0CDD 22               1009             ret
+                      1010     label105:
+0CDE EB               1011             mov     A, R3
+0CDF 9F               1012             subb    A, R7
+0CE0 F5F0             1013             mov     B, A
+0CE2 EA               1014             mov     A, R2
+0CE3 9E               1015             subb    A, R6
+0CE4 42F0             1016             orl     B, A
+0CE6 E9               1017             mov     A, R1
+0CE7 9D               1018             subb    A, R5
+0CE8 42F0             1019             orl     B, A
+0CEA EC               1020             mov     A, R4
+0CEB 6480             1021             xrl     A, #80h
+0CED C8               1022             xch     A, R0
+0CEE 6480             1023             xrl     A, #80h
+0CF0 98               1024             subb    A, R0
+0CF1 45F0             1025             orl     A, B
+0CF3 22               1026             ret
+                      1027     label81:
+0CF4 E4               1028             clr     A
+0CF5 93               1029             movc    A, @A+DPTR
+0CF6 FC               1030             mov     R4, A
+0CF7 7401             1031             mov     A, #1h
+0CF9 93               1032             movc    A, @A+DPTR
+0CFA FD               1033             mov     R5, A
+0CFB 7402             1034             mov     A, #2h
+0CFD 93               1035             movc    A, @A+DPTR
+0CFE FE               1036             mov     R6, A
+0CFF 7403             1037             mov     A, #3h
+0D01 93               1038             movc    A, @A+DPTR
+0D02 FF               1039             mov     R7, A
+0D03 22               1040             ret
+                      1041     label82:
+0D04 E4               1042             clr     A
+0D05 93               1043             movc    A, @A+DPTR
+0D06 F8               1044             mov     R0, A
+0D07 7401             1045             mov     A, #1h
+0D09 93               1046             movc    A, @A+DPTR
+0D0A F9               1047             mov     R1, A
+0D0B 7402             1048             mov     A, #2h
+0D0D 93               1049             movc    A, @A+DPTR
+0D0E FA               1050             mov     R2, A
+0D0F 7403             1051             mov     A, #3h
+0D11 93               1052             movc    A, @A+DPTR
+0D12 FB               1053             mov     R3, A
+0D13 22               1054             ret
+                      1055     label181:
+0D14 E4               1056             clr     A
+0D15 F52F             1057             mov     2Fh, A
+0D17 F530             1058             mov     30h, A
+0D19 F535             1059             mov     35h, A
+0D1B F536             1060             mov     36h, A
+0D1D F537             1061             mov     37h, A
+0D1F F538             1062             mov     38h, A
+0D21 F539             1063             mov     39h, A
+0D23 F53A             1064             mov     3Ah, A
+0D25 F53B             1065             mov     3Bh, A
+0D27 F53C             1066             mov     3Ch, A
+0D29 1213FB           1067             lcall   label96
+0D2C C290             1068             clr     90h
+0D2E F537             1069             mov     37h, A
+0D30 F538             1070             mov     38h, A
+                      1071     label103:
+0D32 E4               1072             clr     A
+0D33 F535             1073             mov     35h, A
+0D35 F536             1074             mov     36h, A
+                      1075     label99:
+0D37 AF36             1076             mov     R7, 36h
+0D39 E536             1077             mov     A, 36h
+0D3B 253A             1078             add     A, 3Ah
+0D3D FD               1079             mov     R5, A
+0D3E E535             1080             mov     A, 35h
+0D40 3539             1081             addc    A, 39h
+0D42 FC               1082             mov     R4, A
+0D43 74B2             1083             mov     A, #0B2h
+0D45 2D               1084             add     A, R5
+0D46 F582             1085             mov     DPL, A
+0D48 7412             1086             mov     A, #12h
+0D4A 3C               1087             addc    A, R4
+0D4B F583             1088             mov     DPH, A
+0D4D E4               1089             clr     A
+0D4E 93               1090             movc    A, @A+DPTR
+0D4F FD               1091             mov     R5, A
+0D50 7C00             1092             mov     R4, #0h
+0D52 12130F           1093             lcall   label97
+0D55 0536             1094             inc     36h
+0D57 E536             1095             mov     A, 36h
+0D59 7002             1096             jnz     label98
+0D5B 0535             1097             inc     35h
+                      1098     label98:
+0D5D C3               1099             clr     C
+0D5E 9408             1100             subb    A, #8h
+0D60 E535             1101             mov     A, 35h
+0D62 9400             1102             subb    A, #0h
+0D64 40D1             1103             jc      label99
+0D66 053C             1104             inc     3Ch
+0D68 E53C             1105             mov     A, 3Ch
+0D6A 7002             1106             jnz     label100
+0D6C 053B             1107             inc     3Bh
+                      1108     label100:
+0D6E D3               1109             setb    C
+0D6F 9427             1110             subb    A, #27h
+0D71 E53B             1111             mov     A, 3Bh
+0D73 9400             1112             subb    A, #0h
+0D75 4020             1113             jc      label101
+0D77 E4               1114             clr     A
+0D78 F53B             1115             mov     3Bh, A
+0D7A F53C             1116             mov     3Ch, A
+0D7C 7408             1117             mov     A, #8h
+0D7E 253A             1118             add     A, 3Ah
+0D80 F53A             1119             mov     3Ah, A
+0D82 E4               1120             clr     A
+0D83 3539             1121             addc    A, 39h
+0D85 F539             1122             mov     39h, A
+0D87 D3               1123             setb    C
+0D88 E53A             1124             mov     A, 3Ah
+0D8A 9429             1125             subb    A, #29h
+0D8C E539             1126             mov     A, 39h
+0D8E 9400             1127             subb    A, #0h
+0D90 4005             1128             jc      label101
+0D92 E4               1129             clr     A
+0D93 F539             1130             mov     39h, A
+0D95 F53A             1131             mov     3Ah, A
+                      1132     label101:
+0D97 0538             1133             inc     38h
+0D99 E538             1134             mov     A, 38h
+0D9B 7002             1135             jnz     label102
+0D9D 0537             1136             inc     37h
+                      1137     label102:
+0D9F C3               1138             clr     C
+0DA0 94BC             1139             subb    A, #0BCh
+0DA2 E537             1140             mov     A, 37h
+0DA4 9402             1141             subb    A, #2h
+0DA6 408A             1142             jc      label103
+0DA8 1213EB           1143             lcall   label104
+                      1144     label106:
+0DAB E4               1145             clr     A
+0DAC F537             1146             mov     37h, A
+0DAE F538             1147             mov     38h, A
+                      1148     label118:
+0DB0 AE37             1149             mov     R6, 37h
+0DB2 AF38             1150             mov     R7, 38h
+0DB4 E4               1151             clr     A
+0DB5 FC               1152             mov     R4, A
+0DB6 FD               1153             mov     R5, A
+0DB7 7BFF             1154             mov     R3, #0FFh
+0DB9 7AFF             1155             mov     R2, #0FFh
+0DBB F9               1156             mov     R1, A
+0DBC F8               1157             mov     R0, A
+0DBD D3               1158             setb    C
+0DBE 120CDE           1159             lcall   label105
+0DC1 40E8             1160             jc      label106
+0DC3 1213F3           1161             lcall   label107
+0DC6 30B3FD           1162             jnb     INT1, $
+0DC9 D28C             1163             setb    TR0
+                      1164     label109:
+0DCB 30B303           1165             jnb     INT1, label108
+0DCE 308DFA           1166             jnb     TF0, label109
+                      1167     label108:
+0DD1 C28C             1168             clr     TR0
+0DD3 E4               1169             clr     A
+0DD4 F544             1170             mov     44h, A
+0DD6 F543             1171             mov     43h, A
+0DD8 7542C0           1172             mov     42h, #0C0h
+0DDB 7541C0           1173             mov     41h, #0C0h
+0DDE FF               1174             mov     R7, A
+0DDF FE               1175             mov     R6, A
+0DE0 7D20             1176             mov     R5, #20h
+0DE2 7C41             1177             mov     R4, #41h
+0DE4 120FE3           1178             lcall   label110
+0DE7 7B80             1179             mov     R3, #80h
+0DE9 7A5F             1180             mov     R2, #5Fh
+0DEB 7911             1181             mov     R1, #11h
+0DED 7847             1182             mov     R0, #47h
+0DEF 120800           1183             lcall   label80
+0DF2 8F24             1184             mov     24h, R7
+0DF4 8E23             1185             mov     23h, R6
+0DF6 8D22             1186             mov     22h, R5
+0DF8 8C21             1187             mov     21h, R4
+0DFA AF8C             1188             mov     R7, TH0
+0DFC EF               1189             mov     A, R7
+0DFD AD8A             1190             mov     R5, TL0
+0DFF F52F             1191             mov     2Fh, A
+0E01 ED               1192             mov     A, R5
+0E02 F530             1193             mov     30h, A
+0E04 AC2F             1194             mov     R4, 2Fh
+0E06 E4               1195             clr     A
+0E07 1209AB           1196             lcall   label111
+0E0A AB24             1197             mov     R3, 24h
+0E0C AA23             1198             mov     R2, 23h
+0E0E A922             1199             mov     R1, 22h
+0E10 A821             1200             mov     R0, 21h
+0E12 120800           1201             lcall   label80
+0E15 E4               1202             clr     A
+0E16 FB               1203             mov     R3, A
+0E17 FA               1204             mov     R2, A
+0E18 F9               1205             mov     R1, A
+0E19 7840             1206             mov     R0, #40h
+0E1B 120909           1207             lcall   label112
+0E1E 1209E4           1208             lcall   label113
+0E21 8E2F             1209             mov     2Fh, R6
+0E23 8F30             1210             mov     30h, R7
+0E25 C3               1211             clr     C
+0E26 E530             1212             mov     A, 30h
+0E28 9405             1213             subb    A, #5h
+0E2A E52F             1214             mov     A, 2Fh
+0E2C 9400             1215             subb    A, #0h
+0E2E 5002             1216             jnc     label114
+0E30 D290             1217             setb    90h
+                      1218     label114:
+0E32 AE2F             1219             mov     R6, 2Fh
+0E34 AF30             1220             mov     R7, 30h
+0E36 7C03             1221             mov     R4, #3h
+0E38 7DE8             1222             mov     R5, #0E8h
+0E3A 120C7B           1223             lcall   label115
+0E3D 7408             1224             mov     A, #8h
+0E3F 2F               1225             add     A, R7
+0E40 F8               1226             mov     R0, A
+0E41 E6               1227             mov     A, @R0
+0E42 F531             1228             mov     31h, A
+0E44 AE2F             1229             mov     R6, 2Fh
+0E46 AF30             1230             mov     R7, 30h
+0E48 7C03             1231             mov     R4, #3h
+0E4A 7DE8             1232             mov     R5, #0E8h
+0E4C 120C7B           1233             lcall   label115
+0E4F AA04             1234             mov     R2, 4h
+0E51 AB05             1235             mov     R3, 5h
+0E53 7D64             1236             mov     R5, #64h
+0E55 7C00             1237             mov     R4, #0h
+0E57 AF03             1238             mov     R7, 3h
+0E59 AE02             1239             mov     R6, 2h
+0E5B 120C7B           1240             lcall   label115
+0E5E 7408             1241             mov     A, #8h
+0E60 2F               1242             add     A, R7
+0E61 F8               1243             mov     R0, A
+0E62 E6               1244             mov     A, @R0
+0E63 F532             1245             mov     32h, A
+0E65 7D64             1246             mov     R5, #64h
+0E67 7C00             1247             mov     R4, #0h
+0E69 AF03             1248             mov     R7, 3h
+0E6B AE02             1249             mov     R6, 2h
+0E6D 120C7B           1250             lcall   label115
+0E70 AA04             1251             mov     R2, 4h
+0E72 AB05             1252             mov     R3, 5h
+0E74 7D0A             1253             mov     R5, #0Ah
+0E76 7C00             1254             mov     R4, #0h
+0E78 AF03             1255             mov     R7, 3h
+0E7A AE02             1256             mov     R6, 2h
+0E7C 120C7B           1257             lcall   label115
+0E7F 7408             1258             mov     A, #8h
+0E81 2F               1259             add     A, R7
+0E82 F8               1260             mov     R0, A
+0E83 E6               1261             mov     A, @R0
+0E84 F533             1262             mov     33h, A
+0E86 7D0A             1263             mov     R5, #0Ah
+0E88 7C00             1264             mov     R4, #0h
+0E8A AF03             1265             mov     R7, 3h
+0E8C AE02             1266             mov     R6, 2h
+0E8E 120C7B           1267             lcall   label115
+0E91 7408             1268             mov     A, #8h
+0E93 2D               1269             add     A, R5
+0E94 F8               1270             mov     R0, A
+0E95 E6               1271             mov     A, @R0
+0E96 F534             1272             mov     34h, A
+0E98 7B00             1273             mov     R3, #0h
+0E9A 7A00             1274             mov     R2, #0h
+0E9C 7931             1275             mov     R1, #31h
+0E9E 7D05             1276             mov     R5, #5h
+0EA0 121194           1277             lcall   label116
+0EA3 0538             1278             inc     38h
+0EA5 E538             1279             mov     A, 38h
+0EA7 7002             1280             jnz     label117
+0EA9 0537             1281             inc     37h
+                      1282     label117:
+0EAB 020DB0           1283             ljmp    label118
+0EAE 3E               1284             addc    A, R6
+0EAF 9248             1285             mov     48h, C
+                      1286     label127:
+0EB1 DA3E             1287             djnz    R2, label119
+0EB3 CC               1288             xch     A, R4
+0EB4 CC               1289             xch     A, R4
+0EB5 CD               1290             xch     A, R5
+0EB6 3F               1291             addc    A, R7
+0EB7 2A               1292             add     A, R2
+0EB8 AAAB             1293             mov     R2, 0ABh
+0EBA 4000             1294             jc      label120
+                      1295     label120:
+0EBC 00               1296             nop
+                      1297     label122:
+0EBD 00               1298             nop
+0EBE 3F               1299             addc    A, R7
+0EBF 8000             1300             sjmp    label121
+                      1301     label121:
+0EC1 00               1302             nop
+0EC2 3F               1303             addc    A, R7
+0EC3 98               1304             subb    A, R0
+0EC4 37               1305             addc    A, @R1
+0EC5 F0               1306             movx    @DPTR, A
+0EC6 3F               1307             addc    A, R7
+0EC7 B504F3           1308             cjne    A, 4h, label122
+0ECA 3F               1309             addc    A, R7
+0ECB D7               1310             xchd    A, @R1
+0ECC 44FC             1311             orl     A, #0FCh
+0ECE 3E               1312             addc    A, R6
+0ECF 3172             1313             acall   label123
+0ED1 17               1314             dec     @R1
+0ED2 3E               1315             addc    A, R6
+0ED3 B172             1316             acall   label124
+0ED5 17               1317             dec     @R1
+0ED6 3F               1318             addc    A, R7
+0ED7 0515             1319             inc     15h
+0ED9 913E             1320             acall   label125
+0EDB DE5B             1321             djnz    R6, label126
+0EDD D9D2             1322             djnz    R1, label127
+0EDF 00               1323             nop
+0EE0 8002             1324             sjmp    label128
+                      1325     label146:
+0EE2 C200             1326             clr     0h
+                      1327     label128:
+0EE4 ED               1328             mov     A, R5
+0EE5 D2E7             1329             setb    0E7h
+0EE7 F8               1330             mov     R0, A
+0EE8 CD               1331             xch     A, R5
+0EE9 33               1332             rlc     A
+0EEA EC               1333             mov     A, R4
+0EEB 33               1334             rlc     A
+0EEC 04               1335             inc     A
+0EED 700B             1336             jnz     label129
+0EEF BD8005           1337             cjne    R5, #80h, label130
+                      1338     label131:
+0EF2 92D5             1339             mov     F0, C
+0EF4 020A5A           1340             ljmp    label10
+                      1341     label130:
+0EF7 020A50           1342             ljmp    label5
+                      1343     label129:
+0EFA 40FB             1344             jc      label130
+0EFC D3               1345             setb    C
+0EFD 14               1346             dec     A
+0EFE 60F2             1347             jz      label131
+0F00 F5F0             1348             mov     B, A
+0F02 7C3F             1349             mov     R4, #3Fh
+0F04 EE               1350             mov     A, R6
+0F05 7A00             1351             mov     R2, #0h
+0F07 C3               1352             clr     C
+0F08 9496             1353             subb    A, #96h
+0F0A C8               1354             xch     A, R0
+0F0B 948B             1355             subb    A, #8Bh
+0F0D 4023             1356             jc      label132
+0F0F 0A               1357             inc     R2
+0F10 C8               1358             xch     A, R0
+0F11 9469             1359             subb    A, #69h
+0F13 C8               1360             xch     A, R0
+0F14 941A             1361             subb    A, #1Ah
+0F16 401A             1362             jc      label132
+0F18 0A               1363             inc     R2
+0F19 C8               1364             xch     A, R0
+0F1A 9468             1365             subb    A, #68h
+0F1C C8               1366             xch     A, R0
+0F1D 941F             1367             subb    A, #1Fh
+0F1F 4011             1368             jc      label132
+0F21 0A               1369             inc     R2
+0F22 C8               1370             xch     A, R0
+0F23 945A             1371             subb    A, #5Ah
+0F25 C8               1372             xch     A, R0
+0F26 9425             1373             subb    A, #25h
+0F28 4008             1374             jc      label132
+0F2A 05F0             1375             inc     B
+0F2C 7A00             1376             mov     R2, #0h
+0F2E CD               1377             xch     A, R5
+0F2F C2E7             1378             clr     0E7h
+0F31 CD               1379             xch     A, R5
+                      1380     label132:
+0F32 C0F0             1381             push    B
+0F34 8C47             1382             mov     47h, R4
+0F36 8D48             1383             mov     48h, R5
+                      1384     label126:
+0F38 8E49             1385             mov     49h, R6
+0F3A 8F4A             1386             mov     4Ah, R7
+0F3C EA               1387             mov     A, R2
+0F3D 23               1388             rl      A
+0F3E 23               1389             rl      A
+0F3F C0E0             1390             push    ACC
+0F41 24BE             1391             add     A, #0BEh
+0F43 F582             1392             mov     DPL, A
+0F45 E4               1393             clr     A
+0F46 340E             1394             addc    A, #0Eh
+0F48 F583             1395             mov     DPH, A
+0F4A 120D04           1396             lcall   label82
+0F4D 120A86           1397             lcall   label83
+0F50 EC               1398             mov     A, R4
+0F51 C0E0             1399             push    ACC
+0F53 ED               1400             mov     A, R5
+0F54 C0E0             1401             push    ACC
+0F56 EE               1402             mov     A, R6
+0F57 C0E0             1403             push    ACC
+0F59 EF               1404             mov     A, R7
+0F5A C0E0             1405             push    ACC
+0F5C 120CF4           1406             lcall   label81
+0F5F A847             1407             mov     R0, 47h
+0F61 A948             1408             mov     R1, 48h
+0F63 AA49             1409             mov     R2, 49h
+0F65 AB4A             1410             mov     R3, 4Ah
+0F67 120A82           1411             lcall   label133
+0F6A D0E0             1412             pop     ACC
+0F6C FB               1413             mov     R3, A
+0F6D D0E0             1414             pop     ACC
+0F6F FA               1415             mov     R2, A
+0F70 D0E0             1416             pop     ACC
+0F72 F9               1417             mov     R1, A
+0F73 D0E0             1418             pop     ACC
+0F75 B2E7             1419             cpl     0E7h
+0F77 F8               1420             mov     R0, A
+0F78 120909           1421             lcall   label112
+0F7B 8C47             1422             mov     47h, R4
+0F7D 8D48             1423             mov     48h, R5
+0F7F 8E49             1424             mov     49h, R6
+0F81 8F4A             1425             mov     4Ah, R7
+0F83 900EAE           1426             mov     DPTR, #0EAEh
+0F86 7403             1427             mov     A, #3h
+0F88 120C01           1428             lcall   label134
+0F8B A847             1429             mov     R0, 47h
+0F8D A948             1430             mov     R1, 48h
+0F8F AA49             1431             mov     R2, 49h
+0F91 AB4A             1432             mov     R3, 4Ah
+0F93 120800           1433             lcall   label80
+0F96 D0E0             1434             pop     ACC
+0F98 600F             1435             jz      label135
+0F9A 24CA             1436             add     A, #0CAh
+0F9C F582             1437             mov     DPL, A
+0F9E E4               1438             clr     A
+0F9F 340E             1439             addc    A, #0Eh
+0FA1 F583             1440             mov     DPH, A
+0FA3 120D04           1441             lcall   label82
+0FA6 120A86           1442             lcall   label83
+                      1443     label135:
+0FA9 8C47             1444             mov     47h, R4
+0FAB 8D48             1445             mov     48h, R5
+0FAD 8E49             1446             mov     49h, R6
+0FAF 8F4A             1447             mov     4Ah, R7
+0FB1 D0E0             1448             pop     ACC
+0FB3 C3               1449             clr     C
+0FB4 947F             1450             subb    A, #7Fh
+0FB6 FD               1451             mov     R5, A
+0FB7 E4               1452             clr     A
+0FB8 9400             1453             subb    A, #0h
+0FBA FC               1454             mov     R4, A
+0FBB 1209AB           1455             lcall   label111
+0FBE 7B18             1456             mov     R3, #18h
+0FC0 7A72             1457             mov     R2, #72h
+0FC2 7931             1458             mov     R1, #31h
+0FC4 783F             1459             mov     R0, #3Fh
+0FC6 120800           1460             lcall   label80
+0FC9 A847             1461             mov     R0, 47h
+0FCB A948             1462             mov     R1, 48h
+0FCD AA49             1463             mov     R2, 49h
+0FCF AB4A             1464             mov     R3, 4Ah
+0FD1 120A86           1465             lcall   label83
+0FD4 30000B           1466             jnb     0h, label136
+0FD7 7BD9             1467             mov     R3, #0D9h
+0FD9 7A5B             1468             mov     R2, #5Bh
+0FDB 79DE             1469             mov     R1, #0DEh
+0FDD 783E             1470             mov     R0, #3Eh
+0FDF 120800           1471             lcall   label80
+                      1472     label136:
+0FE2 22               1473             ret
+                      1474     label110:
+0FE3 8F40             1475             mov     40h, R7
+0FE5 8E3F             1476             mov     3Fh, R6
+0FE7 8D3E             1477             mov     3Eh, R5
+0FE9 8C3D             1478             mov     3Dh, R4
+0FEB E4               1479             clr     A
+0FEC FF               1480             mov     R7, A
+0FED FE               1481             mov     R6, A
+0FEE 7D80             1482             mov     R5, #80h
+0FF0 7C3F             1483             mov     R4, #3Fh
+0FF2 AB40             1484             mov     R3, 40h
+0FF4 AA3F             1485             mov     R2, 3Fh
+0FF6 A93E             1486             mov     R1, 3Eh
+0FF8 A83D             1487             mov     R0, 3Dh
+0FFA 120B77           1488             lcall   label137
+0FFD 7009             1489             jnz     label138
+0FFF AF40             1490             mov     R7, 40h
+1001 AE3F             1491             mov     R6, 3Fh
+1003 AD3E             1492             mov     R5, 3Eh
+1005 AC3D             1493             mov     R4, 3Dh
+1007 22               1494             ret
+                      1495     label138:
+1008 AF40             1496             mov     R7, 40h
+100A AE3F             1497             mov     R6, 3Fh
+100C AD3E             1498             mov     R5, 3Eh
+100E AC3D             1499             mov     R4, 3Dh
+1010 120A65           1500             lcall   label139
+1013 FB               1501             mov     R3, A
+1014 AF44             1502             mov     R7, 44h
+1016 AE43             1503             mov     R6, 43h
+1018 AD42             1504             mov     R5, 42h
+101A AC41             1505             mov     R4, 41h
+101C 120A65           1506             lcall   label139
+101F FF               1507             mov     R7, A
+1020 BF0108           1508             cjne    R7, #1h, label140
+1023 E4               1509             clr     A
+1024 FF               1510             mov     R7, A
+1025 FE               1511             mov     R6, A
+1026 7D80             1512             mov     R5, #80h
+1028 7C3F             1513             mov     R4, #3Fh
+102A 22               1514             ret
+                      1515     label140:
+102B EF               1516             mov     A, R7
+102C 6404             1517             xrl     A, #4h
+102E 6022             1518             jz      label141
+1030 EB               1519             mov     A, R3
+1031 6404             1520             xrl     A, #4h
+1033 601D             1521             jz      label141
+1035 BB0127           1522             cjne    R3, #1h, label142
+1038 E4               1523             clr     A
+1039 FF               1524             mov     R7, A
+103A FE               1525             mov     R6, A
+103B FD               1526             mov     R5, A
+103C FC               1527             mov     R4, A
+103D AB44             1528             mov     R3, 44h
+103F AA43             1529             mov     R2, 43h
+1041 A942             1530             mov     R1, 42h
+1043 A841             1531             mov     R0, 41h
+1045 120B77           1532             lcall   label137
+1048 6008             1533             jz      label141
+104A 4006             1534             jc      label141
+104C E4               1535             clr     A
+104D FF               1536             mov     R7, A
+104E FE               1537             mov     R6, A
+104F FD               1538             mov     R5, A
+1050 FC               1539             mov     R4, A
+1051 22               1540             ret
+                      1541     label141:
+1052 74FF             1542             mov     A, #0FFh
+1054 F544             1543             mov     44h, A
+1056 F543             1544             mov     43h, A
+1058 F542             1545             mov     42h, A
+105A F541             1546             mov     41h, A
+105C 0210F1           1547             ljmp    label143
+                      1548     label142:
+105F E4               1549             clr     A
+1060 F545             1550             mov     45h, A
+1062 F546             1551             mov     46h, A
+1064 FF               1552             mov     R7, A
+1065 FE               1553             mov     R6, A
+1066 FD               1554             mov     R5, A
+1067 FC               1555             mov     R4, A
+1068 AB40             1556             mov     R3, 40h
+106A AA3F             1557             mov     R2, 3Fh
+106C A93E             1558             mov     R1, 3Eh
+106E A83D             1559             mov     R0, 3Dh
+1070 120B77           1560             lcall   label137
+1073 504B             1561             jnc     label144
+1075 AF44             1562             mov     R7, 44h
+1077 AE43             1563             mov     R6, 43h
+1079 AD42             1564             mov     R5, 42h
+107B AC41             1565             mov     R4, 41h
+107D 1209E4           1566             lcall   label113
+1080 8E45             1567             mov     45h, R6
+1082 8F46             1568             mov     46h, R7
+1084 AC45             1569             mov     R4, 45h
+1086 AD46             1570             mov     R5, 46h
+1088 EC               1571             mov     A, R4
+1089 1209AB           1572             lcall   label111
+108C C8               1573             xch     A, R0
+108D EC               1574             mov     A, R4
+108E C8               1575             xch     A, R0
+                      1576     label148:
+108F C9               1577             xch     A, R1
+1090 ED               1578             mov     A, R5
+1091 C9               1579             xch     A, R1
+1092 CA               1580             xch     A, R2
+                      1581     label192:
+1093 EE               1582             mov     A, R6
+1094 CA               1583             xch     A, R2
+1095 CB               1584             xch     A, R3
+1096 EF               1585             mov     A, R7
+1097 CB               1586             xch     A, R3
+1098 AF44             1587             mov     R7, 44h
+109A AE43             1588             mov     R6, 43h
+109C AD42             1589             mov     R5, 42h
+109E AC41             1590             mov     R4, 41h
+10A0 120A82           1591             lcall   label133
+10A3 E4               1592             clr     A
+10A4 FB               1593             mov     R3, A
+10A5 FA               1594             mov     R2, A
+10A6 F9               1595             mov     R1, A
+10A7 F8               1596             mov     R0, A
+10A8 120B77           1597             lcall   label137
+10AB 70A5             1598             jnz     label141
+10AD AF40             1599             mov     R7, 40h
+10AF AE3F             1600             mov     R6, 3Fh
+10B1 AD3E             1601             mov     R5, 3Eh
+10B3 AC3D             1602             mov     R4, 3Dh
+10B5 120BF0           1603             lcall   label145
+10B8 8F40             1604             mov     40h, R7
+10BA 8E3F             1605             mov     3Fh, R6
+10BC 8D3E             1606             mov     3Eh, R5
+10BE 8C3D             1607             mov     3Dh, R4
+                      1608     label144:
+10C0 AF40             1609             mov     R7, 40h
+10C2 AE3F             1610             mov     R6, 3Fh
+10C4 AD3E             1611             mov     R5, 3Eh
+10C6 AC3D             1612             mov     R4, 3Dh
+10C8 120EE2           1613             lcall   label146
+10CB AB44             1614             mov     R3, 44h
+10CD AA43             1615             mov     R2, 43h
+10CF A942             1616             mov     R1, 42h
+10D1 A841             1617             mov     R0, 41h
+10D3 120800           1618             lcall   label80
+10D6 121132           1619             lcall   label147
+10D9 8F44             1620             mov     44h, R7
+10DB 8E43             1621             mov     43h, R6
+10DD 8D42             1622             mov     42h, R5
+10DF 8C41             1623             mov     41h, R4
+10E1 E546             1624             mov     A, 46h
+10E3 30E00B           1625             jnb     0E0h, label143
+10E6 120BF0           1626             lcall   label145
+10E9 8F44             1627             mov     44h, R7
+10EB 8E43             1628             mov     43h, R6
+10ED 8D42             1629             mov     42h, R5
+10EF 8C41             1630             mov     41h, R4
+                      1631     label143:
+10F1 AF44             1632             mov     R7, 44h
+10F3 AE43             1633             mov     R6, 43h
+10F5 AD42             1634             mov     R5, 42h
+10F7 AC41             1635             mov     R4, 41h
+10F9 22               1636             ret
+10FA 33               1637             rlc     A
+10FB DA92             1638             djnz    R2, label148
+10FD 9E               1639             subb    A, R6
+10FE 35B1             1640             addc    A, 0B1h
+1100 6011             1641             jz      label149
+1102 37               1642             addc    A, @R1
+1103 7FE5             1643             mov     R7, #0E5h
+1105 FE               1644             mov     R6, A
+1106 39               1645             addc    A, R1
+1107 2184             1646             ajmp    label150
+1109 893A             1647             mov     3Ah, R1
+110B AEC3             1648             mov     R6, SPCON
+****WARNING:SpecialfunctionregisterSPCONisnotavailableonthetargetMCU
+110D FF               1649             mov     R7, A
+110E 3C               1650             addc    A, R4
+110F 1D               1651             dec     R5
+1110 955B             1652             subb    A, 5Bh
+1112 3D               1653             addc    A, R5
+                      1654     label149:
+1113 635847           1655             xrl     58h, #47h
+1116 3E               1656             addc    A, R6
+1117 75FDF0           1657             mov     CCAP3H, #0F0h
+****WARNING:SpecialfunctionregisterCCAP3HisnotavailableonthetargetMCU
+111A 3F               1658             addc    A, R7
+111B 3172             1659             acall   label151
+111D 18               1660             dec     R0
+111E 3F               1661             addc    A, R7
+111F 8000             1662             sjmp    label152
+                      1663     label152:
+1121 00               1664             nop
+                      1665     label154:
+1122 C2D5             1666             clr     F0
+1124 020A5A           1667             ljmp    label10
+                      1668     label153:
+1127 020A50           1669             ljmp    label5
+                      1670     label155:
+112A BD80FA           1671             cjne    R5, #80h, label153
+                      1672     label157:
+112D 50F3             1673             jnc     label154
+112F 020A57           1674             ljmp    label11
+                      1675     label147:
+1132 ED               1676             mov     A, R5
+1133 33               1677             rlc     A
+1134 EC               1678             mov     A, R4
+1135 33               1679             rlc     A
+1136 04               1680             inc     A
+1137 60F1             1681             jz      label155
+1139 7B3B             1682             mov     R3, #3Bh
+113B 7AAA             1683             mov     R2, #0AAh
+113D 79B8             1684             mov     R1, #0B8h
+113F 783F             1685             mov     R0, #3Fh
+1141 120800           1686             lcall   label80
+1144 ED               1687             mov     A, R5
+1145 33               1688             rlc     A
+1146 EC               1689             mov     A, R4
+1147 33               1690             rlc     A
+1148 92D5             1691             mov     F0, C
+114A 247B             1692             add     A, #7Bh
+114C 5011             1693             jnc     label156
+114E A2D5             1694             mov     C, F0
+1150 70DB             1695             jnz     label157
+1152 500B             1696             jnc     label156
+1154 ED               1697             mov     A, R5
+1155 4480             1698             orl     A, #80h
+1157 2404             1699             add     A, #4h
+1159 5004             1700             jnc     label156
+115B A2D5             1701             mov     C, F0
+115D 80CE             1702             sjmp    label157
+                      1703     label156:
+115F EF               1704             mov     A, R7
+1160 FB               1705             mov     R3, A
+1161 EE               1706             mov     A, R6
+1162 FA               1707             mov     R2, A
+1163 ED               1708             mov     A, R5
+1164 F9               1709             mov     R1, A
+1165 EC               1710             mov     A, R4
+1166 F8               1711             mov     R0, A
+1167 1209E4           1712             lcall   label113
+116A EF               1713             mov     A, R7
+116B F582             1714             mov     DPL, A
+116D F4               1715             cpl     A
+116E 04               1716             inc     A
+116F FC               1717             mov     R4, A
+1170 1209B0           1718             lcall   label158
+1173 120A86           1719             lcall   label83
+1176 C082             1720             push    DPL
+1178 9010FA           1721             mov     DPTR, #10FAh
+117B 7409             1722             mov     A, #9h
+117D 120C10           1723             lcall   label159
+1180 ED               1724             mov     A, R5
+1181 33               1725             rlc     A
+1182 CC               1726             xch     A, R4
+1183 33               1727             rlc     A
+                      1728     label150:
+1184 D0F0             1729             pop     B
+1186 92D5             1730             mov     F0, C
+1188 25F0             1731             add     A, B
+118A A2D5             1732             mov     C, F0
+118C 7001             1733             jnz     label160
+118E C3               1734             clr     C
+                      1735     label160:
+118F 13               1736             rrc     A
+1190 CC               1737             xch     A, R4
+1191 13               1738             rrc     A
+1192 FD               1739             mov     R5, A
+1193 22               1740             ret
+                      1741     label116:
+1194 8B3D             1742             mov     3Dh, R3
+1196 8A3E             1743             mov     3Eh, R2
+1198 893F             1744             mov     3Fh, R1
+119A E4               1745             clr     A
+119B F540             1746             mov     40h, A
+119D ED               1747             mov     A, R5
+119E 14               1748             dec     A
+119F F541             1749             mov     41h, A
+11A1 F540             1750             mov     40h, A
+                      1751     label178:
+11A3 E540             1752             mov     A, 40h
+11A5 C3               1753             clr     C
+11A6 9408             1754             subb    A, #8h
+11A8 507B             1755             jnc     label161
+11AA E540             1756             mov     A, 40h
+11AC B40800           1757             cjne    A, #8h, label162
+                      1758     label162:
+11AF 504D             1759             jnc     label163
+11B1 9011B8           1760             mov     DPTR, #11B8h
+11B4 F8               1761             mov     R0, A
+11B5 28               1762             add     A, R0
+11B6 28               1763             add     A, R0
+11B7 73               1764             jmp     @A+DPTR
+11B8 0211D0           1765             ljmp    label164
+11BB 0211D4           1766             ljmp    label165
+11BE 0211D8           1767             ljmp    label166
+11C1 0211DC           1768             ljmp    label167
+11C4 0211E0           1769             ljmp    label168
+11C7 0211E8           1770             ljmp    label169
+11CA 0211F0           1771             ljmp    label170
+11CD 0211F8           1772             ljmp    label171
+                      1773     label164:
+11D0 D2A4             1774             setb    0A4h
+11D2 800E             1775             sjmp    label172
+                      1776     label165:
+11D4 D2A4             1777             setb    0A4h
+11D6 8012             1778             sjmp    label173
+                      1779     label166:
+11D8 D2A4             1780             setb    0A4h
+11DA 8016             1781             sjmp    label174
+                      1782     label167:
+11DC D2A4             1783             setb    0A4h
+11DE 801A             1784             sjmp    label175
+                      1785     label168:
+11E0 C2A4             1786             clr     0A4h
+                      1787     label172:
+11E2 D2A3             1788             setb    0A3h
+11E4 D2A2             1789             setb    0A2h
+11E6 8016             1790             sjmp    label163
+                      1791     label169:
+11E8 C2A4             1792             clr     0A4h
+                      1793     label173:
+11EA D2A3             1794             setb    0A3h
+11EC C2A2             1795             clr     0A2h
+11EE 800E             1796             sjmp    label163
+                      1797     label170:
+11F0 C2A4             1798             clr     0A4h
+                      1799     label174:
+11F2 C2A3             1800             clr     0A3h
+11F4 D2A2             1801             setb    0A2h
+11F6 8006             1802             sjmp    label163
+                      1803     label171:
+11F8 C2A4             1804             clr     0A4h
+                      1805     label175:
+11FA C2A3             1806             clr     0A3h
+11FC C2A2             1807             clr     0A2h
+                      1808     label163:
+11FE C3               1809             clr     C
+11FF E540             1810             mov     A, 40h
+1201 9541             1811             subb    A, 41h
+1203 FF               1812             mov     R7, A
+1204 E4               1813             clr     A
+1205 9400             1814             subb    A, #0h
+1207 AB3D             1815             mov     R3, 3Dh
+1209 AA3E             1816             mov     R2, 3Eh
+120B A93F             1817             mov     R1, 3Fh
+120D 8F82             1818             mov     DPL, R7
+120F F583             1819             mov     DPH, A
+1211 120C4E           1820             lcall   label176
+1214 F580             1821             mov     P0, A
+1216 7F64             1822             mov     R7, #64h
+1218 7E00             1823             mov     R6, #0h
+121A 1213E0           1824             lcall   label177
+121D E4               1825             clr     A
+121E F580             1826             mov     P0, A
+1220 0540             1827             inc     40h
+1222 0211A3           1828             ljmp    label178
+                      1829     label161:
+1225 22               1830             ret
+1226 787F             1831     label0: mov     R0, #7Fh
+1228 E4               1832             clr     A
+                      1833     label179:
+1229 F6               1834             mov     @R0, A
+122A D8FD             1835             djnz    R0, label179
+122C 75814A           1836             mov     SP, #4Ah
+122F 02126D           1837             ljmp    label180
+                      1838     label193:
+1232 020D14           1839             ljmp    label181
+                      1840     label195:
+1235 E4               1841             clr     A
+1236 93               1842             movc    A, @A+DPTR
+1237 A3               1843             inc     DPTR
+1238 F8               1844             mov     R0, A
+                      1845     label184:
+1239 E4               1846             clr     A
+123A 93               1847             movc    A, @A+DPTR
+123B A3               1848             inc     DPTR
+123C 4003             1849             jc      label182
+123E F6               1850             mov     @R0, A
+123F 8001             1851             sjmp    label183
+                      1852     label182:
+1241 F2               1853             movx    @R0, A
+                      1854     label183:
+1242 08               1855             inc     R0
+1243 DFF4             1856             djnz    R7, label184
+1245 8029             1857             sjmp    label185
+                      1858     label188:
+1247 E4               1859             clr     A
+1248 93               1860             movc    A, @A+DPTR
+1249 A3               1861             inc     DPTR
+124A F8               1862             mov     R0, A
+124B 5407             1863             anl     A, #7h
+124D 240C             1864             add     A, #0Ch
+124F C8               1865             xch     A, R0
+1250 C3               1866             clr     C
+1251 33               1867             rlc     A
+1252 C4               1868             swap    A
+1253 540F             1869             anl     A, #0Fh
+1255 4420             1870             orl     A, #20h
+1257 C8               1871             xch     A, R0
+1258 83               1872             movc    A, @A+PC
+1259 4004             1873             jc      label186
+125B F4               1874             cpl     A
+125C 56               1875             anl     A, @R0
+125D 8001             1876             sjmp    label187
+                      1877     label186:
+125F 46               1878             orl     A, @R0
+                      1879     label187:
+1260 F6               1880             mov     @R0, A
+1261 DFE4             1881             djnz    R7, label188
+1263 800B             1882             sjmp    label185
+1265 0102             1883             ajmp    label189
+1267 04               1884             inc     A
+1268 08               1885             inc     R0
+1269 102040           1886             jbc     20h, label190
+126C 8090             1887             sjmp    label163
+126E 13               1888             rrc     A
+126F BCE47E           1889             cjne    R4, #0E4h, label191
+1272 0193             1890             ajmp    label192
+1274 60BC             1891             jz      label193
+1276 A3               1892             inc     DPTR
+1277 FF               1893             mov     R7, A
+1278 543F             1894             anl     A, #3Fh
+127A 30E509           1895             jnb     0E5h, label194
+127D 541F             1896             anl     A, #1Fh
+127F FE               1897             mov     R6, A
+1280 E4               1898             clr     A
+1281 93               1899             movc    A, @A+DPTR
+1282 A3               1900             inc     DPTR
+1283 6001             1901             jz      label194
+1285 0E               1902             inc     R6
+                      1903     label194:
+1286 CF               1904             xch     A, R7
+1287 54C0             1905             anl     A, #0C0h
+1289 25E0             1906             add     A, ACC
+128B 60A8             1907             jz      label195
+128D 40B8             1908             jc      label188
+128F E4               1909             clr     A
+                      1910     label199:
+1290 93               1911             movc    A, @A+DPTR
+1291 A3               1912             inc     DPTR
+1292 FA               1913             mov     R2, A
+1293 E4               1914             clr     A
+1294 93               1915             movc    A, @A+DPTR
+1295 A3               1916             inc     DPTR
+1296 F8               1917             mov     R0, A
+                      1918     label196:
+1297 E4               1919             clr     A
+1298 93               1920             movc    A, @A+DPTR
+1299 A3               1921             inc     DPTR
+129A C8               1922             xch     A, R0
+129B C582             1923             xch     A, DPL
+129D C8               1924             xch     A, R0
+129E CA               1925             xch     A, R2
+129F C583             1926             xch     A, DPH
+12A1 CA               1927             xch     A, R2
+12A2 F0               1928             movx    @DPTR, A
+12A3 A3               1929             inc     DPTR
+12A4 C8               1930             xch     A, R0
+12A5 C582             1931             xch     A, DPL
+12A7 C8               1932             xch     A, R0
+12A8 CA               1933             xch     A, R2
+12A9 C583             1934             xch     A, DPH
+12AB CA               1935             xch     A, R2
+                      1936     label190:
+12AC DFE9             1937             djnz    R7, label196
+12AE DEE7             1938             djnz    R6, label196
+12B0 80BE             1939             sjmp    label185
+12B2 E7               1940             mov     A, @R1
+12B3 E7               1941             mov     A, @R1
+12B4 E7               1942             mov     A, @R1
+12B5 FF               1943             mov     R7, A
+12B6 FF               1944             mov     R7, A
+12B7 E7               1945             mov     A, @R1
+12B8 E7               1946             mov     A, @R1
+12B9 E7               1947             mov     A, @R1
+12BA FE               1948             mov     R6, A
+12BB C1C1             1949             ajmp    label197
+12BD FE               1950             mov     R6, A
+12BE FE               1951             mov     R6, A
+12BF C1C1             1952             ajmp    label197
+12C1 FE               1953             mov     R6, A
+12C2 C3               1954             clr     C
+12C3 C6               1955             xch     A, @R0
+12C4 CC               1956             xch     A, R4
+12C5 F8               1957             mov     R0, A
+12C6 F8               1958             mov     R0, A
+12C7 CC               1959             xch     A, R4
+12C8 C6               1960             xch     A, @R0
+12C9 C3               1961             clr     C
+12CA FF               1962             mov     R7, A
+12CB FF               1963             mov     R7, A
+12CC FF               1964             mov     R7, A
+12CD E7               1965             mov     A, @R1
+12CE E7               1966             mov     A, @R1
+12CF E7               1967             mov     A, @R1
+12D0 E7               1968             mov     A, @R1
+12D1 E7               1969             mov     A, @R1
+12D2 FF               1970             mov     R7, A
+12D3 FF               1971             mov     R7, A
+12D4 18               1972             dec     R0
+12D5 FF               1973             mov     R7, A
+12D6 FF               1974             mov     R7, A
+12D7 18               1975             dec     R0
+12D8 FF               1976             mov     R7, A
+12D9 FF               1977             mov     R7, A
+12DA 84               1978             div     AB
+12DB BF9F95           1979             cjne    R7, #9Fh, label198
+12DE 9F               1980             subb    A, R7
+12DF C4               1981             swap    A
+12E0 BF84AD           1982             cjne    R7, #84h, label199
+12E3 07               1983             inc     @R1
+12E4 E4               1984             clr     A
+12E5 FB               1985             mov     R3, A
+                      1986     label202:
+12E6 7E00             1987             mov     R6, #0h
+12E8 7480             1988             mov     A, #80h
+12EA A803             1989             mov     R0, 3h
+12EC 08               1990             inc     R0
+12ED 8006             1991             sjmp    label200
+                      1992     label201:
+12EF CE               1993             xch     A, R6
+                      1994     label191:
+12F0 A2E7             1995             mov     C, 0E7h
+12F2 13               1996             rrc     A
+12F3 CE               1997             xch     A, R6
+12F4 13               1998             rrc     A
+                      1999     label200:
+12F5 D8F8             2000             djnz    R0, label201
+12F7 FF               2001             mov     R7, A
+12F8 ED               2002             mov     A, R5
+12F9 F582             2003             mov     DPL, A
+12FB EF               2004             mov     A, R7
+12FC 5582             2005             anl     A, DPL
+12FE 24FF             2006             add     A, #0FFh
+1300 92B4             2007             mov     T0, C
+1302 D2B6             2008             setb    WR
+1304 C2B6             2009             clr     WR
+1306 0B               2010             inc     R3
+1307 BB08DC           2011             cjne    R3, #8h, label202
+130A D2B5             2012             setb    T1
+130C C2B5             2013             clr     T1
+130E 22               2014             ret
+                      2015     label97:
+130F AA07             2016             mov     R2, 7h
+1311 AF05             2017             mov     R7, 5h
+1313 1212E2           2018             lcall   label203
+1316 AF02             2019             mov     R7, 2h
+1318 A807             2020             mov     R0, 7h
+131A 7480             2021             mov     A, #80h
+131C 08               2022             inc     R0
+131D 8002             2023             sjmp    label204
+                      2024     label205:
+131F C3               2025             clr     C
+1320 13               2026             rrc     A
+                      2027     label204:
+1321 D8FC             2028             djnz    R0, label205
+1323 F4               2029             cpl     A
+1324 F580             2030             mov     P0, A
+1326 7F01             2031             mov     R7, #1h
+1328 7E00             2032             mov     R6, #0h
+132A 1213A7           2033             lcall   label206
+132D 7580FF           2034             mov     P0, #0FFh
+1330 22               2035             ret
+                      2036     label213:
+1331 C2B6             2037             clr     WR
+1333 00               2038             nop
+1334 E4               2039             clr     A
+1335 FE               2040             mov     R6, A
+                      2041     label207:
+1336 EF               2042             mov     A, R7
+1337 C4               2043             swap    A
+1338 13               2044             rrc     A
+1339 13               2045             rrc     A
+133A 13               2046             rrc     A
+133B 5401             2047             anl     A, #1h
+133D 24FF             2048             add     A, #0FFh
+133F 92B4             2049             mov     T0, C
+1341 EF               2050             mov     A, R7
+1342 25E0             2051             add     A, ACC
+1344 FF               2052             mov     R7, A
+1345 C2B6             2053             clr     WR
+1347 00               2054             nop
+1348 D2B6             2055             setb    WR
+134A 00               2056             nop
+134B 0E               2057             inc     R6
+134C BE08E7           2058             cjne    R6, #8h, label207
+134F 22               2059             ret
+                      2060     label214:
+1350 E4               2061             clr     A
+1351 FF               2062             mov     R7, A
+1352 FE               2063             mov     R6, A
+1353 C2B6             2064             clr     WR
+1355 00               2065             nop
+1356 FD               2066             mov     R5, A
+                      2067     label208:
+1357 EF               2068             mov     A, R7
+1358 25E0             2069             add     A, ACC
+135A FF               2070             mov     R7, A
+135B EE               2071             mov     A, R6
+135C 33               2072             rlc     A
+135D FE               2073             mov     R6, A
+135E D2B6             2074             setb    WR
+1360 00               2075             nop
+1361 C2B6             2076             clr     WR
+1363 00               2077             nop
+1364 A2B7             2078             mov     C, RD
+1366 E4               2079             clr     A
+1367 33               2080             rlc     A
+1368 4207             2081             orl     7h, A
+136A 0D               2082             inc     R5
+136B BD0CE9           2083             cjne    R5, #0Ch, label208
+136E 22               2084             ret
+                      2085     label212:
+136F D3               2086             setb    C
+1370 EF               2087             mov     A, R7
+1371 9400             2088             subb    A, #0h
+1373 EE               2089             mov     A, R6
+1374 9400             2090             subb    A, #0h
+1376 4014             2091             jc      label209
+1378 7D6E             2092             mov     R5, #6Eh
+137A 7C00             2093             mov     R4, #0h
+                      2094     label211:
+137C ED               2095             mov     A, R5
+137D 1D               2096             dec     R5
+137E 7001             2097             jnz     label210
+1380 1C               2098             dec     R4
+                      2099     label210:
+1381 ED               2100             mov     A, R5
+1382 4C               2101             orl     A, R4
+1383 70F7             2102             jnz     label211
+1385 EF               2103             mov     A, R7
+1386 1F               2104             dec     R7
+1387 70E6             2105             jnz     label212
+1389 1E               2106             dec     R6
+138A 80E3             2107             sjmp    label212
+                      2108     label209:
+138C 22               2109             ret
+138D E4               2110             clr     A
+138E FD               2111             mov     R5, A
+138F FC               2112             mov     R4, A
+1390 C2B6             2113             clr     WR
+1392 C2B5             2114             clr     T1
+1394 121331           2115             lcall   label213
+1397 7F06             2116             mov     R7, #6h
+1399 DFFE             2117             djnz    R7, $
+139B D2B6             2118             setb    WR
+139D 00               2119             nop
+139E C2B6             2120             clr     WR
+13A0 00               2121             nop
+13A1 121350           2122             lcall   label214
+13A4 D2B5             2123             setb    T1
+13A6 22               2124             ret
+                      2125     label206:
+13A7 EF               2126             mov     A, R7
+13A8 1F               2127             dec     R7
+13A9 AC06             2128             mov     R4, 6h
+13AB 7001             2129             jnz     label215
+13AD 1E               2130             dec     R6
+                      2131     label215:
+13AE 4C               2132             orl     A, R4
+13AF 600A             2133             jz      label216
+13B1 7D02             2134             mov     R5, #2h
+13B3 7CEF             2135             mov     R4, #0EFh
+                      2136     label217:
+13B5 DCFE             2137             djnz    R4, $
+13B7 DDFC             2138             djnz    R5, label217
+13B9 80EC             2139             sjmp    label206
+                      2140     label216:
+13BB 22               2141             ret
+13BC 1108             2142             acall   label138
+13BE 3F               2143             addc    A, R7
+13BF 06               2144             inc     @R0
+13C0 5B               2145             anl     A, R3
+13C1 4F               2146             orl     A, R7
+13C2 66               2147             xrl     A, @R0
+13C3 6D               2148             xrl     A, R5
+13C4 7D07             2149             mov     R5, #7h
+13C6 7F6F             2150             mov     R7, #6Fh
+13C8 777C             2151             mov     @R1, #7Ch
+13CA 39               2152             addc    A, R1
+13CB 5E               2153             anl     A, R6
+13CC 7971             2154             mov     R1, #71h
+13CE 00               2155             nop
+13CF 00               2156             nop
+                      2157     label219:
+13D0 758AF5           2158             mov     TL0, #0F5h
+13D3 758CFF           2159             mov     TH0, #0FFh
+13D6 D28C             2160             setb    TR0
+13D8 308DFD           2161             jnb     TF0, $
+13DB C28C             2162             clr     TR0
+13DD C28D             2163             clr     TF0
+13DF 22               2164             ret
+                      2165     label177:
+13E0 EF               2166             mov     A, R7
+13E1 1F               2167             dec     R7
+13E2 AC06             2168             mov     R4, 6h
+13E4 7001             2169             jnz     label218
+13E6 1E               2170             dec     R6
+                      2171     label218:
+13E7 4C               2172             orl     A, R4
+13E8 70F6             2173             jnz     label177
+13EA 22               2174             ret
+                      2175     label104:
+13EB 758901           2176             mov     TMOD, #1h
+13EE C28D             2177             clr     TF0
+13F0 C28C             2178             clr     TR0
+13F2 22               2179             ret
+                      2180     label107:
+13F3 D2B5             2181             setb    T1
+13F5 1213D0           2182             lcall   label219
+13F8 C2B5             2183             clr     T1
+13FA 22               2184             ret
+                      2185     label96:
+13FB C2B6             2186             clr     WR
+13FD C2B5             2187             clr     T1
+13FF 22               2188             ret
+                      2189
+                      2190             END
+ASSEMBLY COMPLETE, NO ERRORS FOUND, 2 WARNINGS
+
+
+ERROR SUMMARY:
+Line 1648, WARNING:SpecialfunctionregisterSPCONisnotavailableonthetargetMCU
+Line 1658, WARNING:SpecialfunctionregisterCCAP3HisnotavailableonthetargetMCU
+
+SYMBOL TABLE:
+??MCU_8051_IDE . . . . . . . . . . .  N  NUMB  8051H  NOT USED
+??VERSION. . . . . . . . . . . . . .  N  NUMB  0149H  NOT USED
+AC . . . . . . . . . . . . . . . . .  B  ADDR  00D6H  NOT USED
+ACC. . . . . . . . . . . . . . . . .  D  ADDR  00E0H
+ACSR . . . . . . . . . . . . . . . .  D  ADDR  0097H  NOT USED
+ADCF . . . . . . . . . . . . . . . .  D  ADDR  00F6H  NOT USED
+ADCLK. . . . . . . . . . . . . . . .  D  ADDR  00F2H  NOT USED
+ADCON. . . . . . . . . . . . . . . .  D  ADDR  00F3H  NOT USED
+ADDH . . . . . . . . . . . . . . . .  D  ADDR  00F5H  NOT USED
+ADDL . . . . . . . . . . . . . . . .  D  ADDR  00F4H  NOT USED
+AUXR . . . . . . . . . . . . . . . .  D  ADDR  008EH  NOT USED
+AUXR1. . . . . . . . . . . . . . . .  D  ADDR  00A2H  NOT USED
+B. . . . . . . . . . . . . . . . . .  D  ADDR  00F0H
+BDRCON . . . . . . . . . . . . . . .  D  ADDR  009BH  NOT USED
+BDRCON_1 . . . . . . . . . . . . . .  D  ADDR  009CH  NOT USED
+BRL. . . . . . . . . . . . . . . . .  D  ADDR  009AH  NOT USED
+CCAP0H . . . . . . . . . . . . . . .  D  ADDR  00FAH  NOT USED
+CCAP0L . . . . . . . . . . . . . . .  D  ADDR  00EAH  NOT USED
+CCAP1H . . . . . . . . . . . . . . .  D  ADDR  00FBH  NOT USED
+CCAP1L . . . . . . . . . . . . . . .  D  ADDR  00EBH  NOT USED
+CCAP2H . . . . . . . . . . . . . . .  D  ADDR  00FCH  NOT USED
+CCAP3H . . . . . . . . . . . . . . .  D  ADDR  00FDH
+CCAP4H . . . . . . . . . . . . . . .  D  ADDR  00FEH  NOT USED
+CCAPL2H. . . . . . . . . . . . . . .  D  ADDR  00FCH  NOT USED
+CCAPL2L. . . . . . . . . . . . . . .  D  ADDR  00ECH  NOT USED
+CCAPL3H. . . . . . . . . . . . . . .  D  ADDR  00FDH  NOT USED
+CCAPL3L. . . . . . . . . . . . . . .  D  ADDR  00EDH  NOT USED
+CCAPL4H. . . . . . . . . . . . . . .  D  ADDR  00FEH  NOT USED
+CCAPL4L. . . . . . . . . . . . . . .  D  ADDR  00EEH  NOT USED
+CCAPM0 . . . . . . . . . . . . . . .  D  ADDR  00DAH  NOT USED
+CCAPM1 . . . . . . . . . . . . . . .  D  ADDR  00DBH  NOT USED
+CCAPM2 . . . . . . . . . . . . . . .  D  ADDR  00DCH  NOT USED
+CCAPM3 . . . . . . . . . . . . . . .  D  ADDR  00DDH  NOT USED
+CCAPM4 . . . . . . . . . . . . . . .  D  ADDR  00DEH  NOT USED
+CCF0 . . . . . . . . . . . . . . . .  B  ADDR  00D8H  NOT USED
+CCF1 . . . . . . . . . . . . . . . .  B  ADDR  00D9H  NOT USED
+CCF2 . . . . . . . . . . . . . . . .  B  ADDR  00DAH  NOT USED
+CCF3 . . . . . . . . . . . . . . . .  B  ADDR  00DBH  NOT USED
+CCF4 . . . . . . . . . . . . . . . .  B  ADDR  00DCH  NOT USED
+CCON . . . . . . . . . . . . . . . .  D  ADDR  00D8H  NOT USED
+CFINT. . . . . . . . . . . . . . . .  C  ADDR  0033H  NOT USED
+CH . . . . . . . . . . . . . . . . .  D  ADDR  00F9H  NOT USED
+CKCON. . . . . . . . . . . . . . . .  D  ADDR  008FH  NOT USED
+CKCON0 . . . . . . . . . . . . . . .  D  ADDR  008FH  NOT USED
+CKRL . . . . . . . . . . . . . . . .  D  ADDR  0097H  NOT USED
+CKSEL. . . . . . . . . . . . . . . .  D  ADDR  0085H  NOT USED
+CL . . . . . . . . . . . . . . . . .  D  ADDR  00E9H  NOT USED
+CLKREG . . . . . . . . . . . . . . .  D  ADDR  008FH  NOT USED
+CMOD . . . . . . . . . . . . . . . .  D  ADDR  00D9H  NOT USED
+CPRL2. . . . . . . . . . . . . . . .  B  ADDR  00C8H  NOT USED
+CR . . . . . . . . . . . . . . . . .  B  ADDR  00DEH  NOT USED
+CT2. . . . . . . . . . . . . . . . .  B  ADDR  00C9H  NOT USED
+CY . . . . . . . . . . . . . . . . .  B  ADDR  00D7H  NOT USED
+DP0H . . . . . . . . . . . . . . . .  D  ADDR  0083H  NOT USED
+DP0L . . . . . . . . . . . . . . . .  D  ADDR  0082H  NOT USED
+DP1H . . . . . . . . . . . . . . . .  D  ADDR  0085H  NOT USED
+DP1L . . . . . . . . . . . . . . . .  D  ADDR  0084H  NOT USED
+DPH. . . . . . . . . . . . . . . . .  D  ADDR  0083H
+DPL. . . . . . . . . . . . . . . . .  D  ADDR  0082H
+EA . . . . . . . . . . . . . . . . .  B  ADDR  00AFH  NOT USED
+EC . . . . . . . . . . . . . . . . .  B  ADDR  00AEH  NOT USED
+EECON. . . . . . . . . . . . . . . .  D  ADDR  0096H  NOT USED
+ES . . . . . . . . . . . . . . . . .  B  ADDR  00ACH  NOT USED
+ET0. . . . . . . . . . . . . . . . .  B  ADDR  00A9H  NOT USED
+ET1. . . . . . . . . . . . . . . . .  B  ADDR  00ABH  NOT USED
+ET2. . . . . . . . . . . . . . . . .  B  ADDR  00ADH  NOT USED
+EX0. . . . . . . . . . . . . . . . .  B  ADDR  00A8H  NOT USED
+EX1. . . . . . . . . . . . . . . . .  B  ADDR  00AAH  NOT USED
+EXEN2. . . . . . . . . . . . . . . .  B  ADDR  00CBH  NOT USED
+EXF2 . . . . . . . . . . . . . . . .  B  ADDR  00CEH  NOT USED
+EXTI0. . . . . . . . . . . . . . . .  C  ADDR  0003H  NOT USED
+EXTI1. . . . . . . . . . . . . . . .  C  ADDR  0013H  NOT USED
+F0 . . . . . . . . . . . . . . . . .  B  ADDR  00D5H
+FE . . . . . . . . . . . . . . . . .  B  ADDR  009FH  NOT USED
+IE . . . . . . . . . . . . . . . . .  D  ADDR  00A8H  NOT USED
+IE0. . . . . . . . . . . . . . . . .  B  ADDR  0089H  NOT USED
+IE1. . . . . . . . . . . . . . . . .  B  ADDR  008BH  NOT USED
+INT0 . . . . . . . . . . . . . . . .  B  ADDR  00B2H  NOT USED
+INT1 . . . . . . . . . . . . . . . .  B  ADDR  00B3H
+IP . . . . . . . . . . . . . . . . .  D  ADDR  00B8H  NOT USED
+IPH. . . . . . . . . . . . . . . . .  D  ADDR  00B7H  NOT USED
+IPH0 . . . . . . . . . . . . . . . .  D  ADDR  00B7H  NOT USED
+IPH1 . . . . . . . . . . . . . . . .  D  ADDR  00B3H  NOT USED
+IPL0 . . . . . . . . . . . . . . . .  D  ADDR  00B8H  NOT USED
+IPL1 . . . . . . . . . . . . . . . .  D  ADDR  00B2H  NOT USED
+IT0. . . . . . . . . . . . . . . . .  B  ADDR  0088H  NOT USED
+IT1. . . . . . . . . . . . . . . . .  B  ADDR  008AH  NOT USED
+KBE. . . . . . . . . . . . . . . . .  D  ADDR  009DH  NOT USED
+KBF. . . . . . . . . . . . . . . . .  D  ADDR  009EH  NOT USED
+KBLS . . . . . . . . . . . . . . . .  D  ADDR  009CH  NOT USED
+LABEL0 . . . . . . . . . . . . . . .  C  ADDR  1226H
+LABEL1 . . . . . . . . . . . . . . .  C  ADDR  0815H
+LABEL10. . . . . . . . . . . . . . .  C  ADDR  0A5AH
+LABEL100 . . . . . . . . . . . . . .  C  ADDR  0D6EH
+LABEL101 . . . . . . . . . . . . . .  C  ADDR  0D97H
+LABEL102 . . . . . . . . . . . . . .  C  ADDR  0D9FH
+LABEL103 . . . . . . . . . . . . . .  C  ADDR  0D32H
+LABEL104 . . . . . . . . . . . . . .  C  ADDR  13EBH
+LABEL105 . . . . . . . . . . . . . .  C  ADDR  0CDEH
+LABEL106 . . . . . . . . . . . . . .  C  ADDR  0DABH
+LABEL107 . . . . . . . . . . . . . .  C  ADDR  13F3H
+LABEL108 . . . . . . . . . . . . . .  C  ADDR  0DD1H
+LABEL109 . . . . . . . . . . . . . .  C  ADDR  0DCBH
+LABEL11. . . . . . . . . . . . . . .  C  ADDR  0A57H
+LABEL110 . . . . . . . . . . . . . .  C  ADDR  0FE3H
+LABEL111 . . . . . . . . . . . . . .  C  ADDR  09ABH
+LABEL112 . . . . . . . . . . . . . .  C  ADDR  0909H
+LABEL113 . . . . . . . . . . . . . .  C  ADDR  09E4H
+LABEL114 . . . . . . . . . . . . . .  C  ADDR  0E32H
+LABEL115 . . . . . . . . . . . . . .  C  ADDR  0C7BH
+LABEL116 . . . . . . . . . . . . . .  C  ADDR  1194H
+LABEL117 . . . . . . . . . . . . . .  C  ADDR  0EABH
+LABEL118 . . . . . . . . . . . . . .  C  ADDR  0DB0H
+LABEL119 . . . . . . . . . . . . . .  C  ADDR  0EF1H
+LABEL12. . . . . . . . . . . . . . .  C  ADDR  0882H
+LABEL120 . . . . . . . . . . . . . .  C  ADDR  0EBCH
+LABEL121 . . . . . . . . . . . . . .  C  ADDR  0EC1H
+LABEL122 . . . . . . . . . . . . . .  C  ADDR  0EBDH
+LABEL123 . . . . . . . . . . . . . .  C  ADDR  0972H
+LABEL124 . . . . . . . . . . . . . .  C  ADDR  0D72H
+LABEL125 . . . . . . . . . . . . . .  C  ADDR  0C3EH
+LABEL126 . . . . . . . . . . . . . .  C  ADDR  0F38H
+LABEL127 . . . . . . . . . . . . . .  C  ADDR  0EB1H
+LABEL128 . . . . . . . . . . . . . .  C  ADDR  0EE4H
+LABEL129 . . . . . . . . . . . . . .  C  ADDR  0EFAH
+LABEL13. . . . . . . . . . . . . . .  C  ADDR  0847H
+LABEL130 . . . . . . . . . . . . . .  C  ADDR  0EF7H
+LABEL131 . . . . . . . . . . . . . .  C  ADDR  0EF2H
+LABEL132 . . . . . . . . . . . . . .  C  ADDR  0F32H
+LABEL133 . . . . . . . . . . . . . .  C  ADDR  0A82H
+LABEL134 . . . . . . . . . . . . . .  C  ADDR  0C01H
+LABEL135 . . . . . . . . . . . . . .  C  ADDR  0FA9H
+LABEL136 . . . . . . . . . . . . . .  C  ADDR  0FE2H
+LABEL137 . . . . . . . . . . . . . .  C  ADDR  0B77H
+LABEL138 . . . . . . . . . . . . . .  C  ADDR  1008H
+LABEL139 . . . . . . . . . . . . . .  C  ADDR  0A65H
+LABEL14. . . . . . . . . . . . . . .  C  ADDR  0A46H
+LABEL140 . . . . . . . . . . . . . .  C  ADDR  102BH
+LABEL141 . . . . . . . . . . . . . .  C  ADDR  1052H
+LABEL142 . . . . . . . . . . . . . .  C  ADDR  105FH
+LABEL143 . . . . . . . . . . . . . .  C  ADDR  10F1H
+LABEL144 . . . . . . . . . . . . . .  C  ADDR  10C0H
+LABEL145 . . . . . . . . . . . . . .  C  ADDR  0BF0H
+LABEL146 . . . . . . . . . . . . . .  C  ADDR  0EE2H
+LABEL147 . . . . . . . . . . . . . .  C  ADDR  1132H
+LABEL148 . . . . . . . . . . . . . .  C  ADDR  108FH
+LABEL149 . . . . . . . . . . . . . .  C  ADDR  1113H
+LABEL15. . . . . . . . . . . . . . .  C  ADDR  0867H
+LABEL150 . . . . . . . . . . . . . .  C  ADDR  1184H
+LABEL151 . . . . . . . . . . . . . .  C  ADDR  1172H
+LABEL152 . . . . . . . . . . . . . .  C  ADDR  1121H
+LABEL153 . . . . . . . . . . . . . .  C  ADDR  1127H
+LABEL154 . . . . . . . . . . . . . .  C  ADDR  1122H
+LABEL155 . . . . . . . . . . . . . .  C  ADDR  112AH
+LABEL156 . . . . . . . . . . . . . .  C  ADDR  115FH
+LABEL157 . . . . . . . . . . . . . .  C  ADDR  112DH
+LABEL158 . . . . . . . . . . . . . .  C  ADDR  09B0H
+LABEL159 . . . . . . . . . . . . . .  C  ADDR  0C10H
+LABEL16. . . . . . . . . . . . . . .  C  ADDR  0856H
+LABEL160 . . . . . . . . . . . . . .  C  ADDR  118FH
+LABEL161 . . . . . . . . . . . . . .  C  ADDR  1225H
+LABEL162 . . . . . . . . . . . . . .  C  ADDR  11AFH
+LABEL163 . . . . . . . . . . . . . .  C  ADDR  11FEH
+LABEL164 . . . . . . . . . . . . . .  C  ADDR  11D0H
+LABEL165 . . . . . . . . . . . . . .  C  ADDR  11D4H
+LABEL166 . . . . . . . . . . . . . .  C  ADDR  11D8H
+LABEL167 . . . . . . . . . . . . . .  C  ADDR  11DCH
+LABEL168 . . . . . . . . . . . . . .  C  ADDR  11E0H
+LABEL169 . . . . . . . . . . . . . .  C  ADDR  11E8H
+LABEL17. . . . . . . . . . . . . . .  C  ADDR  0841H
+LABEL170 . . . . . . . . . . . . . .  C  ADDR  11F0H
+LABEL171 . . . . . . . . . . . . . .  C  ADDR  11F8H
+LABEL172 . . . . . . . . . . . . . .  C  ADDR  11E2H
+LABEL173 . . . . . . . . . . . . . .  C  ADDR  11EAH
+LABEL174 . . . . . . . . . . . . . .  C  ADDR  11F2H
+LABEL175 . . . . . . . . . . . . . .  C  ADDR  11FAH
+LABEL176 . . . . . . . . . . . . . .  C  ADDR  0C4EH
+LABEL177 . . . . . . . . . . . . . .  C  ADDR  13E0H
+LABEL178 . . . . . . . . . . . . . .  C  ADDR  11A3H
+LABEL179 . . . . . . . . . . . . . .  C  ADDR  1229H
+LABEL18. . . . . . . . . . . . . . .  C  ADDR  08E9H
+LABEL180 . . . . . . . . . . . . . .  C  ADDR  126DH
+LABEL181 . . . . . . . . . . . . . .  C  ADDR  0D14H
+LABEL182 . . . . . . . . . . . . . .  C  ADDR  1241H
+LABEL183 . . . . . . . . . . . . . .  C  ADDR  1242H
+LABEL184 . . . . . . . . . . . . . .  C  ADDR  1239H
+LABEL185 . . . . . . . . . . . . . .  C  ADDR  1270H
+LABEL186 . . . . . . . . . . . . . .  C  ADDR  125FH
+LABEL187 . . . . . . . . . . . . . .  C  ADDR  1260H
+LABEL188 . . . . . . . . . . . . . .  C  ADDR  1247H
+LABEL189 . . . . . . . . . . . . . .  C  ADDR  1002H
+LABEL19. . . . . . . . . . . . . . .  C  ADDR  088BH
+LABEL190 . . . . . . . . . . . . . .  C  ADDR  12ACH
+LABEL191 . . . . . . . . . . . . . .  C  ADDR  12F0H
+LABEL192 . . . . . . . . . . . . . .  C  ADDR  1093H
+LABEL193 . . . . . . . . . . . . . .  C  ADDR  1232H
+LABEL194 . . . . . . . . . . . . . .  C  ADDR  1286H
+LABEL195 . . . . . . . . . . . . . .  C  ADDR  1235H
+LABEL196 . . . . . . . . . . . . . .  C  ADDR  1297H
+LABEL197 . . . . . . . . . . . . . .  C  ADDR  16C1H
+LABEL198 . . . . . . . . . . . . . .  C  ADDR  1273H
+LABEL199 . . . . . . . . . . . . . .  C  ADDR  1290H
+LABEL2 . . . . . . . . . . . . . . .  C  ADDR  081FH
+LABEL20. . . . . . . . . . . . . . .  C  ADDR  0860H
+LABEL200 . . . . . . . . . . . . . .  C  ADDR  12F5H
+LABEL201 . . . . . . . . . . . . . .  C  ADDR  12EFH
+LABEL202 . . . . . . . . . . . . . .  C  ADDR  12E6H
+LABEL203 . . . . . . . . . . . . . .  C  ADDR  12E2H
+LABEL204 . . . . . . . . . . . . . .  C  ADDR  1321H
+LABEL205 . . . . . . . . . . . . . .  C  ADDR  131FH
+LABEL206 . . . . . . . . . . . . . .  C  ADDR  13A7H
+LABEL207 . . . . . . . . . . . . . .  C  ADDR  1336H
+LABEL208 . . . . . . . . . . . . . .  C  ADDR  1357H
+LABEL209 . . . . . . . . . . . . . .  C  ADDR  138CH
+LABEL21. . . . . . . . . . . . . . .  C  ADDR  084EH
+LABEL210 . . . . . . . . . . . . . .  C  ADDR  1381H
+LABEL211 . . . . . . . . . . . . . .  C  ADDR  137CH
+LABEL212 . . . . . . . . . . . . . .  C  ADDR  136FH
+LABEL213 . . . . . . . . . . . . . .  C  ADDR  1331H
+LABEL214 . . . . . . . . . . . . . .  C  ADDR  1350H
+LABEL215 . . . . . . . . . . . . . .  C  ADDR  13AEH
+LABEL216 . . . . . . . . . . . . . .  C  ADDR  13BBH
+LABEL217 . . . . . . . . . . . . . .  C  ADDR  13B5H
+LABEL218 . . . . . . . . . . . . . .  C  ADDR  13E7H
+LABEL219 . . . . . . . . . . . . . .  C  ADDR  13D0H
+LABEL22. . . . . . . . . . . . . . .  C  ADDR  08F7H
+LABEL23. . . . . . . . . . . . . . .  C  ADDR  0903H
+LABEL24. . . . . . . . . . . . . . .  C  ADDR  0A32H
+LABEL25. . . . . . . . . . . . . . .  C  ADDR  0913H
+LABEL26. . . . . . . . . . . . . . .  C  ADDR  0916H
+LABEL27. . . . . . . . . . . . . . .  C  ADDR  0928H
+LABEL28. . . . . . . . . . . . . . .  C  ADDR  0906H
+LABEL29. . . . . . . . . . . . . . .  C  ADDR  0939H
+LABEL3 . . . . . . . . . . . . . . .  C  ADDR  081CH
+LABEL30. . . . . . . . . . . . . . .  C  ADDR  0936H
+LABEL31. . . . . . . . . . . . . . .  C  ADDR  093CH
+LABEL32. . . . . . . . . . . . . . .  C  ADDR  0949H
+LABEL33. . . . . . . . . . . . . . .  C  ADDR  0966H
+LABEL34. . . . . . . . . . . . . . .  C  ADDR  098BH
+LABEL35. . . . . . . . . . . . . . .  C  ADDR  0988H
+LABEL36. . . . . . . . . . . . . . .  C  ADDR  0996H
+LABEL37. . . . . . . . . . . . . . .  C  ADDR  0959H
+LABEL38. . . . . . . . . . . . . . .  C  ADDR  0950H
+LABEL39. . . . . . . . . . . . . . .  C  ADDR  09B9H
+LABEL4 . . . . . . . . . . . . . . .  C  ADDR  0814H
+LABEL40. . . . . . . . . . . . . . .  C  ADDR  09B5H
+LABEL41. . . . . . . . . . . . . . .  C  ADDR  09C2H
+LABEL42. . . . . . . . . . . . . . .  C  ADDR  0CD0H
+LABEL43. . . . . . . . . . . . . . .  C  ADDR  09D6H
+LABEL44. . . . . . . . . . . . . . .  C  ADDR  09F7H
+LABEL45. . . . . . . . . . . . . . .  C  ADDR  0A12H
+LABEL46. . . . . . . . . . . . . . .  C  ADDR  09F2H
+LABEL47. . . . . . . . . . . . . . .  C  ADDR  0A05H
+LABEL48. . . . . . . . . . . . . . .  C  ADDR  09F6H
+LABEL49. . . . . . . . . . . . . . .  C  ADDR  0A31H
+LABEL5 . . . . . . . . . . . . . . .  C  ADDR  0A50H
+LABEL50. . . . . . . . . . . . . . .  C  ADDR  0A52H
+LABEL51. . . . . . . . . . . . . . .  C  ADDR  0A54H
+LABEL52. . . . . . . . . . . . . . .  C  ADDR  0A7BH
+LABEL53. . . . . . . . . . . . . . .  C  ADDR  0A7DH
+LABEL54. . . . . . . . . . . . . . .  C  ADDR  0A78H
+LABEL55. . . . . . . . . . . . . . .  C  ADDR  0A9DH
+LABEL56. . . . . . . . . . . . . . .  C  ADDR  0A7FH
+LABEL57. . . . . . . . . . . . . . .  C  ADDR  0A9EH
+LABEL58. . . . . . . . . . . . . . .  C  ADDR  0ABFH
+LABEL59. . . . . . . . . . . . . . .  C  ADDR  0ACCH
+LABEL6 . . . . . . . . . . . . . . .  C  ADDR  0A1BH
+LABEL60. . . . . . . . . . . . . . .  C  ADDR  0AD7H
+LABEL61. . . . . . . . . . . . . . .  C  ADDR  0AD4H
+LABEL62. . . . . . . . . . . . . . .  C  ADDR  0B21H
+LABEL63. . . . . . . . . . . . . . .  C  ADDR  0AF2H
+LABEL64. . . . . . . . . . . . . . .  C  ADDR  0AF9H
+LABEL65. . . . . . . . . . . . . . .  C  ADDR  0B03H
+LABEL66. . . . . . . . . . . . . . .  C  ADDR  0B0CH
+LABEL67. . . . . . . . . . . . . . .  C  ADDR  0B12H
+LABEL68. . . . . . . . . . . . . . .  C  ADDR  0B53H
+LABEL69. . . . . . . . . . . . . . .  C  ADDR  0B4CH
+LABEL7 . . . . . . . . . . . . . . .  C  ADDR  082FH
+LABEL70. . . . . . . . . . . . . . .  C  ADDR  0B40H
+LABEL71. . . . . . . . . . . . . . .  C  ADDR  0B3BH
+LABEL72. . . . . . . . . . . . . . .  C  ADDR  0B74H
+LABEL73. . . . . . . . . . . . . . .  C  ADDR  0B68H
+LABEL74. . . . . . . . . . . . . . .  C  ADDR  0BD5H
+LABEL75. . . . . . . . . . . . . . .  C  ADDR  0BB8H
+LABEL76. . . . . . . . . . . . . . .  C  ADDR  0BEFH
+LABEL77. . . . . . . . . . . . . . .  C  ADDR  0BEEH
+LABEL78. . . . . . . . . . . . . . .  C  ADDR  0C00H
+LABEL79. . . . . . . . . . . . . . .  C  ADDR  0BFCH
+LABEL8 . . . . . . . . . . . . . . .  C  ADDR  0832H
+LABEL80. . . . . . . . . . . . . . .  C  ADDR  0800H
+LABEL81. . . . . . . . . . . . . . .  C  ADDR  0CF4H
+LABEL82. . . . . . . . . . . . . . .  C  ADDR  0D04H
+LABEL83. . . . . . . . . . . . . . .  C  ADDR  0A86H
+LABEL84. . . . . . . . . . . . . . .  C  ADDR  0C21H
+LABEL85. . . . . . . . . . . . . . .  C  ADDR  0C5DH
+LABEL86. . . . . . . . . . . . . . .  C  ADDR  0C65H
+LABEL87. . . . . . . . . . . . . . .  C  ADDR  0C6EH
+LABEL88. . . . . . . . . . . . . . .  C  ADDR  0C89H
+LABEL89. . . . . . . . . . . . . . .  C  ADDR  0CAAH
+LABEL9 . . . . . . . . . . . . . . .  C  ADDR  0838H
+LABEL90. . . . . . . . . . . . . . .  C  ADDR  0CA3H
+LABEL91. . . . . . . . . . . . . . .  C  ADDR  0C8FH
+LABEL92. . . . . . . . . . . . . . .  C  ADDR  0CCFH
+LABEL93. . . . . . . . . . . . . . .  C  ADDR  0CC8H
+LABEL94. . . . . . . . . . . . . . .  C  ADDR  0CCAH
+LABEL95. . . . . . . . . . . . . . .  C  ADDR  0CB9H
+LABEL96. . . . . . . . . . . . . . .  C  ADDR  13FBH
+LABEL97. . . . . . . . . . . . . . .  C  ADDR  130FH
+LABEL98. . . . . . . . . . . . . . .  C  ADDR  0D5DH
+LABEL99. . . . . . . . . . . . . . .  C  ADDR  0D37H
+OSCCON . . . . . . . . . . . . . . .  D  ADDR  0086H  NOT USED
+OV . . . . . . . . . . . . . . . . .  B  ADDR  00D2H
+P. . . . . . . . . . . . . . . . . .  B  ADDR  00D0H  NOT USED
+P0 . . . . . . . . . . . . . . . . .  D  ADDR  0080H
+P1 . . . . . . . . . . . . . . . . .  D  ADDR  0090H  NOT USED
+P1M1 . . . . . . . . . . . . . . . .  D  ADDR  00D4H  NOT USED
+P1M2 . . . . . . . . . . . . . . . .  D  ADDR  00E2H  NOT USED
+P2 . . . . . . . . . . . . . . . . .  D  ADDR  00A0H  NOT USED
+P3 . . . . . . . . . . . . . . . . .  D  ADDR  00B0H  NOT USED
+P3M1 . . . . . . . . . . . . . . . .  D  ADDR  00D5H  NOT USED
+P3M2 . . . . . . . . . . . . . . . .  D  ADDR  00E3H  NOT USED
+P4 . . . . . . . . . . . . . . . . .  D  ADDR  00C0H  NOT USED
+P4M1 . . . . . . . . . . . . . . . .  D  ADDR  00D6H  NOT USED
+P4M2 . . . . . . . . . . . . . . . .  D  ADDR  00E4H  NOT USED
+P5 . . . . . . . . . . . . . . . . .  D  ADDR  00E8H  NOT USED
+PC . . . . . . . . . . . . . . . . .  B  ADDR  00BEH  NOT USED
+PCON . . . . . . . . . . . . . . . .  D  ADDR  0087H  NOT USED
+PPCL . . . . . . . . . . . . . . . .  B  ADDR  00BEH  NOT USED
+PS . . . . . . . . . . . . . . . . .  B  ADDR  00BCH  NOT USED
+PSL. . . . . . . . . . . . . . . . .  B  ADDR  00BCH  NOT USED
+PSW. . . . . . . . . . . . . . . . .  D  ADDR  00D0H
+PT0. . . . . . . . . . . . . . . . .  B  ADDR  00B9H  NOT USED
+PT0L . . . . . . . . . . . . . . . .  B  ADDR  00B9H  NOT USED
+PT1. . . . . . . . . . . . . . . . .  B  ADDR  00BBH  NOT USED
+PT1L . . . . . . . . . . . . . . . .  B  ADDR  00BBH  NOT USED
+PT2. . . . . . . . . . . . . . . . .  B  ADDR  00BDH  NOT USED
+PT2L . . . . . . . . . . . . . . . .  B  ADDR  00BDH  NOT USED
+PX0. . . . . . . . . . . . . . . . .  B  ADDR  00B8H  NOT USED
+PX0L . . . . . . . . . . . . . . . .  B  ADDR  00B8H  NOT USED
+PX1. . . . . . . . . . . . . . . . .  B  ADDR  00BAH  NOT USED
+PX1L . . . . . . . . . . . . . . . .  B  ADDR  00BAH  NOT USED
+RB8. . . . . . . . . . . . . . . . .  B  ADDR  009AH  NOT USED
+RCAP2H . . . . . . . . . . . . . . .  D  ADDR  00CBH  NOT USED
+RCAP2L . . . . . . . . . . . . . . .  D  ADDR  00CAH  NOT USED
+RCLK . . . . . . . . . . . . . . . .  B  ADDR  00CDH  NOT USED
+RD . . . . . . . . . . . . . . . . .  B  ADDR  00B7H
+REN. . . . . . . . . . . . . . . . .  B  ADDR  009CH  NOT USED
+RESET. . . . . . . . . . . . . . . .  C  ADDR  0000H  NOT USED
+RI . . . . . . . . . . . . . . . . .  B  ADDR  0098H  NOT USED
+RS0. . . . . . . . . . . . . . . . .  B  ADDR  00D3H  NOT USED
+RS1. . . . . . . . . . . . . . . . .  B  ADDR  00D4H  NOT USED
+RXD. . . . . . . . . . . . . . . . .  B  ADDR  00B0H  NOT USED
+SADDR. . . . . . . . . . . . . . . .  D  ADDR  00A9H  NOT USED
+SADDR_0. . . . . . . . . . . . . . .  D  ADDR  00A9H  NOT USED
+SADDR_1. . . . . . . . . . . . . . .  D  ADDR  00AAH  NOT USED
+SADEN. . . . . . . . . . . . . . . .  D  ADDR  00B9H  NOT USED
+SADEN_0. . . . . . . . . . . . . . .  D  ADDR  00B9H  NOT USED
+SADEN_1. . . . . . . . . . . . . . .  D  ADDR  00BAH  NOT USED
+SBUF . . . . . . . . . . . . . . . .  D  ADDR  0099H  NOT USED
+SCON . . . . . . . . . . . . . . . .  D  ADDR  0098H  NOT USED
+SINT . . . . . . . . . . . . . . . .  C  ADDR  0023H  NOT USED
+SM0. . . . . . . . . . . . . . . . .  B  ADDR  009FH  NOT USED
+SM1. . . . . . . . . . . . . . . . .  B  ADDR  009EH  NOT USED
+SM2. . . . . . . . . . . . . . . . .  B  ADDR  009DH  NOT USED
+SP . . . . . . . . . . . . . . . . .  D  ADDR  0081H
+SPCON. . . . . . . . . . . . . . . .  D  ADDR  00C3H
+SPCR . . . . . . . . . . . . . . . .  D  ADDR  00D5H  NOT USED
+SPDAT. . . . . . . . . . . . . . . .  D  ADDR  00C5H  NOT USED
+SPDR . . . . . . . . . . . . . . . .  D  ADDR  0086H  NOT USED
+SPSR . . . . . . . . . . . . . . . .  D  ADDR  00AAH  NOT USED
+SPSTA. . . . . . . . . . . . . . . .  D  ADDR  00C4H  NOT USED
+T0 . . . . . . . . . . . . . . . . .  B  ADDR  00B4H
+T1 . . . . . . . . . . . . . . . . .  B  ADDR  00B5H
+T2CON. . . . . . . . . . . . . . . .  D  ADDR  00C8H  NOT USED
+T2MOD. . . . . . . . . . . . . . . .  D  ADDR  00C9H  NOT USED
+TB8. . . . . . . . . . . . . . . . .  B  ADDR  009BH  NOT USED
+TCLK . . . . . . . . . . . . . . . .  B  ADDR  00CCH  NOT USED
+TCON . . . . . . . . . . . . . . . .  D  ADDR  0088H  NOT USED
+TF0. . . . . . . . . . . . . . . . .  B  ADDR  008DH
+TF1. . . . . . . . . . . . . . . . .  B  ADDR  008FH  NOT USED
+TF2. . . . . . . . . . . . . . . . .  B  ADDR  00CFH  NOT USED
+TH0. . . . . . . . . . . . . . . . .  D  ADDR  008CH
+TH1. . . . . . . . . . . . . . . . .  D  ADDR  008DH  NOT USED
+TH2. . . . . . . . . . . . . . . . .  D  ADDR  00CDH  NOT USED
+TI . . . . . . . . . . . . . . . . .  B  ADDR  0099H  NOT USED
+TIMER0 . . . . . . . . . . . . . . .  C  ADDR  000BH  NOT USED
+TIMER1 . . . . . . . . . . . . . . .  C  ADDR  001BH  NOT USED
+TIMER2 . . . . . . . . . . . . . . .  C  ADDR  002BH  NOT USED
+TL0. . . . . . . . . . . . . . . . .  D  ADDR  008AH
+TL1. . . . . . . . . . . . . . . . .  D  ADDR  008BH  NOT USED
+TL2. . . . . . . . . . . . . . . . .  D  ADDR  00CCH  NOT USED
+TMOD . . . . . . . . . . . . . . . .  D  ADDR  0089H
+TR0. . . . . . . . . . . . . . . . .  B  ADDR  008CH
+TR1. . . . . . . . . . . . . . . . .  B  ADDR  008EH  NOT USED
+TR2. . . . . . . . . . . . . . . . .  B  ADDR  00CAH  NOT USED
+TXD. . . . . . . . . . . . . . . . .  B  ADDR  00B1H  NOT USED
+WDTCON . . . . . . . . . . . . . . .  D  ADDR  00A7H  NOT USED
+WDTPRG . . . . . . . . . . . . . . .  D  ADDR  00A7H  NOT USED
+WDTRST . . . . . . . . . . . . . . .  D  ADDR  00A6H  NOT USED
+WR . . . . . . . . . . . . . . . . .  B  ADDR  00B6H

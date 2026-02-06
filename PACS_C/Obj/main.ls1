@@ -1,0 +1,1025 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Obj\main.OBJ
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE .\Obj\main.src PR(.\Obj\main.ls1) EP DEBUG
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ; .\Obj\main.SRC generated from: User\main.c
+                       2     ; COMPILER INVOKED BY:
+                       3     ;        C:\Keil_v5\C51\BIN\C51.EXE User\main.c ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE INCDI
+                             R(.\App\24c02;.\App\iic;.\App\key;.\App\smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;
+                             .\App\time;.\App\xpt2046) DEBUG OBJECTEXTEND PRINT(.\Obj\main.lst) TABS(2) SRC(.\Obj\main.SRC)
+                       4     
+                       5     $nomod51 
+                       6     
+                       7     NAME    MAIN
+                       8     
+  0080                 9     P0      DATA    080H
+  0090                10     P1      DATA    090H
+  00B5                11     Trigger_pin     BIT     0B0H.5
+  00A0                12     P2      DATA    0A0H
+  00B0                13     P3      DATA    0B0H
+  00B4                14     T0      BIT     0B0H.4
+  00D6                15     AC      BIT     0D0H.6
+  00B5                16     T1      BIT     0B0H.5
+  0090                17     T2      BIT     090H.0
+  00AF                18     EA      BIT     0A8H.7
+  00A8                19     IE      DATA    0A8H
+  00B5                20     CS      BIT     0B0H.5
+  00CE                21     EXF2    BIT     0C8H.6
+  00B7                22     RD      BIT     0B0H.7
+  00AC                23     ES      BIT     0A8H.4
+  00B8                24     IP      DATA    0B8H
+  0098                25     RI      BIT     098H.0
+  00B2                26     INT0    BIT     0B0H.2
+  00D7                27     CY      BIT     0D0H.7
+  0099                28     TI      BIT     098H.1
+  00B3                29     INT1    BIT     0B0H.3
+  00CB                30     RCAP2H  DATA    0CBH
+  00BC                31     PS      BIT     0B8H.4
+  0081                32     SP      DATA    081H
+  0091                33     T2EX    BIT     090H.1
+  00D2                34     OV      BIT     0D0H.2
+  00CA                35     RCAP2L  DATA    0CAH
+  00C9                36     C_T2    BIT     0C8H.1
+  00B6                37     WR      BIT     0B0H.6
+  00B3                38     Echo_pin        BIT     0B0H.3
+  00CD                39     RCLK    BIT     0C8H.5
+  00CC                40     TCLK    BIT     0C8H.4
+  0099                41     SBUF    DATA    099H
+  0087                42     PCON    DATA    087H
+  0098                43     SCON    DATA    098H
+  0089                44     TMOD    DATA    089H
+  0088                45     TCON    DATA    088H
+  00B7                46     DOUT    BIT     0B0H.7
+  0089                47     IE0     BIT     088H.1
+  008B                48     IE1     BIT     088H.3
+  00F0                49     B       DATA    0F0H
+  00C8                50     CP_RL2  BIT     0C8H.0
+  00E0                51     ACC     DATA    0E0H
+  00A9                52     ET0     BIT     0A8H.1
+  00AB                53     ET1     BIT     0A8H.3
+  008D                54     TF0     BIT     088H.5
+  00AD                55     ET2     BIT     0A8H.5
+  008F                56     TF1     BIT     088H.7
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     2
+
+  00CF                57     TF2     BIT     0C8H.7
+  009A                58     RB8     BIT     098H.2
+  008C                59     TH0     DATA    08CH
+  00A8                60     EX0     BIT     0A8H.0
+  0088                61     IT0     BIT     088H.0
+  008D                62     TH1     DATA    08DH
+  009B                63     TB8     BIT     098H.3
+  00AA                64     EX1     BIT     0A8H.2
+  008A                65     IT1     BIT     088H.2
+  00CD                66     TH2     DATA    0CDH
+  00D0                67     P       BIT     0D0H.0
+  009F                68     SM0     BIT     098H.7
+  008A                69     TL0     DATA    08AH
+  009E                70     SM1     BIT     098H.6
+  008B                71     TL1     DATA    08BH
+  009D                72     SM2     BIT     098H.5
+  00CC                73     TL2     DATA    0CCH
+  00B9                74     PT0     BIT     0B8H.1
+  00BB                75     PT1     BIT     0B8H.3
+  00D3                76     RS0     BIT     0D0H.3
+  00BD                77     PT2     BIT     0B8H.5
+  008C                78     TR0     BIT     088H.4
+  00D4                79     RS1     BIT     0D0H.4
+  008E                80     TR1     BIT     088H.6
+  00CA                81     TR2     BIT     0C8H.2
+  00B8                82     PX0     BIT     0B8H.0
+  00BA                83     PX1     BIT     0B8H.2
+  00B6                84     CLK     BIT     0B0H.6
+  00B4                85     DIN     BIT     0B0H.4
+  0083                86     DPH     DATA    083H
+  00A2                87     LSA     BIT     0A0H.2
+  0082                88     DPL     DATA    082H
+  00B6                89     SCK     BIT     0B0H.6
+  00A3                90     LSB     BIT     0A0H.3
+  00A4                91     LSC     BIT     0A0H.4
+  00CB                92     EXEN2   BIT     0C8H.3
+  009C                93     REN     BIT     098H.4
+  00C8                94     T2CON   DATA    0C8H
+  00B4                95     SER     BIT     0B0H.4
+  00B0                96     RXD     BIT     0B0H.0
+  00B1                97     TXD     BIT     0B0H.1
+  00D5                98     F0      BIT     0D0H.5
+  00D0                99     PSW     DATA    0D0H
+                     100     ?PR?_Delay?MAIN      SEGMENT CODE INBLOCK 
+                     101     ?PR?__74HC595_WriteByte?MAIN             SEGMENT CODE INBLOCK 
+                     102     ?PR?MatrixLED_Init?MAIN                  SEGMENT CODE INBLOCK 
+                     103     ?PR?_MatrixLED_ShowColumn?MAIN           SEGMENT CODE INBLOCK 
+                     104     ?PR?Delay_us?MAIN    SEGMENT CODE INBLOCK 
+                     105     ?PR?init_timer?MAIN  SEGMENT CODE INBLOCK 
+                     106     ?PR?send_trigger_pulse?MAIN              SEGMENT CODE INBLOCK 
+                     107     ?PR?main?MAIN        SEGMENT CODE INBLOCK 
+                     108     ?DT?main?MAIN        SEGMENT DATA OVERLAYABLE 
+                     109     ?CO?MAIN             SEGMENT CODE 
+                     110             EXTRN   CODE (_smg_display)
+                     111             EXTRN   DATA (gsmg_code)
+                     112             EXTRN   CODE (_pow)
+                     113             EXTRN   DATA (?_pow?BYTE)
+                     114             EXTRN   CODE (?C_STARTUP)
+                     115             EXTRN   CODE (?C?SLCMP)
+                     116             EXTRN   CODE (?C?FPMUL)
+                     117             EXTRN   CODE (?C?FCASTI)
+                     118             EXTRN   CODE (?C?FPDIV)
+                     119             EXTRN   CODE (?C?CASTF)
+                     120             EXTRN   CODE (?C?UIDIV)
+                     121             PUBLIC  Animation
+                     122             PUBLIC  main
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     3
+
+                     123             PUBLIC  send_trigger_pulse
+                     124             PUBLIC  init_timer
+                     125             PUBLIC  Delay_us
+                     126             PUBLIC  _MatrixLED_ShowColumn
+                     127             PUBLIC  MatrixLED_Init
+                     128             PUBLIC  __74HC595_WriteByte
+                     129             PUBLIC  _Delay
+                     130     
+----                 131             RSEG  ?DT?main?MAIN
+0000                 132     ?main?BYTE:
+0000                 133           value?747:   DS   4
+0004                 134             ORG  4
+0004                 135     distance_in_cm?748:   DS   10
+000E                 136             ORG  14
+000E                 137     distance_measurement?749:   DS   2
+0010                 138             ORG  16
+0010                 139             buf?750:   DS   4
+0014                 140             ORG  20
+0014                 141               i?751:   DS   2
+0016                 142             ORG  22
+0016                 143               j?752:   DS   2
+0018                 144             ORG  24
+0018                 145          Offset?753:   DS   2
+001A                 146             ORG  26
+001A                 147           Count?754:   DS   2
+                     148     
+----                 149             RSEG  ?CO?MAIN
+0000                 150     Animation:
+0000 E7              151             DB      0E7H
+0001 E7              152             DB      0E7H
+0002 E7              153             DB      0E7H
+0003 FF              154             DB      0FFH
+0004 FF              155             DB      0FFH
+0005 E7              156             DB      0E7H
+0006 E7              157             DB      0E7H
+0007 E7              158             DB      0E7H
+0008 FE              159             DB      0FEH
+0009 C1              160             DB      0C1H
+000A C1              161             DB      0C1H
+000B FE              162             DB      0FEH
+000C FE              163             DB      0FEH
+000D C1              164             DB      0C1H
+000E C1              165             DB      0C1H
+000F FE              166             DB      0FEH
+0010 C3              167             DB      0C3H
+0011 C6              168             DB      0C6H
+0012 CC              169             DB      0CCH
+0013 F8              170             DB      0F8H
+0014 F8              171             DB      0F8H
+0015 CC              172             DB      0CCH
+0016 C6              173             DB      0C6H
+0017 C3              174             DB      0C3H
+0018 FF              175             DB      0FFH
+0019 FF              176             DB      0FFH
+001A FF              177             DB      0FFH
+001B E7              178             DB      0E7H
+001C E7              179             DB      0E7H
+001D E7              180             DB      0E7H
+001E E7              181             DB      0E7H
+001F E7              182             DB      0E7H
+0020 FF              183             DB      0FFH
+0021 FF              184             DB      0FFH
+0022 18              185             DB      018H
+0023 FF              186             DB      0FFH
+0024 FF              187             DB      0FFH
+0025 18              188             DB      018H
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     4
+
+0026 FF              189             DB      0FFH
+0027 FF              190             DB      0FFH
+0028 84              191             DB      084H
+0029 BF              192             DB      0BFH
+002A 9F              193             DB      09FH
+002B 95              194             DB      095H
+002C 9F              195             DB      09FH
+002D C4              196             DB      0C4H
+002E BF              197             DB      0BFH
+002F 84              198             DB      084H
+                     199     
+                     200     ; #ifndef __DELAY_H__
+                     201     ; #define __DELAY_H__
+                     202     ; #ifndef __MATRIX_LED_H__
+                     203     ; #define __MATRIX_LED_H__
+                     204     ; 
+                     205     ; #include "public.h"
+                     206     ; #include "smg.h"
+                     207     ; #include "xpt2046.h"
+                     208     ; #include <reg52.h>
+                     209     ; #include <stdio.h>
+                     210     ; #include <math.h>
+                     211     ; 
+                     212     ; #define sound_velocity 34300          /* sound velocity in cm per second */
+                     213     ; 
+                     214     ; #define period_in_us pow(10,-6)
+                     215     ; #define Clock_period 1.085*period_in_us               /* period for clock cycle of 8051*/
+                     216     ; 
+                     217     ; void Delay(unsigned int xms);
+                     218     ; void MatrixLED_Init();
+                     219     ; void MatrixLED_ShowColumn(unsigned char Column,Data);
+                     220     ; 
+                     221     ; void Delay(unsigned int xms)
+                     222     
+----                 223             RSEG  ?PR?_Delay?MAIN
+0000                 224     _Delay:
+                     225             USING   0
+                     226                             ; SOURCE LINE # 22
+                     227     ;---- Variable 'xms?040' assigned to Register 'R6/R7' ----
+                     228     ; {
+                     229                             ; SOURCE LINE # 23
+0000                 230     ?C0001:
+                     231     ;       unsigned char i, j;
+                     232     ;       while(xms--)
+                     233                             ; SOURCE LINE # 25
+0000 EF              234             MOV     A,R7
+0001 1F              235             DEC     R7
+0002 AC06            236             MOV     R4,AR6
+0004 7001            237             JNZ     ?C0038
+0006 1E              238             DEC     R6
+0007                 239     ?C0038:
+0007 4C              240             ORL     A,R4
+0008 600A            241             JZ      ?C0008
+                     242     ;       {
+                     243                             ; SOURCE LINE # 26
+                     244     ;               i = 2;
+                     245                             ; SOURCE LINE # 27
+                     246     ;---- Variable 'i?041' assigned to Register 'R5' ----
+000A 7D02            247             MOV     R5,#02H
+                     248     ;               j = 239;
+                     249                             ; SOURCE LINE # 28
+                     250     ;---- Variable 'j?042' assigned to Register 'R4' ----
+000C 7CEF            251             MOV     R4,#0EFH
+                     252     ;               do
+                     253     ;               {
+                     254                             ; SOURCE LINE # 30
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     5
+
+000E                 255     ?C0006:
+                     256     ;                       while (--j);
+                     257                             ; SOURCE LINE # 31
+000E DCFE            258             DJNZ    R4,?C0006
+                     259     ;               } while (--i);
+                     260                             ; SOURCE LINE # 32
+0010 DDFC            261             DJNZ    R5,?C0006
+                     262     ;       }
+                     263                             ; SOURCE LINE # 33
+0012 80EC            264             SJMP    ?C0001
+                     265     ; }
+                     266                             ; SOURCE LINE # 34
+0014                 267     ?C0008:
+0014 22              268             RET     
+                     269     ; END OF _Delay
+                     270     
+                     271     ; 
+                     272     ; 
+                     273     ; 
+                     274     ; sbit Trigger_pin=P3^5;                /* Trigger pin */
+                     275     ; sbit Echo_pin=P3^3;           /* Echo pin */
+                     276     ; 
+                     277     ; sbit SCK=P3^6;                //SRCLK
+                     278     ; sbit SER=P3^4;                //SER
+                     279     ; 
+                     280     ; #define MATRIX_LED_PORT               P0
+                     281     ; 
+                     282     ; void _74HC595_WriteByte(unsigned char Byte)
+                     283     
+----                 284             RSEG  ?PR?__74HC595_WriteByte?MAIN
+0000                 285     __74HC595_WriteByte:
+                     286             USING   0
+                     287                             ; SOURCE LINE # 46
+                     288     ;---- Variable 'Byte?143' assigned to Register 'R5' ----
+0000 AD07            289             MOV     R5,AR7
+                     290     ; {
+                     291                             ; SOURCE LINE # 47
+                     292     ;       unsigned char i;
+                     293     ;       for(i=0;i<8;i++)
+                     294                             ; SOURCE LINE # 49
+                     295     ;---- Variable 'i?144' assigned to Register 'R3' ----
+0002 E4              296             CLR     A
+0003 FB              297             MOV     R3,A
+0004                 298     ?C0009:
+                     299     ;       {
+                     300                             ; SOURCE LINE # 50
+                     301     ;               SER=Byte&(0x80>>i);
+                     302                             ; SOURCE LINE # 51
+0004 7E00            303             MOV     R6,#00H
+0006 7480            304             MOV     A,#080H
+0008 A803            305             MOV     R0,AR3
+000A 08              306             INC     R0
+000B 8006            307             SJMP    ?C0040
+000D                 308     ?C0039:
+000D CE              309             XCH     A,R6
+000E A2E7            310             MOV     C,ACC.7
+0010 13              311             RRC     A
+0011 CE              312             XCH     A,R6
+0012 13              313             RRC     A
+0013                 314     ?C0040:
+0013 D8F8            315             DJNZ    R0,?C0039
+0015 FF              316             MOV     R7,A
+0016 ED              317             MOV     A,R5
+0017 F582            318             MOV     DPL,A
+0019 EF              319             MOV     A,R7
+001A 5582            320             ANL     A,DPL
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     6
+
+001C 24FF            321             ADD     A,#0FFH
+001E 92B4            322             MOV     SER,C
+                     323     ;               SCK=1;
+                     324                             ; SOURCE LINE # 52
+0020 D2B6            325             SETB    SCK
+                     326     ;               SCK=0;
+                     327                             ; SOURCE LINE # 53
+0022 C2B6            328             CLR     SCK
+                     329     ;       }
+                     330                             ; SOURCE LINE # 54
+0024 0B              331             INC     R3
+0025 BB08DC          332             CJNE    R3,#08H,?C0009
+0028                 333     ?C0010:
+                     334     ;       Trigger_pin=1;
+                     335                             ; SOURCE LINE # 55
+0028 D2B5            336             SETB    Trigger_pin
+                     337     ;       Trigger_pin=0;
+                     338                             ; SOURCE LINE # 56
+002A C2B5            339             CLR     Trigger_pin
+                     340     ; }
+                     341                             ; SOURCE LINE # 57
+002C 22              342             RET     
+                     343     ; END OF __74HC595_WriteByte
+                     344     
+                     345     ; 
+                     346     ; void MatrixLED_Init()
+                     347     
+----                 348             RSEG  ?PR?MatrixLED_Init?MAIN
+0000                 349     MatrixLED_Init:
+                     350                             ; SOURCE LINE # 59
+                     351     ; {
+                     352                             ; SOURCE LINE # 60
+                     353     ;       SCK=0;
+                     354                             ; SOURCE LINE # 61
+0000 C2B6            355             CLR     SCK
+                     356     ;       Trigger_pin=0;
+                     357                             ; SOURCE LINE # 62
+0002 C2B5            358             CLR     Trigger_pin
+                     359     ; }
+                     360                             ; SOURCE LINE # 63
+0004 22              361             RET     
+                     362     ; END OF MatrixLED_Init
+                     363     
+                     364     ; 
+                     365     ; void MatrixLED_ShowColumn(unsigned char Column,Data)
+                     366     
+----                 367             RSEG  ?PR?_MatrixLED_ShowColumn?MAIN
+0000                 368     _MatrixLED_ShowColumn:
+                     369             USING   0
+                     370                             ; SOURCE LINE # 65
+                     371     ;---- Variable 'Data?346' assigned to Register 'R4/R5' ----
+                     372     ;---- Variable 'Column?345' assigned to Register 'R2' ----
+0000 AA07            373             MOV     R2,AR7
+                     374     ; {
+                     375                             ; SOURCE LINE # 66
+                     376     ;       _74HC595_WriteByte(Data);
+                     377                             ; SOURCE LINE # 67
+0002 AF05            378             MOV     R7,AR5
+0004 120000   F      379             LCALL   __74HC595_WriteByte
+                     380     ;       MATRIX_LED_PORT=~(0x80>>Column);
+                     381                             ; SOURCE LINE # 68
+0007 AF02            382             MOV     R7,AR2
+0009 A807            383             MOV     R0,AR7
+000B 7480            384             MOV     A,#080H
+000D 08              385             INC     R0
+000E 8002            386             SJMP    ?C0042
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     7
+
+0010                 387     ?C0041:
+0010 C3              388             CLR     C
+0011 13              389             RRC     A
+0012                 390     ?C0042:
+0012 D8FC            391             DJNZ    R0,?C0041
+0014 F4              392             CPL     A
+0015 F580            393             MOV     P0,A
+                     394     ;       Delay(1);
+                     395                             ; SOURCE LINE # 69
+0017 7F01            396             MOV     R7,#01H
+0019 7E00            397             MOV     R6,#00H
+001B 120000   F      398             LCALL   _Delay
+                     399     ;       MATRIX_LED_PORT=0xFF;
+                     400                             ; SOURCE LINE # 70
+001E 7580FF          401             MOV     P0,#0FFH
+                     402     ; }
+                     403                             ; SOURCE LINE # 71
+0021 22              404             RET     
+                     405     ; END OF _MatrixLED_ShowColumn
+                     406     
+                     407     ; 
+                     408     ; void Delay_us()
+                     409     
+----                 410             RSEG  ?PR?Delay_us?MAIN
+0000                 411     Delay_us:
+                     412                             ; SOURCE LINE # 73
+                     413     ; {
+                     414                             ; SOURCE LINE # 74
+                     415     ;       TL0=0xF5;
+                     416                             ; SOURCE LINE # 75
+0000 758AF5          417             MOV     TL0,#0F5H
+                     418     ;       TH0=0xFF;
+                     419                             ; SOURCE LINE # 76
+0003 758CFF          420             MOV     TH0,#0FFH
+                     421     ;       TR0=1;
+                     422                             ; SOURCE LINE # 77
+0006 D28C            423             SETB    TR0
+0008                 424     ?C0015:
+                     425     ;       while (TF0==0);
+                     426                             ; SOURCE LINE # 78
+0008 308DFD          427             JNB     TF0,?C0015
+                     428     ;       TR0=0;
+                     429                             ; SOURCE LINE # 79
+000B C28C            430             CLR     TR0
+                     431     ;       TF0=0;
+                     432                             ; SOURCE LINE # 80
+000D C28D            433             CLR     TF0
+                     434     ; }
+                     435                             ; SOURCE LINE # 81
+000F 22              436             RET     
+                     437     ; END OF Delay_us
+                     438     
+                     439     ; 
+                     440     ; void init_timer(){
+                     441     
+----                 442             RSEG  ?PR?init_timer?MAIN
+0000                 443     init_timer:
+                     444                             ; SOURCE LINE # 83
+                     445     ;       TMOD=0x01;                                                                         
+                                  /*initialize Timer*/
+                     446                             ; SOURCE LINE # 84
+0000 758901          447             MOV     TMOD,#01H
+                     448     ;       TF0=0;
+                     449                             ; SOURCE LINE # 85
+0003 C28D            450             CLR     TF0
+                     451     ;       TR0 = 0;
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     8
+
+                     452                             ; SOURCE LINE # 86
+0005 C28C            453             CLR     TR0
+                     454     ; }
+                     455                             ; SOURCE LINE # 87
+0007 22              456             RET     
+                     457     ; END OF init_timer
+                     458     
+                     459     ; 
+                     460     ; void send_trigger_pulse(){
+                     461     
+----                 462             RSEG  ?PR?send_trigger_pulse?MAIN
+0000                 463     send_trigger_pulse:
+                     464                             ; SOURCE LINE # 89
+                     465     ;       Trigger_pin= 1;                 /* pull trigger pin HIGH */
+                     466                             ; SOURCE LINE # 90
+0000 D2B5            467             SETB    Trigger_pin
+                     468     ;       Delay_us();                     /* provide 10uS Delay*/
+                     469                             ; SOURCE LINE # 91
+0002 120000   F      470             LCALL   Delay_us
+                     471     ;       Trigger_pin = 0;                /* pull trigger pin LOW*/
+                     472                             ; SOURCE LINE # 92
+0005 C2B5            473             CLR     Trigger_pin
+                     474     ; }
+                     475                             ; SOURCE LINE # 93
+0007 22              476             RET     
+                     477     ; END OF send_trigger_pulse
+                     478     
+                     479     ; 
+                     480     ; unsigned char code Animation[]={
+                     481     ;       0xE7,0xE7,0xE7,0xFF,0xFF,0xE7,0xE7,0xE7,
+                     482     ;       0xFE,0xC1,0xC1,0xFE,0xFE,0xC1,0xC1,0xFE,
+                     483     ;       0xC3,0xC6,0xCC,0xF8,0xF8,0xCC,0xC6,0xC3,
+                     484     ;       0xFF,0xFF,0xFF,0xE7,0xE7,0xE7,0xE7,0xE7,
+                     485     ;       0xFF,0xFF,0x18,0xFF,0xFF,0x18,0xFF,0xFF,
+                     486     ;       0x84,0xBF,0x9F,0x95,0x9F,0xC4,0xBF,0x84,
+                     487     ; };
+                     488     ; 
+                     489     ; void main()
+                     490     
+----                 491             RSEG  ?PR?main?MAIN
+0000                 492     main:
+                     493             USING   0
+                     494                             ; SOURCE LINE # 104
+                     495     ; {
+                     496                             ; SOURCE LINE # 105
+                     497     ;       float value;
+                     498     ;       unsigned char distance_in_cm[10];
+                     499     ;       u16 distance_measurement=0;
+                     500                             ; SOURCE LINE # 108
+0000 E4              501             CLR     A
+0001 F500     F      502             MOV     distance_measurement?749,A
+0003 F500     F      503             MOV     distance_measurement?749+01H,A
+                     504     ;       u8 buf[4];
+                     505     ;       u16 i=0;
+                     506                             ; SOURCE LINE # 110
+0005 F500     F      507             MOV     i?751,A
+0007 F500     F      508             MOV     i?751+01H,A
+                     509     ;       u16 j=0;
+                     510                             ; SOURCE LINE # 111
+0009 F500     F      511             MOV     j?752,A
+000B F500     F      512             MOV     j?752+01H,A
+                     513     ;       u16 Offset=0;
+                     514                             ; SOURCE LINE # 112
+000D F500     F      515             MOV     Offset?753,A
+000F F500     F      516             MOV     Offset?753+01H,A
+                     517     ;       u16 Count=0;
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE     9
+
+                     518                             ; SOURCE LINE # 113
+0011 F500     F      519             MOV     Count?754,A
+0013 F500     F      520             MOV     Count?754+01H,A
+                     521     ;       MatrixLED_Init();
+                     522                             ; SOURCE LINE # 114
+0015 120000   F      523             LCALL   MatrixLED_Init
+                     524     ;       for(j=0;j<700;j++) {
+                     525                             ; SOURCE LINE # 115
+0018 F500     F      526             MOV     j?752,A
+001A F500     F      527             MOV     j?752+01H,A
+001C                 528     ?C0020:
+                     529     ;               for(i=0;i<8;i++)
+                     530                             ; SOURCE LINE # 116
+001C E4              531             CLR     A
+001D F500     F      532             MOV     i?751,A
+001F F500     F      533             MOV     i?751+01H,A
+0021                 534     ?C0023:
+                     535     ;               {
+                     536                             ; SOURCE LINE # 117
+                     537     ;                       MatrixLED_ShowColumn(i,Animation[i+Offset]);
+                     538                             ; SOURCE LINE # 118
+0021 AF00     F      539             MOV     R7,i?751+01H
+0023 E500     F      540             MOV     A,i?751+01H
+0025 2500     F      541             ADD     A,Offset?753+01H
+0027 FD              542             MOV     R5,A
+0028 E500     F      543             MOV     A,i?751
+002A 3500     F      544             ADDC    A,Offset?753
+002C FC              545             MOV     R4,A
+002D 7400     F      546             MOV     A,#LOW (Animation)
+002F 2D              547             ADD     A,R5
+0030 F582            548             MOV     DPL,A
+0032 7400     F      549             MOV     A,#HIGH (Animation)
+0034 3C              550             ADDC    A,R4
+0035 F583            551             MOV     DPH,A
+0037 E4              552             CLR     A
+0038 93              553             MOVC    A,@A+DPTR
+0039 FD              554             MOV     R5,A
+003A 7C00            555             MOV     R4,#00H
+003C 120000   F      556             LCALL   _MatrixLED_ShowColumn
+                     557     ;               }
+                     558                             ; SOURCE LINE # 119
+003F 0500     F      559             INC     i?751+01H
+0041 E500     F      560             MOV     A,i?751+01H
+0043 7002            561             JNZ     ?C0043
+0045 0500     F      562             INC     i?751
+0047                 563     ?C0043:
+0047 C3              564             CLR     C
+0048 9408            565             SUBB    A,#08H
+004A E500     F      566             MOV     A,i?751
+004C 9400            567             SUBB    A,#00H
+004E 40D1            568             JC      ?C0023
+0050                 569     ?C0024:
+                     570     ;               Count++;
+                     571                             ; SOURCE LINE # 120
+0050 0500     F      572             INC     Count?754+01H
+0052 E500     F      573             MOV     A,Count?754+01H
+0054 7002            574             JNZ     ?C0044
+0056 0500     F      575             INC     Count?754
+0058                 576     ?C0044:
+                     577     ;               if(Count>39)
+                     578                             ; SOURCE LINE # 121
+0058 D3              579             SETB    C
+0059 9427            580             SUBB    A,#027H
+005B E500     F      581             MOV     A,Count?754
+005D 9400            582             SUBB    A,#00H
+005F 4020            583             JC      ?C0022
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    10
+
+                     584     ;               {
+                     585                             ; SOURCE LINE # 122
+                     586     ;                       Count=0;
+                     587                             ; SOURCE LINE # 123
+0061 E4              588             CLR     A
+0062 F500     F      589             MOV     Count?754,A
+0064 F500     F      590             MOV     Count?754+01H,A
+                     591     ;                       Offset+=8;
+                     592                             ; SOURCE LINE # 124
+0066 7408            593             MOV     A,#08H
+0068 2500     F      594             ADD     A,Offset?753+01H
+006A F500     F      595             MOV     Offset?753+01H,A
+006C E4              596             CLR     A
+006D 3500     F      597             ADDC    A,Offset?753
+006F F500     F      598             MOV     Offset?753,A
+                     599     ;                       if(Offset>41)
+                     600                             ; SOURCE LINE # 125
+0071 D3              601             SETB    C
+0072 E500     F      602             MOV     A,Offset?753+01H
+0074 9429            603             SUBB    A,#029H
+0076 E500     F      604             MOV     A,Offset?753
+0078 9400            605             SUBB    A,#00H
+007A 4005            606             JC      ?C0022
+                     607     ;                       {
+                     608                             ; SOURCE LINE # 126
+                     609     ;                               Offset=0;
+                     610                             ; SOURCE LINE # 127
+007C E4              611             CLR     A
+007D F500     F      612             MOV     Offset?753,A
+007F F500     F      613             MOV     Offset?753+01H,A
+                     614     ;                       }
+                     615                             ; SOURCE LINE # 128
+                     616     ;               }
+                     617                             ; SOURCE LINE # 129
+                     618     ;       }
+                     619                             ; SOURCE LINE # 130
+0081                 620     ?C0022:
+0081 0500     F      621             INC     j?752+01H
+0083 E500     F      622             MOV     A,j?752+01H
+0085 7002            623             JNZ     ?C0045
+0087 0500     F      624             INC     j?752
+0089                 625     ?C0045:
+0089 C3              626             CLR     C
+008A 94BC            627             SUBB    A,#0BCH
+008C E500     F      628             MOV     A,j?752
+008E 9402            629             SUBB    A,#02H
+0090 408A            630             JC      ?C0020
+0092                 631     ?C0021:
+                     632     ;       init_timer();                   /* Initialize Timer*/
+                     633                             ; SOURCE LINE # 131
+0092 120000   F      634             LCALL   init_timer
+0095                 635     ?C0028:
+                     636     ;       
+                     637     ;       while(1)
+                     638                             ; SOURCE LINE # 133
+                     639     ;       {               
+                     640                             ; SOURCE LINE # 134
+                     641     ;               
+                     642     ;               for(j=0;j<65535;j++) {
+                     643                             ; SOURCE LINE # 136
+0095 E4              644             CLR     A
+0096 F500     F      645             MOV     j?752,A
+0098 F500     F      646             MOV     j?752+01H,A
+009A                 647     ?C0030:
+009A AE00     F      648             MOV     R6,j?752
+009C AF00     F      649             MOV     R7,j?752+01H
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    11
+
+009E E4              650             CLR     A
+009F FC              651             MOV     R4,A
+00A0 FD              652             MOV     R5,A
+00A1 7BFF            653             MOV     R3,#0FFH
+00A3 7AFF            654             MOV     R2,#0FFH
+00A5 F9              655             MOV     R1,A
+00A6 F8              656             MOV     R0,A
+00A7 D3              657             SETB    C
+00A8 120000   F      658             LCALL   ?C?SLCMP
+00AB 40E8            659             JC      ?C0028
+                     660     ;               send_trigger_pulse();                   /* send trigger pulse of 10us */
+                     661                             ; SOURCE LINE # 137
+00AD 120000   F      662             LCALL   send_trigger_pulse
+00B0                 663     ?C0033:
+                     664     ;     
+                     665     ;               while(!Echo_pin);                       /* Waiting for Echo */
+                     666                             ; SOURCE LINE # 139
+00B0 30B3FD          667             JNB     Echo_pin,?C0033
+                     668     ;               TR0 = 1;                                /* Timer Starts */
+                     669                             ; SOURCE LINE # 140
+00B3 D28C            670             SETB    TR0
+00B5                 671     ?C0035:
+                     672     ;               while(Echo_pin && !TF0);                /* Waiting for Echo goes LOW */
+                     673                             ; SOURCE LINE # 141
+00B5 30B303          674             JNB     Echo_pin,?C0036
+00B8 308DFA          675             JNB     TF0,?C0035
+00BB                 676     ?C0036:
+                     677     ;               TR0 = 0;                                /* Stop the timer */
+                     678                             ; SOURCE LINE # 142
+00BB C28C            679             CLR     TR0
+                     680     ;         
+                     681     ;               /* calculate distance using timer */
+                     682     ;               value = Clock_period * sound_velocity; 
+                     683                             ; SOURCE LINE # 145
+00BD E4              684             CLR     A
+00BE F500     F      685             MOV     ?_pow?BYTE+07H,A
+00C0 F500     F      686             MOV     ?_pow?BYTE+06H,A
+00C2 7500C0   F      687             MOV     ?_pow?BYTE+05H,#0C0H
+00C5 7500C0   F      688             MOV     ?_pow?BYTE+04H,#0C0H
+00C8 FF              689             MOV     R7,A
+00C9 FE              690             MOV     R6,A
+00CA 7D20            691             MOV     R5,#020H
+00CC 7C41            692             MOV     R4,#041H
+00CE 120000   F      693             LCALL   _pow
+00D1 7B80            694             MOV     R3,#080H
+00D3 7A5F            695             MOV     R2,#05FH
+00D5 7911            696             MOV     R1,#011H
+00D7 7847            697             MOV     R0,#047H
+00D9 120000   F      698             LCALL   ?C?FPMUL
+00DC 8F00     F      699             MOV     value?747+03H,R7
+00DE 8E00     F      700             MOV     value?747+02H,R6
+00E0 8D00     F      701             MOV     value?747+01H,R5
+00E2 8C00     F      702             MOV     value?747,R4
+                     703     ;               distance_measurement = (TL0|(TH0<<8));  /* read timer register for time cou
+                             nt */
+                     704                             ; SOURCE LINE # 146
+00E4 AF8C            705             MOV     R7,TH0
+00E6 EF              706             MOV     A,R7
+00E7 AD8A            707             MOV     R5,TL0
+00E9 F500     F      708             MOV     distance_measurement?749,A
+00EB ED              709             MOV     A,R5
+00EC F500     F      710             MOV     distance_measurement?749+01H,A
+                     711     ;               distance_measurement = (distance_measurement*value)/2.0;  /* find distance(
+                             in cm) */
+                     712                             ; SOURCE LINE # 147
+00EE AC00     F      713             MOV     R4,distance_measurement?749
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    12
+
+00F0 E4              714             CLR     A
+00F1 120000   F      715             LCALL   ?C?FCASTI
+00F4 AB00     F      716             MOV     R3,value?747+03H
+00F6 AA00     F      717             MOV     R2,value?747+02H
+00F8 A900     F      718             MOV     R1,value?747+01H
+00FA A800     F      719             MOV     R0,value?747
+00FC 120000   F      720             LCALL   ?C?FPMUL
+00FF E4              721             CLR     A
+0100 FB              722             MOV     R3,A
+0101 FA              723             MOV     R2,A
+0102 F9              724             MOV     R1,A
+0103 7840            725             MOV     R0,#040H
+0105 120000   F      726             LCALL   ?C?FPDIV
+0108 120000   F      727             LCALL   ?C?CASTF
+010B 8E00     F      728             MOV     distance_measurement?749,R6
+010D 8F00     F      729             MOV     distance_measurement?749+01H,R7
+                     730     ;       
+                     731     ;               buf[0]=gsmg_code[distance_measurement/1000];
+                     732                             ; SOURCE LINE # 149
+010F 7C03            733             MOV     R4,#03H
+0111 7DE8            734             MOV     R5,#0E8H
+0113 120000   F      735             LCALL   ?C?UIDIV
+0116 7400     F      736             MOV     A,#LOW (gsmg_code)
+0118 2F              737             ADD     A,R7
+0119 F8              738             MOV     R0,A
+011A E6              739             MOV     A,@R0
+011B F500     F      740             MOV     buf?750,A
+                     741     ;               buf[1]=gsmg_code[distance_measurement%1000/100];
+                     742                             ; SOURCE LINE # 150
+011D AE00     F      743             MOV     R6,distance_measurement?749
+011F AF00     F      744             MOV     R7,distance_measurement?749+01H
+0121 7C03            745             MOV     R4,#03H
+0123 7DE8            746             MOV     R5,#0E8H
+0125 120000   F      747             LCALL   ?C?UIDIV
+0128 AA04            748             MOV     R2,AR4
+012A AB05            749             MOV     R3,AR5
+012C 7D64            750             MOV     R5,#064H
+012E 7C00            751             MOV     R4,#00H
+0130 AF03            752             MOV     R7,AR3
+0132 AE02            753             MOV     R6,AR2
+0134 120000   F      754             LCALL   ?C?UIDIV
+0137 7400     F      755             MOV     A,#LOW (gsmg_code)
+0139 2F              756             ADD     A,R7
+013A F8              757             MOV     R0,A
+013B E6              758             MOV     A,@R0
+013C F500     F      759             MOV     buf?750+01H,A
+                     760     ;               buf[2]=gsmg_code[distance_measurement%1000%100/10];
+                     761                             ; SOURCE LINE # 151
+013E 7D64            762             MOV     R5,#064H
+0140 7C00            763             MOV     R4,#00H
+0142 AF03            764             MOV     R7,AR3
+0144 AE02            765             MOV     R6,AR2
+0146 120000   F      766             LCALL   ?C?UIDIV
+0149 AA04            767             MOV     R2,AR4
+014B AB05            768             MOV     R3,AR5
+014D 7D0A            769             MOV     R5,#0AH
+014F 7C00            770             MOV     R4,#00H
+0151 AF03            771             MOV     R7,AR3
+0153 AE02            772             MOV     R6,AR2
+0155 120000   F      773             LCALL   ?C?UIDIV
+0158 7400     F      774             MOV     A,#LOW (gsmg_code)
+015A 2F              775             ADD     A,R7
+015B F8              776             MOV     R0,A
+015C E6              777             MOV     A,@R0
+015D F500     F      778             MOV     buf?750+02H,A
+                     779     ;               buf[3]=gsmg_code[distance_measurement%1000%100%10];
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    13
+
+                     780                             ; SOURCE LINE # 152
+015F 7D0A            781             MOV     R5,#0AH
+0161 7C00            782             MOV     R4,#00H
+0163 AF03            783             MOV     R7,AR3
+0165 AE02            784             MOV     R6,AR2
+0167 120000   F      785             LCALL   ?C?UIDIV
+016A 7400     F      786             MOV     A,#LOW (gsmg_code)
+016C 2D              787             ADD     A,R5
+016D F8              788             MOV     R0,A
+016E E6              789             MOV     A,@R0
+016F F500     F      790             MOV     buf?750+03H,A
+                     791     ;               smg_display(buf,5);
+                     792                             ; SOURCE LINE # 153
+0171 7B00            793             MOV     R3,#00H
+0173 7A00     F      794             MOV     R2,#HIGH (buf?750)
+0175 7900     F      795             MOV     R1,#LOW (buf?750)
+0177 7D05            796             MOV     R5,#05H
+0179 120000   F      797             LCALL   _smg_display
+                     798     ;               }
+                     799                             ; SOURCE LINE # 154
+017C 0500     F      800             INC     j?752+01H
+017E E500     F      801             MOV     A,j?752+01H
+0180 7002            802             JNZ     ?C0046
+0182 0500     F      803             INC     j?752
+0184                 804     ?C0046:
+0184 0100     F      805             AJMP    ?C0030
+                     806     ; END OF main
+                     807     
+                     808             END
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    14
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                         T Y P E  V A L U E   ATTRIBUTES
+
+?C0001 . . . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?_DELAY?MAIN
+?C0006 . . . . . . . . . . . .  C ADDR   000EH   R   SEG=?PR?_DELAY?MAIN
+?C0008 . . . . . . . . . . . .  C ADDR   0014H   R   SEG=?PR?_DELAY?MAIN
+?C0009 . . . . . . . . . . . .  C ADDR   0004H   R   SEG=?PR?__74HC595_WRITEBYTE?MAIN
+?C0010 . . . . . . . . . . . .  C ADDR   0028H   R   SEG=?PR?__74HC595_WRITEBYTE?MAIN
+?C0015 . . . . . . . . . . . .  C ADDR   0008H   R   SEG=?PR?DELAY_US?MAIN
+?C0020 . . . . . . . . . . . .  C ADDR   001CH   R   SEG=?PR?MAIN?MAIN
+?C0021 . . . . . . . . . . . .  C ADDR   0092H   R   SEG=?PR?MAIN?MAIN
+?C0022 . . . . . . . . . . . .  C ADDR   0081H   R   SEG=?PR?MAIN?MAIN
+?C0023 . . . . . . . . . . . .  C ADDR   0021H   R   SEG=?PR?MAIN?MAIN
+?C0024 . . . . . . . . . . . .  C ADDR   0050H   R   SEG=?PR?MAIN?MAIN
+?C0028 . . . . . . . . . . . .  C ADDR   0095H   R   SEG=?PR?MAIN?MAIN
+?C0030 . . . . . . . . . . . .  C ADDR   009AH   R   SEG=?PR?MAIN?MAIN
+?C0033 . . . . . . . . . . . .  C ADDR   00B0H   R   SEG=?PR?MAIN?MAIN
+?C0035 . . . . . . . . . . . .  C ADDR   00B5H   R   SEG=?PR?MAIN?MAIN
+?C0036 . . . . . . . . . . . .  C ADDR   00BBH   R   SEG=?PR?MAIN?MAIN
+?C0038 . . . . . . . . . . . .  C ADDR   0007H   R   SEG=?PR?_DELAY?MAIN
+?C0039 . . . . . . . . . . . .  C ADDR   000DH   R   SEG=?PR?__74HC595_WRITEBYTE?MAIN
+?C0040 . . . . . . . . . . . .  C ADDR   0013H   R   SEG=?PR?__74HC595_WRITEBYTE?MAIN
+?C0041 . . . . . . . . . . . .  C ADDR   0010H   R   SEG=?PR?_MATRIXLED_SHOWCOLUMN?MAIN
+?C0042 . . . . . . . . . . . .  C ADDR   0012H   R   SEG=?PR?_MATRIXLED_SHOWCOLUMN?MAIN
+?C0043 . . . . . . . . . . . .  C ADDR   0047H   R   SEG=?PR?MAIN?MAIN
+?C0044 . . . . . . . . . . . .  C ADDR   0058H   R   SEG=?PR?MAIN?MAIN
+?C0045 . . . . . . . . . . . .  C ADDR   0089H   R   SEG=?PR?MAIN?MAIN
+?C0046 . . . . . . . . . . . .  C ADDR   0184H   R   SEG=?PR?MAIN?MAIN
+?C?CASTF . . . . . . . . . . .  C ADDR   -----       EXT
+?C?FCASTI. . . . . . . . . . .  C ADDR   -----       EXT
+?C?FPDIV . . . . . . . . . . .  C ADDR   -----       EXT
+?C?FPMUL . . . . . . . . . . .  C ADDR   -----       EXT
+?C?SLCMP . . . . . . . . . . .  C ADDR   -----       EXT
+?C?UIDIV . . . . . . . . . . .  C ADDR   -----       EXT
+?CO?MAIN . . . . . . . . . . .  C SEG    0030H       REL=UNIT
+?C_STARTUP . . . . . . . . . .  C ADDR   -----       EXT
+?DT?MAIN?MAIN. . . . . . . . .  D SEG    001CH       REL=UNIT
+?MAIN?BYTE . . . . . . . . . .  D ADDR   0000H   R   SEG=?DT?MAIN?MAIN
+?PR?DELAY_US?MAIN. . . . . . .  C SEG    0010H       REL=INBLOCK
+?PR?INIT_TIMER?MAIN. . . . . .  C SEG    0008H       REL=INBLOCK
+?PR?MAIN?MAIN. . . . . . . . .  C SEG    0186H       REL=INBLOCK
+?PR?MATRIXLED_INIT?MAIN. . . .  C SEG    0005H       REL=INBLOCK
+?PR?SEND_TRIGGER_PULSE?MAIN. .  C SEG    0008H       REL=INBLOCK
+?PR?_DELAY?MAIN. . . . . . . .  C SEG    0015H       REL=INBLOCK
+?PR?_MATRIXLED_SHOWCOLUMN?MAIN  C SEG    0022H       REL=INBLOCK
+?PR?__74HC595_WRITEBYTE?MAIN .  C SEG    002DH       REL=INBLOCK
+?_POW?BYTE . . . . . . . . . .  D ADDR   -----       EXT
+AC . . . . . . . . . . . . . .  B ADDR   00D0H.6 A   
+ACC. . . . . . . . . . . . . .  D ADDR   00E0H   A   
+ANIMATION. . . . . . . . . . .  C ADDR   0000H   R   SEG=?CO?MAIN
+AR2. . . . . . . . . . . . . .  D ADDR   0002H   A   
+AR3. . . . . . . . . . . . . .  D ADDR   0003H   A   
+AR4. . . . . . . . . . . . . .  D ADDR   0004H   A   
+AR5. . . . . . . . . . . . . .  D ADDR   0005H   A   
+AR6. . . . . . . . . . . . . .  D ADDR   0006H   A   
+AR7. . . . . . . . . . . . . .  D ADDR   0007H   A   
+B. . . . . . . . . . . . . . .  D ADDR   00F0H   A   
+BUF?750. . . . . . . . . . . .  D ADDR   0010H   R   SEG=?DT?MAIN?MAIN
+CLK. . . . . . . . . . . . . .  B ADDR   00B0H.6 A   
+COUNT?754. . . . . . . . . . .  D ADDR   001AH   R   SEG=?DT?MAIN?MAIN
+CP_RL2 . . . . . . . . . . . .  B ADDR   00C8H.0 A   
+CS . . . . . . . . . . . . . .  B ADDR   00B0H.5 A   
+CY . . . . . . . . . . . . . .  B ADDR   00D0H.7 A   
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    15
+
+C_T2 . . . . . . . . . . . . .  B ADDR   00C8H.1 A   
+DELAY_US . . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?DELAY_US?MAIN
+DIN. . . . . . . . . . . . . .  B ADDR   00B0H.4 A   
+DISTANCE_IN_CM?748 . . . . . .  D ADDR   0004H   R   SEG=?DT?MAIN?MAIN
+DISTANCE_MEASUREMENT?749 . . .  D ADDR   000EH   R   SEG=?DT?MAIN?MAIN
+DOUT . . . . . . . . . . . . .  B ADDR   00B0H.7 A   
+DPH. . . . . . . . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . . . . . . . .  D ADDR   0082H   A   
+EA . . . . . . . . . . . . . .  B ADDR   00A8H.7 A   
+ECHO_PIN . . . . . . . . . . .  B ADDR   00B0H.3 A   
+ES . . . . . . . . . . . . . .  B ADDR   00A8H.4 A   
+ET0. . . . . . . . . . . . . .  B ADDR   00A8H.1 A   
+ET1. . . . . . . . . . . . . .  B ADDR   00A8H.3 A   
+ET2. . . . . . . . . . . . . .  B ADDR   00A8H.5 A   
+EX0. . . . . . . . . . . . . .  B ADDR   00A8H.0 A   
+EX1. . . . . . . . . . . . . .  B ADDR   00A8H.2 A   
+EXEN2. . . . . . . . . . . . .  B ADDR   00C8H.3 A   
+EXF2 . . . . . . . . . . . . .  B ADDR   00C8H.6 A   
+F0 . . . . . . . . . . . . . .  B ADDR   00D0H.5 A   
+GSMG_CODE. . . . . . . . . . .  D ADDR   -----       EXT
+I?751. . . . . . . . . . . . .  D ADDR   0014H   R   SEG=?DT?MAIN?MAIN
+IE . . . . . . . . . . . . . .  D ADDR   00A8H   A   
+IE0. . . . . . . . . . . . . .  B ADDR   0088H.1 A   
+IE1. . . . . . . . . . . . . .  B ADDR   0088H.3 A   
+INIT_TIMER . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?INIT_TIMER?MAIN
+INT0 . . . . . . . . . . . . .  B ADDR   00B0H.2 A   
+INT1 . . . . . . . . . . . . .  B ADDR   00B0H.3 A   
+IP . . . . . . . . . . . . . .  D ADDR   00B8H   A   
+IT0. . . . . . . . . . . . . .  B ADDR   0088H.0 A   
+IT1. . . . . . . . . . . . . .  B ADDR   0088H.2 A   
+J?752. . . . . . . . . . . . .  D ADDR   0016H   R   SEG=?DT?MAIN?MAIN
+LSA. . . . . . . . . . . . . .  B ADDR   00A0H.2 A   
+LSB. . . . . . . . . . . . . .  B ADDR   00A0H.3 A   
+LSC. . . . . . . . . . . . . .  B ADDR   00A0H.4 A   
+MAIN . . . . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?MAIN?MAIN
+MATRIXLED_INIT . . . . . . . .  C ADDR   0000H   R   SEG=?PR?MATRIXLED_INIT?MAIN
+OFFSET?753 . . . . . . . . . .  D ADDR   0018H   R   SEG=?DT?MAIN?MAIN
+OV . . . . . . . . . . . . . .  B ADDR   00D0H.2 A   
+P. . . . . . . . . . . . . . .  B ADDR   00D0H.0 A   
+P0 . . . . . . . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . . . . . . . .  D ADDR   00B0H   A   
+PCON . . . . . . . . . . . . .  D ADDR   0087H   A   
+PS . . . . . . . . . . . . . .  B ADDR   00B8H.4 A   
+PSW. . . . . . . . . . . . . .  D ADDR   00D0H   A   
+PT0. . . . . . . . . . . . . .  B ADDR   00B8H.1 A   
+PT1. . . . . . . . . . . . . .  B ADDR   00B8H.3 A   
+PT2. . . . . . . . . . . . . .  B ADDR   00B8H.5 A   
+PX0. . . . . . . . . . . . . .  B ADDR   00B8H.0 A   
+PX1. . . . . . . . . . . . . .  B ADDR   00B8H.2 A   
+RB8. . . . . . . . . . . . . .  B ADDR   0098H.2 A   
+RCAP2H . . . . . . . . . . . .  D ADDR   00CBH   A   
+RCAP2L . . . . . . . . . . . .  D ADDR   00CAH   A   
+RCLK . . . . . . . . . . . . .  B ADDR   00C8H.5 A   
+RD . . . . . . . . . . . . . .  B ADDR   00B0H.7 A   
+REN. . . . . . . . . . . . . .  B ADDR   0098H.4 A   
+RI . . . . . . . . . . . . . .  B ADDR   0098H.0 A   
+RS0. . . . . . . . . . . . . .  B ADDR   00D0H.3 A   
+RS1. . . . . . . . . . . . . .  B ADDR   00D0H.4 A   
+RXD. . . . . . . . . . . . . .  B ADDR   00B0H.0 A   
+SBUF . . . . . . . . . . . . .  D ADDR   0099H   A   
+SCK. . . . . . . . . . . . . .  B ADDR   00B0H.6 A   
+SCON . . . . . . . . . . . . .  D ADDR   0098H   A   
+SEND_TRIGGER_PULSE . . . . . .  C ADDR   0000H   R   SEG=?PR?SEND_TRIGGER_PULSE?MAIN
+SER. . . . . . . . . . . . . .  B ADDR   00B0H.4 A   
+A51 MACRO ASSEMBLER  MAIN                                                                 04/23/2024 18:25:29 PAGE    16
+
+SM0. . . . . . . . . . . . . .  B ADDR   0098H.7 A   
+SM1. . . . . . . . . . . . . .  B ADDR   0098H.6 A   
+SM2. . . . . . . . . . . . . .  B ADDR   0098H.5 A   
+SP . . . . . . . . . . . . . .  D ADDR   0081H   A   
+T0 . . . . . . . . . . . . . .  B ADDR   00B0H.4 A   
+T1 . . . . . . . . . . . . . .  B ADDR   00B0H.5 A   
+T2 . . . . . . . . . . . . . .  B ADDR   0090H.0 A   
+T2CON. . . . . . . . . . . . .  D ADDR   00C8H   A   
+T2EX . . . . . . . . . . . . .  B ADDR   0090H.1 A   
+TB8. . . . . . . . . . . . . .  B ADDR   0098H.3 A   
+TCLK . . . . . . . . . . . . .  B ADDR   00C8H.4 A   
+TCON . . . . . . . . . . . . .  D ADDR   0088H   A   
+TF0. . . . . . . . . . . . . .  B ADDR   0088H.5 A   
+TF1. . . . . . . . . . . . . .  B ADDR   0088H.7 A   
+TF2. . . . . . . . . . . . . .  B ADDR   00C8H.7 A   
+TH0. . . . . . . . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . . . . . . . .  D ADDR   008DH   A   
+TH2. . . . . . . . . . . . . .  D ADDR   00CDH   A   
+TI . . . . . . . . . . . . . .  B ADDR   0098H.1 A   
+TL0. . . . . . . . . . . . . .  D ADDR   008AH   A   
+TL1. . . . . . . . . . . . . .  D ADDR   008BH   A   
+TL2. . . . . . . . . . . . . .  D ADDR   00CCH   A   
+TMOD . . . . . . . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . . . . . . . .  B ADDR   0088H.4 A   
+TR1. . . . . . . . . . . . . .  B ADDR   0088H.6 A   
+TR2. . . . . . . . . . . . . .  B ADDR   00C8H.2 A   
+TRIGGER_PIN. . . . . . . . . .  B ADDR   00B0H.5 A   
+TXD. . . . . . . . . . . . . .  B ADDR   00B0H.1 A   
+VALUE?747. . . . . . . . . . .  D ADDR   0000H   R   SEG=?DT?MAIN?MAIN
+WR . . . . . . . . . . . . . .  B ADDR   00B0H.6 A   
+_DELAY . . . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?_DELAY?MAIN
+_MATRIXLED_SHOWCOLUMN. . . . .  C ADDR   0000H   R   SEG=?PR?_MATRIXLED_SHOWCOLUMN?MAIN
+_POW . . . . . . . . . . . . .  C ADDR   -----       EXT
+_SMG_DISPLAY . . . . . . . . .  C ADDR   -----       EXT
+__74HC595_WRITEBYTE. . . . . .  C ADDR   0000H   R   SEG=?PR?__74HC595_WRITEBYTE?MAIN
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

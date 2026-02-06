@@ -1,0 +1,808 @@
+; .\Obj\main.SRC generated from: User\main.c
+; COMPILER INVOKED BY:
+;        C:\Keil_v5\C51\BIN\C51.EXE User\main.c ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.\App\smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time;.\App\xpt2046) DEBUG OBJECTEXTEND PRINT(.\Obj\main.lst) TABS(2) SRC(.\Obj\main.SRC)
+
+$NOMOD51
+
+NAME	MAIN
+
+P0	DATA	080H
+P1	DATA	090H
+Trigger_pin	BIT	0B0H.5
+P2	DATA	0A0H
+P3	DATA	0B0H
+T0	BIT	0B0H.4
+AC	BIT	0D0H.6
+T1	BIT	0B0H.5
+T2	BIT	090H.0
+EA	BIT	0A8H.7
+IE	DATA	0A8H
+CS	BIT	0B0H.5
+EXF2	BIT	0C8H.6
+RD	BIT	0B0H.7
+ES	BIT	0A8H.4
+IP	DATA	0B8H
+RI	BIT	098H.0
+INT0	BIT	0B0H.2
+CY	BIT	0D0H.7
+TI	BIT	098H.1
+INT1	BIT	0B0H.3
+RCAP2H	DATA	0CBH
+PS	BIT	0B8H.4
+SP	DATA	081H
+T2EX	BIT	090H.1
+OV	BIT	0D0H.2
+RCAP2L	DATA	0CAH
+C_T2	BIT	0C8H.1
+WR	BIT	0B0H.6
+Echo_pin	BIT	0B0H.3
+RCLK	BIT	0C8H.5
+TCLK	BIT	0C8H.4
+SBUF	DATA	099H
+PCON	DATA	087H
+SCON	DATA	098H
+TMOD	DATA	089H
+TCON	DATA	088H
+DOUT	BIT	0B0H.7
+IE0	BIT	088H.1
+IE1	BIT	088H.3
+B	DATA	0F0H
+CP_RL2	BIT	0C8H.0
+ACC	DATA	0E0H
+ET0	BIT	0A8H.1
+ET1	BIT	0A8H.3
+TF0	BIT	088H.5
+ET2	BIT	0A8H.5
+TF1	BIT	088H.7
+TF2	BIT	0C8H.7
+RB8	BIT	098H.2
+TH0	DATA	08CH
+EX0	BIT	0A8H.0
+IT0	BIT	088H.0
+TH1	DATA	08DH
+TB8	BIT	098H.3
+EX1	BIT	0A8H.2
+IT1	BIT	088H.2
+TH2	DATA	0CDH
+P	BIT	0D0H.0
+SM0	BIT	098H.7
+TL0	DATA	08AH
+SM1	BIT	098H.6
+TL1	DATA	08BH
+SM2	BIT	098H.5
+TL2	DATA	0CCH
+PT0	BIT	0B8H.1
+PT1	BIT	0B8H.3
+RS0	BIT	0D0H.3
+PT2	BIT	0B8H.5
+TR0	BIT	088H.4
+RS1	BIT	0D0H.4
+TR1	BIT	088H.6
+TR2	BIT	0C8H.2
+PX0	BIT	0B8H.0
+PX1	BIT	0B8H.2
+CLK	BIT	0B0H.6
+DIN	BIT	0B0H.4
+DPH	DATA	083H
+LSA	BIT	0A0H.2
+DPL	DATA	082H
+SCK	BIT	0B0H.6
+LSB	BIT	0A0H.3
+LSC	BIT	0A0H.4
+EXEN2	BIT	0C8H.3
+REN	BIT	098H.4
+T2CON	DATA	0C8H
+SER	BIT	0B0H.4
+RXD	BIT	0B0H.0
+TXD	BIT	0B0H.1
+F0	BIT	0D0H.5
+PSW	DATA	0D0H
+?PR?_Delay?MAIN      SEGMENT CODE INBLOCK 
+?PR?__74HC595_WriteByte?MAIN             SEGMENT CODE INBLOCK 
+?PR?MatrixLED_Init?MAIN                  SEGMENT CODE INBLOCK 
+?PR?_MatrixLED_ShowColumn?MAIN           SEGMENT CODE INBLOCK 
+?PR?Delay_us?MAIN    SEGMENT CODE INBLOCK 
+?PR?init_timer?MAIN  SEGMENT CODE INBLOCK 
+?PR?send_trigger_pulse?MAIN              SEGMENT CODE INBLOCK 
+?PR?main?MAIN        SEGMENT CODE INBLOCK 
+?DT?main?MAIN        SEGMENT DATA OVERLAYABLE 
+?CO?MAIN             SEGMENT CODE 
+	EXTRN	CODE (_smg_display)
+	EXTRN	DATA (gsmg_code)
+	EXTRN	CODE (_pow)
+	EXTRN	DATA (?_pow?BYTE)
+	EXTRN	CODE (?C_STARTUP)
+	EXTRN	CODE (?C?SLCMP)
+	EXTRN	CODE (?C?FPMUL)
+	EXTRN	CODE (?C?FCASTI)
+	EXTRN	CODE (?C?FPDIV)
+	EXTRN	CODE (?C?CASTF)
+	EXTRN	CODE (?C?UIDIV)
+	PUBLIC	Animation
+	PUBLIC	main
+	PUBLIC	send_trigger_pulse
+	PUBLIC	init_timer
+	PUBLIC	Delay_us
+	PUBLIC	_MatrixLED_ShowColumn
+	PUBLIC	MatrixLED_Init
+	PUBLIC	__74HC595_WriteByte
+	PUBLIC	_Delay
+
+	RSEG  ?DT?main?MAIN
+?main?BYTE:
+      value?747:   DS   4
+	ORG  4
+distance_in_cm?748:   DS   10
+	ORG  14
+distance_measurement?749:   DS   2
+	ORG  16
+        buf?750:   DS   4
+	ORG  20
+          i?751:   DS   2
+	ORG  22
+          j?752:   DS   2
+	ORG  24
+     Offset?753:   DS   2
+	ORG  26
+      Count?754:   DS   2
+
+	RSEG  ?CO?MAIN
+Animation:
+	DB	0E7H
+	DB	0E7H
+	DB	0E7H
+	DB	0FFH
+	DB	0FFH
+	DB	0E7H
+	DB	0E7H
+	DB	0E7H
+	DB	0FEH
+	DB	0C1H
+	DB	0C1H
+	DB	0FEH
+	DB	0FEH
+	DB	0C1H
+	DB	0C1H
+	DB	0FEH
+	DB	0C3H
+	DB	0C6H
+	DB	0CCH
+	DB	0F8H
+	DB	0F8H
+	DB	0CCH
+	DB	0C6H
+	DB	0C3H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0E7H
+	DB	0E7H
+	DB	0E7H
+	DB	0E7H
+	DB	0E7H
+	DB	0FFH
+	DB	0FFH
+	DB	018H
+	DB	0FFH
+	DB	0FFH
+	DB	018H
+	DB	0FFH
+	DB	0FFH
+	DB	084H
+	DB	0BFH
+	DB	09FH
+	DB	095H
+	DB	09FH
+	DB	0C4H
+	DB	0BFH
+	DB	084H
+
+; #ifndef __DELAY_H__
+; #define __DELAY_H__
+; #ifndef __MATRIX_LED_H__
+; #define __MATRIX_LED_H__
+; 
+; #include "public.h"
+; #include "smg.h"
+; #include "xpt2046.h"
+; #include <reg52.h>
+; #include <stdio.h>
+; #include <math.h>
+; 
+; #define sound_velocity 34300  	/* sound velocity in cm per second */
+; 
+; #define period_in_us pow(10,-6)
+; #define Clock_period 1.085*period_in_us		/* period for clock cycle of 8051*/
+; 
+; void Delay(unsigned int xms);
+; void MatrixLED_Init();
+; void MatrixLED_ShowColumn(unsigned char Column,Data);
+; 
+; void Delay(unsigned int xms)
+
+	RSEG  ?PR?_Delay?MAIN
+_Delay:
+	USING	0
+			; SOURCE LINE # 22
+;---- Variable 'xms?040' assigned to Register 'R6/R7' ----
+; {
+			; SOURCE LINE # 23
+?C0001:
+; 	unsigned char i, j;
+; 	while(xms--)
+			; SOURCE LINE # 25
+	MOV  	A,R7
+	DEC  	R7
+	MOV  	R4,AR6
+	JNZ  	?C0038
+	DEC  	R6
+?C0038:
+	ORL  	A,R4
+	JZ   	?C0008
+; 	{
+			; SOURCE LINE # 26
+; 		i = 2;
+			; SOURCE LINE # 27
+;---- Variable 'i?041' assigned to Register 'R5' ----
+	MOV  	R5,#02H
+; 		j = 239;
+			; SOURCE LINE # 28
+;---- Variable 'j?042' assigned to Register 'R4' ----
+	MOV  	R4,#0EFH
+; 		do
+; 		{
+			; SOURCE LINE # 30
+?C0006:
+; 			while (--j);
+			; SOURCE LINE # 31
+	DJNZ 	R4,?C0006
+; 		} while (--i);
+			; SOURCE LINE # 32
+	DJNZ 	R5,?C0006
+; 	}
+			; SOURCE LINE # 33
+	SJMP 	?C0001
+; }
+			; SOURCE LINE # 34
+?C0008:
+	RET  	
+; END OF _Delay
+
+; 
+; 
+; 
+; sbit Trigger_pin=P3^5;        	/* Trigger pin */
+; sbit Echo_pin=P3^3;		/* Echo pin */
+; 
+; sbit SCK=P3^6;		//SRCLK
+; sbit SER=P3^4;		//SER
+; 
+; #define MATRIX_LED_PORT		P0
+; 
+; void _74HC595_WriteByte(unsigned char Byte)
+
+	RSEG  ?PR?__74HC595_WriteByte?MAIN
+__74HC595_WriteByte:
+	USING	0
+			; SOURCE LINE # 46
+;---- Variable 'Byte?143' assigned to Register 'R5' ----
+	MOV  	R5,AR7
+; {
+			; SOURCE LINE # 47
+; 	unsigned char i;
+; 	for(i=0;i<8;i++)
+			; SOURCE LINE # 49
+;---- Variable 'i?144' assigned to Register 'R3' ----
+	CLR  	A
+	MOV  	R3,A
+?C0009:
+; 	{
+			; SOURCE LINE # 50
+; 		SER=Byte&(0x80>>i);
+			; SOURCE LINE # 51
+	MOV  	R6,#00H
+	MOV  	A,#080H
+	MOV  	R0,AR3
+	INC  	R0
+	SJMP 	?C0040
+?C0039:
+	XCH  	A,R6
+	MOV  	C,ACC.7
+	RRC  	A
+	XCH  	A,R6
+	RRC  	A
+?C0040:
+	DJNZ 	R0,?C0039
+	MOV  	R7,A
+	MOV  	A,R5
+	MOV  	DPL,A
+	MOV  	A,R7
+	ANL  	A,DPL
+	ADD  	A,#0FFH
+	MOV  	SER,C
+; 		SCK=1;
+			; SOURCE LINE # 52
+	SETB 	SCK
+; 		SCK=0;
+			; SOURCE LINE # 53
+	CLR  	SCK
+; 	}
+			; SOURCE LINE # 54
+	INC  	R3
+	CJNE 	R3,#08H,?C0009
+?C0010:
+; 	Trigger_pin=1;
+			; SOURCE LINE # 55
+	SETB 	Trigger_pin
+; 	Trigger_pin=0;
+			; SOURCE LINE # 56
+	CLR  	Trigger_pin
+; }
+			; SOURCE LINE # 57
+	RET  	
+; END OF __74HC595_WriteByte
+
+; 
+; void MatrixLED_Init()
+
+	RSEG  ?PR?MatrixLED_Init?MAIN
+MatrixLED_Init:
+			; SOURCE LINE # 59
+; {
+			; SOURCE LINE # 60
+; 	SCK=0;
+			; SOURCE LINE # 61
+	CLR  	SCK
+; 	Trigger_pin=0;
+			; SOURCE LINE # 62
+	CLR  	Trigger_pin
+; }
+			; SOURCE LINE # 63
+	RET  	
+; END OF MatrixLED_Init
+
+; 
+; void MatrixLED_ShowColumn(unsigned char Column,Data)
+
+	RSEG  ?PR?_MatrixLED_ShowColumn?MAIN
+_MatrixLED_ShowColumn:
+	USING	0
+			; SOURCE LINE # 65
+;---- Variable 'Data?346' assigned to Register 'R4/R5' ----
+;---- Variable 'Column?345' assigned to Register 'R2' ----
+	MOV  	R2,AR7
+; {
+			; SOURCE LINE # 66
+; 	_74HC595_WriteByte(Data);
+			; SOURCE LINE # 67
+	MOV  	R7,AR5
+	LCALL	__74HC595_WriteByte
+; 	MATRIX_LED_PORT=~(0x80>>Column);
+			; SOURCE LINE # 68
+	MOV  	R7,AR2
+	MOV  	R0,AR7
+	MOV  	A,#080H
+	INC  	R0
+	SJMP 	?C0042
+?C0041:
+	CLR  	C
+	RRC  	A
+?C0042:
+	DJNZ 	R0,?C0041
+	CPL  	A
+	MOV  	P0,A
+; 	Delay(1);
+			; SOURCE LINE # 69
+	MOV  	R7,#01H
+	MOV  	R6,#00H
+	LCALL	_Delay
+; 	MATRIX_LED_PORT=0xFF;
+			; SOURCE LINE # 70
+	MOV  	P0,#0FFH
+; }
+			; SOURCE LINE # 71
+	RET  	
+; END OF _MatrixLED_ShowColumn
+
+; 
+; void Delay_us()
+
+	RSEG  ?PR?Delay_us?MAIN
+Delay_us:
+			; SOURCE LINE # 73
+; {
+			; SOURCE LINE # 74
+; 	TL0=0xF5;
+			; SOURCE LINE # 75
+	MOV  	TL0,#0F5H
+; 	TH0=0xFF;
+			; SOURCE LINE # 76
+	MOV  	TH0,#0FFH
+; 	TR0=1;
+			; SOURCE LINE # 77
+	SETB 	TR0
+?C0015:
+; 	while (TF0==0);
+			; SOURCE LINE # 78
+	JNB  	TF0,?C0015
+; 	TR0=0;
+			; SOURCE LINE # 79
+	CLR  	TR0
+; 	TF0=0;
+			; SOURCE LINE # 80
+	CLR  	TF0
+; }
+			; SOURCE LINE # 81
+	RET  	
+; END OF Delay_us
+
+; 
+; void init_timer(){
+
+	RSEG  ?PR?init_timer?MAIN
+init_timer:
+			; SOURCE LINE # 83
+; 	TMOD=0x01;										/*initialize Timer*/
+			; SOURCE LINE # 84
+	MOV  	TMOD,#01H
+; 	TF0=0;
+			; SOURCE LINE # 85
+	CLR  	TF0
+; 	TR0 = 0;
+			; SOURCE LINE # 86
+	CLR  	TR0
+; }
+			; SOURCE LINE # 87
+	RET  	
+; END OF init_timer
+
+; 
+; void send_trigger_pulse(){
+
+	RSEG  ?PR?send_trigger_pulse?MAIN
+send_trigger_pulse:
+			; SOURCE LINE # 89
+; 	Trigger_pin= 1;           	/* pull trigger pin HIGH */
+			; SOURCE LINE # 90
+	SETB 	Trigger_pin
+; 	Delay_us();               	/* provide 10uS Delay*/
+			; SOURCE LINE # 91
+	LCALL	Delay_us
+; 	Trigger_pin = 0;          	/* pull trigger pin LOW*/
+			; SOURCE LINE # 92
+	CLR  	Trigger_pin
+; }
+			; SOURCE LINE # 93
+	RET  	
+; END OF send_trigger_pulse
+
+; 
+; unsigned char code Animation[]={
+; 	0xE7,0xE7,0xE7,0xFF,0xFF,0xE7,0xE7,0xE7,
+; 	0xFE,0xC1,0xC1,0xFE,0xFE,0xC1,0xC1,0xFE,
+; 	0xC3,0xC6,0xCC,0xF8,0xF8,0xCC,0xC6,0xC3,
+; 	0xFF,0xFF,0xFF,0xE7,0xE7,0xE7,0xE7,0xE7,
+; 	0xFF,0xFF,0x18,0xFF,0xFF,0x18,0xFF,0xFF,
+; 	0x84,0xBF,0x9F,0x95,0x9F,0xC4,0xBF,0x84,
+; };
+; 
+; void main()
+
+	RSEG  ?PR?main?MAIN
+main:
+	USING	0
+			; SOURCE LINE # 104
+; {
+			; SOURCE LINE # 105
+; 	float value;
+; 	unsigned char distance_in_cm[10];
+; 	u16 distance_measurement=0;
+			; SOURCE LINE # 108
+	CLR  	A
+	MOV  	distance_measurement?749,A
+	MOV  	distance_measurement?749+01H,A
+; 	u8 buf[4];
+; 	u16 i=0;
+			; SOURCE LINE # 110
+	MOV  	i?751,A
+	MOV  	i?751+01H,A
+; 	u16 j=0;
+			; SOURCE LINE # 111
+	MOV  	j?752,A
+	MOV  	j?752+01H,A
+; 	u16 Offset=0;
+			; SOURCE LINE # 112
+	MOV  	Offset?753,A
+	MOV  	Offset?753+01H,A
+; 	u16 Count=0;
+			; SOURCE LINE # 113
+	MOV  	Count?754,A
+	MOV  	Count?754+01H,A
+; 	MatrixLED_Init();
+			; SOURCE LINE # 114
+	LCALL	MatrixLED_Init
+; 	for(j=0;j<700;j++) {
+			; SOURCE LINE # 115
+	MOV  	j?752,A
+	MOV  	j?752+01H,A
+?C0020:
+; 		for(i=0;i<8;i++)
+			; SOURCE LINE # 116
+	CLR  	A
+	MOV  	i?751,A
+	MOV  	i?751+01H,A
+?C0023:
+; 		{
+			; SOURCE LINE # 117
+; 			MatrixLED_ShowColumn(i,Animation[i+Offset]);
+			; SOURCE LINE # 118
+	MOV  	R7,i?751+01H
+	MOV  	A,i?751+01H
+	ADD  	A,Offset?753+01H
+	MOV  	R5,A
+	MOV  	A,i?751
+	ADDC 	A,Offset?753
+	MOV  	R4,A
+	MOV  	A,#LOW (Animation)
+	ADD  	A,R5
+	MOV  	DPL,A
+	MOV  	A,#HIGH (Animation)
+	ADDC 	A,R4
+	MOV  	DPH,A
+	CLR  	A
+	MOVC 	A,@A+DPTR
+	MOV  	R5,A
+	MOV  	R4,#00H
+	LCALL	_MatrixLED_ShowColumn
+; 		}
+			; SOURCE LINE # 119
+	INC  	i?751+01H
+	MOV  	A,i?751+01H
+	JNZ  	?C0043
+	INC  	i?751
+?C0043:
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,i?751
+	SUBB 	A,#00H
+	JC   	?C0023
+?C0024:
+; 		Count++;
+			; SOURCE LINE # 120
+	INC  	Count?754+01H
+	MOV  	A,Count?754+01H
+	JNZ  	?C0044
+	INC  	Count?754
+?C0044:
+; 		if(Count>39)
+			; SOURCE LINE # 121
+	SETB 	C
+	SUBB 	A,#027H
+	MOV  	A,Count?754
+	SUBB 	A,#00H
+	JC   	?C0022
+; 		{
+			; SOURCE LINE # 122
+; 			Count=0;
+			; SOURCE LINE # 123
+	CLR  	A
+	MOV  	Count?754,A
+	MOV  	Count?754+01H,A
+; 			Offset+=8;
+			; SOURCE LINE # 124
+	MOV  	A,#08H
+	ADD  	A,Offset?753+01H
+	MOV  	Offset?753+01H,A
+	CLR  	A
+	ADDC 	A,Offset?753
+	MOV  	Offset?753,A
+; 			if(Offset>41)
+			; SOURCE LINE # 125
+	SETB 	C
+	MOV  	A,Offset?753+01H
+	SUBB 	A,#029H
+	MOV  	A,Offset?753
+	SUBB 	A,#00H
+	JC   	?C0022
+; 			{
+			; SOURCE LINE # 126
+; 				Offset=0;
+			; SOURCE LINE # 127
+	CLR  	A
+	MOV  	Offset?753,A
+	MOV  	Offset?753+01H,A
+; 			}
+			; SOURCE LINE # 128
+; 		}
+			; SOURCE LINE # 129
+; 	}
+			; SOURCE LINE # 130
+?C0022:
+	INC  	j?752+01H
+	MOV  	A,j?752+01H
+	JNZ  	?C0045
+	INC  	j?752
+?C0045:
+	CLR  	C
+	SUBB 	A,#0BCH
+	MOV  	A,j?752
+	SUBB 	A,#02H
+	JC   	?C0020
+?C0021:
+; 	init_timer();			/* Initialize Timer*/
+			; SOURCE LINE # 131
+	LCALL	init_timer
+?C0028:
+; 	
+; 	while(1)
+			; SOURCE LINE # 133
+; 	{		
+			; SOURCE LINE # 134
+; 		
+; 		for(j=0;j<65535;j++) {
+			; SOURCE LINE # 136
+	CLR  	A
+	MOV  	j?752,A
+	MOV  	j?752+01H,A
+?C0030:
+	MOV  	R6,j?752
+	MOV  	R7,j?752+01H
+	CLR  	A
+	MOV  	R4,A
+	MOV  	R5,A
+	MOV  	R3,#0FFH
+	MOV  	R2,#0FFH
+	MOV  	R1,A
+	MOV  	R0,A
+	SETB 	C
+	LCALL	?C?SLCMP
+	JC   	?C0028
+; 		send_trigger_pulse();			/* send trigger pulse of 10us */
+			; SOURCE LINE # 137
+	LCALL	send_trigger_pulse
+?C0033:
+;     
+; 		while(!Echo_pin);           		/* Waiting for Echo */
+			; SOURCE LINE # 139
+	JNB  	Echo_pin,?C0033
+; 		TR0 = 1;                    		/* Timer Starts */
+			; SOURCE LINE # 140
+	SETB 	TR0
+?C0035:
+;     		while(Echo_pin && !TF0);    		/* Waiting for Echo goes LOW */
+			; SOURCE LINE # 141
+	JNB  	Echo_pin,?C0036
+	JNB  	TF0,?C0035
+?C0036:
+;     		TR0 = 0;                    		/* Stop the timer */
+			; SOURCE LINE # 142
+	CLR  	TR0
+; 	  
+; 		/* calculate distance using timer */
+; 		value = Clock_period * sound_velocity; 
+			; SOURCE LINE # 145
+	CLR  	A
+	MOV  	?_pow?BYTE+07H,A
+	MOV  	?_pow?BYTE+06H,A
+	MOV  	?_pow?BYTE+05H,#0C0H
+	MOV  	?_pow?BYTE+04H,#0C0H
+	MOV  	R7,A
+	MOV  	R6,A
+	MOV  	R5,#020H
+	MOV  	R4,#041H
+	LCALL	_pow
+	MOV  	R3,#080H
+	MOV  	R2,#05FH
+	MOV  	R1,#011H
+	MOV  	R0,#047H
+	LCALL	?C?FPMUL
+	MOV  	value?747+03H,R7
+	MOV  	value?747+02H,R6
+	MOV  	value?747+01H,R5
+	MOV  	value?747,R4
+; 		distance_measurement = (TL0|(TH0<<8));	/* read timer register for time count */
+			; SOURCE LINE # 146
+	MOV  	R7,TH0
+	MOV  	A,R7
+	MOV  	R5,TL0
+	MOV  	distance_measurement?749,A
+	MOV  	A,R5
+	MOV  	distance_measurement?749+01H,A
+; 		distance_measurement = (distance_measurement*value)/2.0;  /* find distance(in cm) */
+			; SOURCE LINE # 147
+	MOV  	R4,distance_measurement?749
+	CLR  	A
+	LCALL	?C?FCASTI
+	MOV  	R3,value?747+03H
+	MOV  	R2,value?747+02H
+	MOV  	R1,value?747+01H
+	MOV  	R0,value?747
+	LCALL	?C?FPMUL
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R1,A
+	MOV  	R0,#040H
+	LCALL	?C?FPDIV
+	LCALL	?C?CASTF
+	MOV  	distance_measurement?749,R6
+	MOV  	distance_measurement?749+01H,R7
+; 	
+; 		buf[0]=gsmg_code[distance_measurement/1000];
+			; SOURCE LINE # 149
+	MOV  	R4,#03H
+	MOV  	R5,#0E8H
+	LCALL	?C?UIDIV
+	MOV  	A,#LOW (gsmg_code)
+	ADD  	A,R7
+	MOV  	R0,A
+	MOV  	A,@R0
+	MOV  	buf?750,A
+; 		buf[1]=gsmg_code[distance_measurement%1000/100];
+			; SOURCE LINE # 150
+	MOV  	R6,distance_measurement?749
+	MOV  	R7,distance_measurement?749+01H
+	MOV  	R4,#03H
+	MOV  	R5,#0E8H
+	LCALL	?C?UIDIV
+	MOV  	R2,AR4
+	MOV  	R3,AR5
+	MOV  	R5,#064H
+	MOV  	R4,#00H
+	MOV  	R7,AR3
+	MOV  	R6,AR2
+	LCALL	?C?UIDIV
+	MOV  	A,#LOW (gsmg_code)
+	ADD  	A,R7
+	MOV  	R0,A
+	MOV  	A,@R0
+	MOV  	buf?750+01H,A
+; 		buf[2]=gsmg_code[distance_measurement%1000%100/10];
+			; SOURCE LINE # 151
+	MOV  	R5,#064H
+	MOV  	R4,#00H
+	MOV  	R7,AR3
+	MOV  	R6,AR2
+	LCALL	?C?UIDIV
+	MOV  	R2,AR4
+	MOV  	R3,AR5
+	MOV  	R5,#0AH
+	MOV  	R4,#00H
+	MOV  	R7,AR3
+	MOV  	R6,AR2
+	LCALL	?C?UIDIV
+	MOV  	A,#LOW (gsmg_code)
+	ADD  	A,R7
+	MOV  	R0,A
+	MOV  	A,@R0
+	MOV  	buf?750+02H,A
+; 		buf[3]=gsmg_code[distance_measurement%1000%100%10];
+			; SOURCE LINE # 152
+	MOV  	R5,#0AH
+	MOV  	R4,#00H
+	MOV  	R7,AR3
+	MOV  	R6,AR2
+	LCALL	?C?UIDIV
+	MOV  	A,#LOW (gsmg_code)
+	ADD  	A,R5
+	MOV  	R0,A
+	MOV  	A,@R0
+	MOV  	buf?750+03H,A
+; 		smg_display(buf,5);
+			; SOURCE LINE # 153
+	MOV  	R3,#00H
+	MOV  	R2,#HIGH (buf?750)
+	MOV  	R1,#LOW (buf?750)
+	MOV  	R5,#05H
+	LCALL	_smg_display
+; 		}
+			; SOURCE LINE # 154
+	INC  	j?752+01H
+	MOV  	A,j?752+01H
+	JNZ  	?C0046
+	INC  	j?752
+?C0046:
+	AJMP 	?C0030
+; END OF main
+
+	END
